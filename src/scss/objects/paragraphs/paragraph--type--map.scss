@@ -1,0 +1,76 @@
+.paragraph--type--map {
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .paragraph-content {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+    align-items: center;
+    padding-top: 45px;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: $mobile) {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    &::before {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+      content: '';
+    }
+  }
+
+  .paragraph-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: $text-color-l;
+    margin-bottom: 23px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .field--name-field-title {
+      font-size: 21px;
+      font-weight: 700;
+      color: $text-color;
+      margin-bottom: 10px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .field--name-field-map {
+    position: relative;
+
+    min-height: 700px;
+
+    padding-bottom: 85%;
+  }
+
+  iframe {
+    display: block;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+  }
+}

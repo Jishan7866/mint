@@ -1,0 +1,130 @@
+.paragraph.layout--onecol {
+  padding: 0 42px;
+  padding-bottom: 45px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+    padding-bottom: 40px;
+  }
+
+  .layout__region--content {
+    max-width: 940px;
+    margin: 0 auto;
+    border: 1px solid rgba($c-black, .2);
+    background-color: $text-color-2l;
+  }
+
+  .features-content>.field--name-field-paragraphs-list {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    >.field__item:first-child {
+      padding-top: 20px;
+    }
+
+    >.field__item:last-child {
+      padding-bottom: 20px;
+    }
+
+    >.field__item:not(:last-child) {
+      margin-bottom: 33px;
+
+      @media screen and (max-width: $mobile) {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .field--name-field-paragraphs-list>.field__item {
+    margin-bottom: 5px;
+  }
+
+  .paragraph--type--features-block {
+    .field--name-field-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: $text-color;
+      margin-bottom: 12px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .features-title {
+    position: relative;
+    font-size: 18px;
+    padding: 12px 20px;
+    color: $primary-color;
+    background-color: $c-white;
+    cursor: pointer;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+    }
+
+    &::after {
+      display: block;
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      transform: translateY(-50%) rotate(45deg);
+      width: 20px;
+      height: 20px;
+      border: 2px solid $primary-color;
+      border-top: none;
+      border-left: none;
+      transition: .3s;
+      content: '';
+    }
+
+    &.opened::after {
+      top: 28px;
+      transform: translateY(-50%) rotate(225deg);
+    }
+  }
+
+  .paragraph--type--text-element {
+    padding: 0;
+    text-align: left;
+    color: $text-color;
+
+    .paragraph-content {
+      display: flex;
+      padding: 17px;
+      max-width: 100%;
+      margin: 0;
+      background-color: $c-white;
+      border-radius: 4px;
+
+      @media screen and (max-width: $mobile) {
+        flex-flow: wrap;
+      }
+    }
+
+    .field--name-field-title,
+    .field--name-field-text {
+      font-size: 15px;
+      font-weight: 400;
+      margin-bottom: 0;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 13px;
+      }
+    }
+
+    .field--name-field-title {
+      width: 100%;
+      max-width: 200px;
+      padding-right: 30px;
+
+      font-weight: 600;
+
+      @media screen and (max-width: $mobile) {
+        padding-right: 0;
+        max-width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,1349 @@
+form.user-form {
+    max-width: 960px;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.user-accout-page {
+    -webkit-tap-highlight-color: transparent;
+    margin-bottom: 2.5rem;
+    .wrapper-loader {
+        display: none;
+        position: absolute;
+        top: 20px;
+        left: 0;
+        width: 25%;
+    }
+    &.loader {
+        position: relative;
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba($c-white, 0.5);
+        }
+        .wrapper-loader {
+            display: block;
+        }
+    }
+    .element {
+        margin-bottom: 1rem;
+        padding: 0 2rem;
+        @media screen and (max-width: $tablet) {
+            padding: 0;
+        }
+        .title {
+            font-size: 1.25rem;
+            line-height: 1;
+            color: #000;
+            height: 56px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            background: #F6F6F6;
+            padding: 1rem 4rem 1rem 6rem;
+            border-radius: 70px 25px 25px 70px;
+            outline: none;
+            margin: 0;
+            z-index: 2;
+            @media screen and (max-width: $tablet) {
+                margin: 0 20px;
+            }
+            &::before {
+                display: block;
+                position: absolute;
+                width: 56px;
+                height: 56px;
+                content: " ";
+                border: 3px solid #F6F6F6;
+                border-radius: 70px;
+                left: 0;
+                background-color: #000;
+                border: 2px solid #F6F6F6;
+                box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+                background-position: center;
+                background-repeat: no-repeat;
+            }
+            &::after {
+                display: block;
+                position: absolute;
+                width: 56px;
+                height: 56px;
+                content: " ";
+                border-radius: 70px;
+                right: 0;
+                top: 0;
+                background-image: url("../../src/img/up.svg");
+                background-position: center;
+                background-repeat: no-repeat;
+                transform: rotate(180deg);
+                transition: all 0.5s;
+            }
+        }
+        &.bills-payment-details {
+            .title {
+                &::before {
+                    background-image: url("../../src/img/billingdetails.svg");
+                }
+            }
+        }
+        &.personal-details {
+            .title {
+                &::before {
+                    background-image: url("../../src/img/personal_details.svg");
+                }
+            }
+            .element-content {
+                padding-bottom: 0;
+            }
+        }
+        &.international-roaming-packs {
+            .title {
+                &::before {
+                    background-image: url("../../src/img/international.svg");
+                }
+            }
+        }
+        &.plan,
+        &.subscription {
+            .title {
+                z-index: 4;
+                &::before {
+                    background-image: url("../../src/img/plans.svg");
+                }
+            }
+        }
+        &.data-usage {
+            .title {
+                &::before {
+                    background-image: url("../../src/img/data_usage.svg");
+                }
+            }
+        }
+        .element-content {
+            padding: 2rem;
+            @media screen and (min-width: $tablet) {
+                padding: 2rem 0;
+            }
+            &.loading {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+        }
+        &.open {
+            .title {
+                &::after {
+                    transform: rotate(0deg);
+                }
+            }
+            .element-content {
+                display: block;
+            }
+        }
+        .billing-details-container {
+            .billing-details {
+                .title {
+                    padding: 0;
+                    text-align: center;
+                    background: none;
+                    display: block;
+                    cursor: text;
+                    font-size: 2rem;
+                    height: auto;
+                    margin: 1.5rem 0 2rem;
+                    &:before,
+                    &:after {
+                        display: none;
+                    }
+                }
+                .edit-payment-text-container {
+                    h2,
+                    p {
+                        color: #000;
+                        text-align: center;
+                        margin-bottom: 1rem;
+                    }
+                    h2 {
+                        font-size: 1.5rem;
+                    }
+                }
+                &.payment-form {
+                    .mint-billing-details-payment-form {
+                        div[data-drupal-selector="edit-payment-check"] {
+                            &>div {
+                                max-width: 600px;
+                            }
+                        }
+                        &>div[data-drupal-selector="edit-payment-text-container"] {
+                            max-width: none;
+                            text-align: center;
+                            margin-bottom: 3rem;
+                            h2 {
+                                margin-bottom: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .product-price-formatted {
+        display: flex;
+        align-items: flex-end;
+        width: 100%;
+        .price {
+            display: flex;
+            align-items: flex-start;
+            .currency {
+                font-size: 1.5rem;
+                line-height: 1;
+            }
+            .value {
+                font-size: 55px;
+                line-height: 0.9;
+                font-weight: bold;
+            }
+        }
+        .price-suffix {
+            font-size: 20px;
+        }
+    }
+}
+
+#subscription-simplan-data-wrapper {
+    margin-top: 30px;
+}
+
+.user-accout-page,
+.mint-refer-content {
+    margin-top: 0;
+    .phone-number-dropdown {
+        text-align: center;
+        position: relative;
+        z-index: 3;
+        .mobile-phone-number {
+            position: relative;
+            display: inline-block;
+            width: 320px;
+            .mobile-phone-numbers {
+                width: 100%;
+                text-align: left;
+                .selectize-input>input {
+                    line-height: 1 !important;
+                }
+                &:before {
+                    content: ' ';
+                    display: block;
+                    position: absolute;
+                    background: transparent;
+                    height: 1px;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                }
+                .mobile-phone-number {
+                    text-align: center;
+                }
+                .mobile-phone-number span {
+                    background-color: #fff;
+                    display: inline-block;
+                    width: auto;
+                }
+            }
+            .ajax-progress {
+                right: auto;
+                left: -40px;
+                top: 50%;
+                margin-top: -10px;
+                .message {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .user-accout-page {
+        .element {
+            padding: 0;
+            .title {
+                border-radius: 70px 10px 10px 70px;
+            }
+        }
+    }
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.width-70 {
+    width: 70%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.placeholder {
+    position: relative;
+    overflow: hidden;
+    background: #F6F6F6;
+    height: 1rem;
+    margin-bottom: 1rem;
+    &.dark {
+        background-color: $c-grey-l;
+    }
+}
+
+.user-accout-page {
+    .placeholder {
+        &::after {
+            content: "";
+            display: block;
+            background-color: #dddfe2;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(0);
+            animation: 1.5s loading-placeholder ease-in-out infinite;
+        }
+        &.dark {
+            &::after {
+                background-color: $c-grey-4l;
+            }
+        }
+    }
+}
+
+@keyframes loading-placeholder {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.mobile-phone-numbers,
+.select-mobile-number,
+.select-mobile-number-wrapper {
+    input,
+    select {
+        font-size: 100%;
+    }
+    .show-mobile {
+        display: none;
+    }
+    @media screen and (max-width: $mobile) {
+        .show-desktop {
+            display: none;
+        }
+        .show-mobile {
+            display: inline;
+        }
+    }
+}
+
+
+/*---- subscription -- */
+
+.user-accout-page {
+    .user-account-header {
+        background-color: $c-black;
+        color: $c-white;
+        text-align: center;
+        padding: 3rem 15px;
+        margin-bottom: 2rem;
+    }
+    .user-name {
+        font-size: 18px;
+        padding: 0 8px;
+        h2 {
+            font-size: 36px;
+            line-height: 1rem;
+            margin-bottom: 1rem;
+            font-weight: normal;
+        }
+    }
+    .bundle-options {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 2rem;
+        position: relative;
+        &.subheader-active {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            &:after {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                width: 80%;
+                height: 1px;
+                margin-left: auto;
+                margin-right: auto;
+                background-image: linear-gradient(to right, $c-black 0%, #a0a0a0 50%, $c-black 100%);
+                content: '';
+            }
+        }
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+            li {
+                width: 47%;
+                line-height: 1.5rem;
+                cursor: pointer;
+                padding: 1rem;
+                margin: 0.6rem 0.3rem;
+                display: block;
+                border: 2px solid $c-grey-4l;
+                background-color: $c-grey-4l;
+                color: $c-white;
+                border-radius: 8px;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                .icon {
+                    width: 100%;
+                    height: 110px;
+                    display: block;
+                    margin-bottom: 1rem;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: contain;
+                }
+                @media screen and (max-width: $tablet) {
+                    span {
+                        display: block;
+                    }
+                }
+                &.your-subscriptions .icon {
+                    background-image: url("../img/phone-subscription-icon.svg");
+                }
+                &.phone-plan .icon {
+                    background-image: url("../img/phone-sim-plan-icon.svg");
+                }
+                &.sim-plan .icon {
+                    background-image: url("../img/remaining-balance-icon.svg");
+                }
+                &.active,
+                &:hover {
+                    border: 2px solid $c-violet;
+                    box-shadow: 0 0 5px 3px $c-violet;
+                }
+            }
+        }
+    }
+    .subscription-options {
+        margin-top: 2rem;
+        font-size: 16px;
+        line-height: 1.5rem;
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            li {
+                cursor: pointer;
+                padding: 1rem 0.5rem;
+                width: 100%;
+                margin: 0.3rem 0;
+                display: block;
+                border: 2px solid $c-grey-4l;
+                background-color: $c-grey-4l;
+                color: $c-white;
+                border-radius: 8px;
+                box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+                .value {
+                    font-weight: bold;
+                    display: block;
+                    margin-top: 0.5em;
+                }
+                .icon {
+                    width: 100%;
+                    height: 85px;
+                    display: block;
+                    margin-bottom: 1rem;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: contain;
+                }
+                &.total-subscription .icon {
+                    background-image: url("../img/total-subscription-icon.svg")
+                }
+                &.next-payment .icon {
+                    background-image: url("../img/next-payment-icon.svg")
+                }
+                &.remaining-balance .icon {
+                    background-image: url("../img/remaining-balance-icon.svg")
+                }
+                &.subscriptoin-upgrage-date .icon {
+                    background-image: url("../img/subscriptoin-upgrage-date-icon.svg")
+                }
+                &.active,
+                &:hover {
+                    border: 2px solid $c-violet;
+                    box-shadow: 0 0 5px 0px $c-violet;
+                }
+            }
+        }
+    }
+    .add-more-subscription {
+        margin-top: 3rem;
+        font-size: 18px;
+    }
+    .add-more-subscription span.shownowtips.tooltip-icon {
+        top: 2px;
+    }
+    .subscriptoin-upgrage-date .tooltip-icon {
+        top: 4px;
+    }
+    @media screen and (max-width: $tablet) {
+        .subscription-options {
+            ul {
+                li {
+                    position: relative;
+                    padding-left: 100px;
+                    padding-top: 2rem;
+                    min-height: 120px;
+                    .icon {
+                        position: absolute;
+                        left: 1.5rem;
+                        top: 1rem;
+                        width: 100px;
+                    }
+                }
+            }
+        }
+    }
+    #subscription+#plan .title {
+        display: none;
+    }
+    @media screen and (min-width: $tablet) {
+        .user-name {
+            h2 {
+                font-size: 45px;
+                margin-bottom: 2rem;
+            }
+        }
+        .bundle-options {
+            font-size: 20px;
+            margin-top: 3rem;
+            ul {
+                li {
+                    width: 31.33333333333%;
+                    margin: 0 1%;
+                }
+            }
+        }
+        .subscription-options {
+            margin-top: 3rem;
+            font-size: 18px;
+            ul {
+                display: flex;
+                flex-wrap: nowrap;
+                justify-content: center;
+                li {
+                    width: 26%;
+                    margin: 0 1%;
+                    padding: 1rem;
+                }
+            }
+        }
+        .add-more-subscription {
+            font-size: 20px;
+        }
+    }
+}
+
+.column--left {
+    #popup-variations-chnge-plan-sim {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        margin-top: 40px;
+        cursor: pointer;
+    }
+}
+
+.user-accout-page .product-price-formatted .price .currency {
+    margin: 0 !important;
+    font-size: 22px !important;
+}
+
+.user-accout-page .your-sim-plan-right .product-price-formatted {
+    justify-content: center;
+}
+
+.user-accout-page {
+    .element {
+        .element-content {
+            display: none;
+        }
+        &.open {
+            .element-content {
+                display: block;
+            }
+        }
+    }
+}
+
+.column--right.your-sim-plan-right {
+    text-align: right;
+    .summery a {
+        color: #6D6E70;
+        font-size: 13px;
+    }
+    .add-phone {
+        opacity: 0;
+        height: 0;
+        width: 0;
+        visibility: hidden;
+        a {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            border: 2px solid #fff;
+            background: none;
+            color: #fff;
+        }
+    }
+    #popup-variations {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        margin: 0;
+    }
+    .plan-wrapper {
+        display: inline-block;
+        width: 100%;
+        max-width: 290px;
+    }
+    .product-plan {
+        margin: 0;
+    }
+    .product-plan__variations {
+        margin-bottom: 21px;
+        justify-content: center;
+        .field__item {
+            margin: 0 !important;
+            font-size: 13px;
+            text-align: center;
+            &:nth-child(2) {
+                font-weight: bold;
+            }
+        }
+    }
+    .new-product-plan-design {
+        text-align: center;
+        .product-plan__price {
+            margin-bottom: 20px;
+            margin-top: 8px;
+            .product-price-formatted {
+                .price-suffix,
+                .price,
+                .value {
+                    font-size: 22px;
+                    font-weight: bold;
+                    margin: 0 !important;
+                    line-height: normal;
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    small {
+        font-size: 13px;
+        text-align: center;
+        color: #6D6E70;
+        display: block;
+    }
+    .plan-wrapper .product-plan {
+        border-radius: 0 !important;
+    }
+    .select-mobile-number-wrapper {
+        padding: 0;
+        display: inline-block !important;
+        max-width: 290px;
+        width: 100%;
+        &:before {
+            display: none;
+        }
+        .select-mobile-number {
+            padding: 0;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.subscription-plan {
+    .subscription-plan-title {
+        text-align: center;
+        h2 {
+            font-size: 24px;
+        }
+    }
+    .subscription-plan-body {
+        .box {
+            position: relative;
+            width: 100%;
+            padding: 0;
+            border-radius: 8px;
+            background-color: $c-white;
+            box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+            margin: 0 0 20px 0;
+            .image {
+                padding-top: 1rem;
+                width: 100%;
+                text-align: center;
+                img {
+                    max-height: 180px;
+                    width: auto;
+                }
+            }
+            .description {
+                width: 100%;
+                padding: 1rem 1.8rem;
+                h3 {
+                    font-size: 18px;
+                    margin-bottom: 0.5rem;
+                }
+                .item {
+                    margin-bottom: 0.5rem;
+                    &.highlight {
+                        color: #ff0000;
+                    }
+                }
+                .btn {
+                    font-size: 10px;
+                    padding: 0.7rem 0;
+                    min-width: 0;
+                    width: 100%;
+                    background-color: $c-black;
+                    font-weight: normal;
+                    &.highlight {
+                        background: #ff0000;
+                    }
+                }
+                .description-sub {
+                    font-size: 14px;
+                    width: 100%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .col-first {
+                        width: 65%;
+                    }
+                    .col-second {
+                        width: 35%;
+                        .tooltip-icon {
+                            background: none;
+                            width: auto;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+        .overlay {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-color: rgba($c-violet, 0.97);
+            color: $c-white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            .button-container {
+                max-width: 300px;
+            }
+            a {
+                color: $c-white;
+                text-decoration: none;
+            }
+            .btn {
+                padding: 0.7rem 1rem;
+                margin: 5px 0 !important;
+                border: 2px solid $c-white;
+                color: $c-white;
+                background: transparent;
+                &:hover {
+                    opacity: 0.5;
+                }
+                &.disabled {
+                    border: 2px solid rgba($c-white, 0.5);
+                    color: rgba($c-white, 0.5);
+                    cursor: default;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+            .returnupgradetips {
+                cursor: pointer;
+                background-image: url("../img/tooltip-icon--black.svg");
+                background-position: right center;
+                text-indent: -999px;
+                display: inline-block;
+                &.tooltip-text {
+                    text-indent: 0;
+                    font-size: 14px;
+                    text-transform: none;
+                    font-weight: normal;
+                    background-image: none;
+                    a {
+                        color: inherit;
+                        text-decoration: underline;
+                        font-weight: normal;
+                    }
+                }
+            }
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 30px;
+                height: 30px;
+                display: block;
+                font-size: 0;
+                text-indent: -999px;
+                overflow: hidden;
+                cursor: pointer;
+                background-image: url("../img/close-icon-white.svg");
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+            }
+        }
+    }
+    @media screen and (min-width: $tablet) {
+        .subscription-plan-title {
+            h2 {
+                font-size: 30px;
+            }
+        }
+        .subscription-plan-body {
+            display: flex;
+            flex-wrap: wrap;
+            .box {
+                width: 48%;
+                margin: 0 1% 20px;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                .image {
+                    width: 35%;
+                }
+                .description {
+                    width: 65%;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+}
+
+.footer-entities-bundle {
+    .paragraph--type--container {
+        .paragraph-content {
+            max-width: 1024px;
+        }
+    }
+}
+
+@media(max-width: 767px) {
+    .plan-and-addons.sim-plan.no-phone-plan {
+        margin-top: -20px;
+        padding-top: 30px;
+        padding-bottom: 0;
+    }
+    .section-description {
+        h2 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+    }
+    .columns {
+        margin-bottom: 35px;
+    }
+    #plan-addons-form-wrapper {
+        .phone-number-dropdown {
+            opacity: 0;
+        }
+    }
+    .column--right.your-sim-plan-right {
+        .add-phone {
+            opacity: 1;
+            visibility: visible;
+            height: auto;
+            width: 100%;
+            text-align: center;
+            margin-top: 25px;
+            font-weight: 500;
+            padding: 0px 0px 14px 0px;
+            a {
+                background: #000;
+                border: 2px solid #fff;
+                width: 100%;
+            }
+        }
+    }
+    .plan-and-addons.need_info {
+        margin-top: 30px;
+        .addon-wrapper {
+            max-width: 300px;
+            margin-bottom: 30px;
+        }
+    }
+    .user-accout-page {
+        h2 {
+            font-size: 24px;
+        }
+        .element {
+            .title {
+                font-size: 16px;
+                height: 56px;
+            }
+            .title::after {
+                height: 56px;
+                width: 56px;
+                background-size: 20px;
+            }
+            .title::before {
+                height: 56px;
+                width: 56px;
+            }
+            .bundle-options.subheader-active {
+                &:after {
+                    width: 95%;
+                }
+            }
+        }
+        .user-account-subheader {
+            .subscription-options {
+                margin: 2%;
+            }
+        }
+    }
+}
+
+.billing-details-container .new-card {
+    color: #9B9B9B;
+    font-size: 16px;
+    text-decoration: underline;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.user-accout-page .element.plan {
+    .plan-and-addons.phone-plan {
+        .container {
+            padding: 0;
+            @media(max-width: 767px) {
+                padding: 0 2rem;
+            }
+        }
+    }
+}
+
+.plan-and-addons.phone-plan.histroy-blocks {
+    .columns {
+        width: 48%;
+        margin: 0 1% 20px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        background-color: #fff;
+        padding: 0;
+        position: relative;
+        .column--right {
+            padding-top: 1rem;
+            width: 35%;
+            text-align: center;
+            margin: 0;
+            .slick-dots {
+                display: none !important;
+            }
+        }
+        .column--left {
+            margin: 0;
+            width: 65%;
+            padding: 1rem 1.8rem 1rem 0;
+            .your-data-row {
+                padding: 0;
+                font-size: inherit;
+            }
+            .select-mobile-number-wrapper {
+                display: none;
+            }
+            .your-data-title {
+                font-size: 18px;
+                margin-bottom: 0.5rem;
+            }
+            .your-data-row {
+                &:before {
+                    display: none;
+                }
+                &:after {
+                    display: none;
+                }
+            }
+            .description-sub {
+                font-size: 14px;
+                width: 100%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+                .col-first {
+                    width: 55%;
+                }
+                .col-second {
+                    width: 45%;
+                }
+                .item {
+                    margin-bottom: 0.5rem;
+                    .btn {
+                        font-size: 10px;
+                        padding: 0.7rem 15px;
+                        min-width: 0;
+                        width: 100%;
+                        background-color: rgba(0, 0, 0, 0.9);
+                        font-weight: normal;
+                    }
+                }
+            }
+        }
+        .overlay {
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            background-color: rgba(96, 56, 205, .97);
+            color: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            .btn {
+                padding: .7rem 1rem;
+                margin: 5px 0 !important;
+                border: 2px solid #fff;
+                color: #fff;
+                background: transparent;
+                text-decoration: none;
+            }
+            .btn.disabled {
+                border: 2px solid rgba(255, 255, 255, .5);
+                color: rgba(255, 255, 255, .5);
+                cursor: default;
+            }
+            .returnupgradetips {
+                cursor: pointer;
+                background-image: url(/themes/mint/dist/css/../assets/tooltip-icon--black.svg);
+                background-position: right center;
+                text-indent: -999px;
+                display: inline-block;
+            }
+            .returnupgradetips.tooltip-text {
+                text-indent: 0;
+                font-size: 14px;
+                text-transform: none;
+                font-weight: normal;
+                background-image: none;
+            }
+            .close {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 30px;
+                height: 30px;
+                display: block;
+                font-size: 0;
+                text-indent: -999px;
+                overflow: hidden;
+                cursor: pointer;
+                background-image: url(/themes/mint/dist/css/../assets/close-icon-white.svg);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: center;
+            }
+        }
+    }
+}
+
+@media(max-width: 767px) and (orientation: portrait) {
+    .plan-and-addons.phone-plan.histroy-blocks {
+        .columns {
+            width: 100%;
+            margin: 0 0 20px 0;
+            .column--right {
+                width: 100%;
+                text-align: center;
+                .plan--wrapper {
+                    display: inline-block;
+                    max-width: 220px;
+                }
+            }
+            .column--left {
+                width: 100%;
+                padding: 20px 20px 0 20px;
+            }
+        }
+    }
+}
+
+.thankyou-block {
+    background: rgba(37, 206, 121, 0.08);
+    padding: 17px;
+    h5 {
+        color: #25CE79;
+        font-weight: bold;
+        font-size: 16px;
+        margin: 0 0 5px 0;
+    }
+    p {
+        font-size: 14px;
+        color: #000;
+        margin-bottom: 10px;
+    }
+    &.style2 {
+        max-width: 760px;
+        margin: auto;
+        margin-top: 11px;
+        overflow: hidden;
+        padding: 0;
+        background: rgba(37, 206, 121, 0.2);
+        border-radius: 8px;
+        p,
+        li {
+            color: #fff;
+        }
+        .left {
+            float: left;
+            width: 50%;
+            padding: 17px;
+        }
+        .right {
+            float: left;
+            width: 50%;
+            padding: 17px;
+        }
+    }
+}
+
+.leaf-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    li {
+        font-size: 14px;
+        color: #000;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 2px;
+        &:before {
+            content: "";
+            height: 16px;
+            width: 25px;
+            background: url("../img/leaf2.png")no-repeat;
+            background-size: 25px;
+            position: absolute;
+            left: 0;
+            display: block;
+            top: 2px;
+        }
+    }
+}
+
+@media(max-width: 991px) {
+    .thankyou-block.style2 {
+        .left {
+            width: 100%;
+        }
+        .right {
+            width: 100%;
+        }
+    }
+}
+
+// .plan-and-addons.phone-plan {
+//   .paragraph--type--gallery {
+//     .slick-dots {
+//       display: none !important;
+//     }
+//   }
+//   .box {
+//     position: relative;
+//     width: 100%;
+//     padding: 0;
+//     border-radius: 8px;
+//     background-color: #fff;
+//     -webkit-box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .2);
+//     box-shadow: 0 1px 2px 1px rgba(0, 0, 0, .2);
+//     margin: 0 0 20px 0;
+//     .image {
+//       padding-top: 1rem;
+//       width: 100%;
+//       text-align: center;
+//       img {
+//         max-height: 180px;
+//         width: auto;
+//       }
+//       .field__item {
+//         text-align: center;
+//         a {
+//           display: inline-block;
+//         }
+//       }
+//     }
+//     .description {
+//       padding: 1rem 1.8rem;
+//       .item {
+//         margin-bottom: .5rem;
+//       }
+//       .label {
+//         display: inline;
+//         margin: 0;
+//         padding: 0;
+//         font-size: inherit;
+//         font-weight: bold;
+//       }
+//       h3 {
+//         font-size: 18px;
+//         margin-bottom: .5rem;
+//       }
+//       .description-sub {
+//         font-size: 14px;
+//         width: 100%;
+//         display: -webkit-box;
+//         display: -ms-flexbox;
+//         display: flex;
+//         -ms-flex-wrap: wrap;
+//         flex-wrap: wrap;
+//         .col-first {
+//           width: 65%;
+//         }
+//         .col-second {
+//           width: 35%;
+//         }
+//       }
+//       .btn {
+//         font-size: 10px;
+//         padding: .7rem 0;
+//         min-width: 0;
+//         width: 100%;
+//         background-color: rgba(0, 0, 0, .9);
+//         font-weight: normal;
+//       }
+//     }
+//
+//   }
+// }
+// @media screen and (min-width: 768px) {
+//   .plan-and-addons.phone-plan {
+//     h2 {
+//       font-size: 30px;
+//       text-align: center;
+//     }
+//   }
+//   .plan-and-addons.phone-plan {
+//     .box {
+//       width: 48%;
+//       margin: 0 1% 20px;
+//       display: -webkit-box;
+//       display: -ms-flexbox;
+//       display: flex;
+//       -ms-flex-wrap: wrap;
+//       flex-wrap: wrap;
+//       -webkit-box-align: center;
+//       -ms-flex-align: center;
+//       align-items: center;
+//       .image {
+//         width: 35%;
+//       }
+//       .description {
+//         width: 65%;
+//         padding-left: 0;
+//       }
+//     }
+//   }
+// }
+@media(max-width: 767px) {
+    .column--right.your-sim-plan-right {
+        .plan-wrapper {
+            max-width: 100%;
+            .add-phone {
+                display: none;
+            }
+        }
+    }
+    .plan-and-addons.sim-plan {
+        .column--left {
+            display: flex;
+            flex-wrap: wrap;
+            .your-data-rows {
+                order: 2;
+                width: 100%;
+                margin-top: 35px;
+            }
+            #popup-variations-chnge-plan-sim {
+                order: 1;
+                margin-top: 0;
+                width: 100%;
+            }
+        }
+    }
+}
+
+.hundredmincallstips {
+    font-size: 0;
+    vertical-align: middle;
+
+    &.tooltip-icon {
+        background-image: url('../img/tooltip-icon--gray.svg');
+    }
+}
+
+.hundredmincallsbtips {
+    font-size: 0;
+    vertical-align: middle;
+    float: right;
+
+    &.tooltip-icon {
+        background-image: url('../img/tooltip-icon--gray.svg');
+    }
+}

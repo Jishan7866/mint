@@ -1,0 +1,325 @@
+.ui-dialog.ui-widget {
+  max-width: 92vw;
+  min-height: 206px;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: center;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 12px 0 rgba($c-black, .5);
+  color: $text-color;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 15px;
+  }
+
+  .ui-dialog-titlebar,
+  .ui-dialog-content,
+  .ui-dialog-buttonpane {
+    border: none;
+    background: transparent;
+    padding: 0 25px;
+  }
+
+  .ui-dialog-titlebar {
+    padding-top: 25px;
+    padding-bottom: 10px;
+
+    @media screen and (max-width: $mobile) {
+      padding-top: 37px;
+      padding-bottom: 0;
+    }
+
+    .ui-dialog-title {
+      width: 100%;
+      font-size: 26px;
+      font-weight: 500;
+      color: $primary-color;
+      margin: 0;
+      padding: 0 55px;
+      white-space: normal;
+      overflow: visible;
+      text-overflow: initial;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 18px;
+        padding: 0;
+      }
+    }
+
+    .ui-dialog-titlebar-close {
+
+      @include popup-close;
+
+      .ui-icon {
+        display: none;
+      }
+    }
+  }
+
+  .ui-dialog-content {
+    height: auto !important;
+    max-height: 70vh !important;
+    padding-bottom: 20px;
+
+    .form-actions {
+      display: none;
+    }
+  }
+
+  &.my-account-popup .ui-dialog-content {
+    padding-bottom: 44px;
+  }
+
+  .ui-dialog-buttonpane {
+    padding-bottom: 44px;
+
+    .ui-dialog-buttonset {
+      float: none;
+    }
+  }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: $text-color;
+    margin-bottom: 0;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+    }
+  }
+
+  h5 {
+    margin-bottom: 0;
+
+    font-size: 18px;
+
+    color: black;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 17px;
+    }
+  }
+
+  form.user-pass {
+    max-width: 380px;
+    margin: 0 auto;
+
+    [type="text"] {
+      max-width: 300px;
+      margin: 0 auto;
+      padding: 15px 20px;
+      border: 1px solid $border-color;
+      border-radius: 0;
+
+      @media screen and (max-width: $mobile) {
+        max-width: 100%;
+      }
+    }
+
+    .password-instructions {
+      font-size: 17px;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+      }
+    }
+
+    .form-item {
+      margin-bottom: 0;
+    }
+  }
+
+  .text--wrapper {
+    margin-bottom: 20px;
+
+    font-size: 17px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+    }
+  }
+
+  .btn,
+  .form-submit {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    width: 300px;
+    border: none;
+    border-radius: 0;
+    padding: 14px 10px;
+    margin: 10px auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: $c-white;
+    background-color: $accent-color;
+    transition: .2s ease-out;
+
+    &:hover {
+      background-color: lighten($accent-color, 8);
+    }
+
+    &:nth-of-type(2n) {
+      color: $c-white;
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: lighten($primary-color, 8);
+      }
+    }
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+
+    &.btn-blue {
+      color: $c-white;
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: lighten($primary-color, 8);
+      }
+    }
+  }
+}
+
+.ui-widget {
+  font-family: $main-font !important;
+}
+
+.ui-widget-content {
+  color: black;
+}
+
+.ui-widget.ui-widget-content {
+  border: none;
+}
+
+.ui-widget-overlay {
+  background: rgba(96, 56, 205, 0.8) !important;
+  opacity: 1;
+}
+
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: $main-font;
+  font-weight: 400;
+}
+
+.ui-dialog.welcome-back-window {
+  .ui-dialog-content {
+    padding-bottom: 44px;
+  }
+
+  .ui-dialog-buttonpane {
+    display: none;
+  }
+
+  .welcome-back-popup {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .user-login-form {
+      margin-top: 15px;
+    }
+
+    [type="text"],
+    [type="tel"],
+    [type="email"],
+    [type="password"] {
+      font-size: 17px;
+      padding: 13px 15px;
+      border: 1px solid #979797;
+      border-radius: 0;
+      background-color: transparent;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 14px;
+      }
+    }
+
+    .form-type-password {
+      margin-bottom: 20px;
+    }
+
+    .form-item {
+      position: relative;
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+
+    .form-actions {
+      display: block !important;
+      margin-top: 20px;
+      margin-bottom: 10px;
+
+      .form-submit {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        padding: 14px 10px !important;
+      }
+    }
+
+    a {
+      font-size: 16px;
+    }
+
+    .shwpd {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      background-image: url('../img/eye.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 1;
+      transition: .2s;
+
+      &.eye-open {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+/* -- newsletter signup dialog --*/
+.ui-dialog.newsletter-signup-dialog {
+  text-align: left;
+  left: auto !important;
+  top: 0 !important;
+  right: 0 !important;
+  background-color: #fff;
+  box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+  height: 100% !important;
+  width: 350px !important;
+  align-items: flex-end !important;
+  display: flex !important;
+  .ui-dialog-titlebar {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .ui-dialog-title {
+      display: none;
+    }
+  }
+  #popup-title {
+    margin-bottom: 1rem;
+  }
+  .ui-dialog-content {
+    padding: 2.6rem;
+    .btn {
+      width: 100%;
+    }
+  }
+}

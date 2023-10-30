@@ -1,0 +1,63 @@
+<div class="layout-container">
+
+	<header role="banner">
+		<div class="header-wrapper header-wrapper--main">
+			<div class="header-content">
+				{{ page.header_left }}
+				{{ page.header_middle }}
+				{% if logo %}
+					<a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
+						<img src="{{ logo }}" alt="{{ 'Home'|t }}"/>
+					</a>
+				{% endif %}
+				<button class="hamburger">
+					<span></span>
+				</button>
+			</div>
+		</div>
+		{% if page.header_right %}
+			<div class="header-wrapper header-wrapper--secondary">
+				<div class="header-content">
+					<div class="header-search">
+						{{ page.header_right }}
+					</div>
+				</div>
+			</div>
+		{% endif %}
+	</header>
+
+	{% if page.highlighted %}
+		{{ page.highlighted }}
+	{% endif %}
+
+	<main role="main">
+		<a id="main-content" tabindex="-1"></a>
+		{# link is in html.html.twig #}
+
+		<div class="layout-content">
+			<div class="container">
+				{% if title %}
+					<h1 class="maintenance-page-title">{{ title }}</h1>
+				{% endif %}
+
+				{{ page.content }}
+			</div>
+		</div>
+		{# /.layout-content #}
+
+	</main>
+
+	{% if page.main_footer or page.secondary_footer %}
+		<footer role="contentinfo">
+			{% if page.main_footer %}
+				<div class="main-footer">
+					<div class="region region-main-footer">
+						{{ page.main_footer }}
+					</div>
+				</div>
+			{% endif %}
+		</footer>
+	{% endif %}
+
+</div>
+{# /.layout-container #}

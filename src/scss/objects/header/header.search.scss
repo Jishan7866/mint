@@ -1,0 +1,73 @@
+.block-views-exposed-filter-blocksearch-page-search {
+  background-color: $primary-color;
+  padding: 10px;
+  padding-right: 15px;
+
+  @media screen and (max-width: $tablet-wide) {
+    padding: 13px 30px 7px;
+  }
+
+  .form--inline {
+    display: flex;
+  }
+
+  .form-item {
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-text {
+    font-family: $main-font;
+    width: 100%;
+    height: 19px;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: 0px 1px 0px 0px $c-white;
+    background-color: transparent;
+    color: $c-white;
+    outline: none;
+    appearance: none;
+    transition: .2s;
+
+    &:focus {
+      box-shadow: 0px 2px 0px 0px $c-white;
+    }
+
+    @media screen and (max-width: $tablet-wide) {
+      margin-bottom: 0;
+      height: 17px;
+    }
+  }
+
+  .form-actions {
+    order: -1;
+    margin: 0;
+    margin-right: 12px;
+
+    @media screen and (max-width: $tablet-wide) {
+      margin-right: 0;
+    }
+  }
+
+  .form-submit {
+    font-family: $main-font;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: lowercase;
+    color: $c-white;
+    border: none;
+    padding: 5px;
+    padding-right: 20px;
+    background-color: transparent;
+    background-image: url('../img/search-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right 6px;
+
+    @media screen and (max-width: $tablet-wide) {
+      text-indent: -9999px;
+      padding: 6px 10px;
+      background-position: left center;
+    }
+  }
+}

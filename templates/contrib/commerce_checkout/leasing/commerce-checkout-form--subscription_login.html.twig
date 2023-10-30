@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Two column template for the checkout form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="layout-checkout-form-leasing clearfix">
+	<div class="checkout-method-message-leasing">{{ mint_checkout_message }}</div>
+	<div class="layout-region layout-region-checkout-main-leasing">
+		{{ form|without('sidebar') }}
+		<div class="need-help">{{ need_help|raw }}</div>
+	</div>
+	<div class="layout-region layout-region-checkout-footer"></div>
+</div>

@@ -1,0 +1,56 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% set bgcolor = content.field_background_color.0|raw %}
+
+{% block paragraph %}
+	<div{{attributes.addClass(classes)}} style="background-color: #{{ bgcolor }};">
+		{% block content %}
+			<div class="paragraph-content">
+				<div class="container">
+
+					<div class="product-showcase">
+						<div class="product-showcase-row">
+							{% if content.field_left_side_showcase[0] is not empty %}
+								<div class="product-showcase-col">
+									<div class="showcase">{{ content.field_left_side_showcase }}</div>
+								</div>
+							{% endif %}
+
+							<div class="product-showcase-col right">
+								<div class="product-showcase-row">
+									{% if content.field_right_side_first_showcase[0] is not empty %}
+										<div class="product-showcase-col">
+											<div class="showcase">{{ content.field_right_side_first_showcase }}</div>
+										</div>
+									{% endif %}
+									{% if content.field_right_side_second_showcase[0] is not empty %}
+										<div class="product-showcase-col">
+											<div class="showcase">{{ content.field_right_side_second_showcase }}</div>
+										</div>
+									{% endif %}
+								</div>
+								{% if content.field_right_side_third_showcase[0] is not empty %}
+									<div class="product-showcase-row">
+										<div class="product-showcase-col">
+											<div class="showcase">{{ content.field_right_side_third_showcase }}</div>
+										</div>
+									</div>
+								{% endif %}
+							</div>
+						</div>
+						{% if content.field_bottom_showcase[0] is not empty %}
+							<div class="showcase">{{ content.field_bottom_showcase }}</div>
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock paragraph %}

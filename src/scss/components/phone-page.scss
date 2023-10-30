@@ -1,0 +1,437 @@
+.phone-selection-wrapper {
+  .label {
+    font-size: 18px;
+    font-weight: 400;
+    color: $c-black;
+
+    .current-capacity {
+      font-weight: 400;
+    }
+
+    .current-color {
+      font-weight: 400;
+    }
+  }
+
+  .selectize-control.single {
+    .selectize-input.disabled {
+      border: 1px solid $c-grey-5l;
+      opacity: 1;
+
+      .item {
+        font-size: 35px;
+      }
+    }
+  }
+
+
+  .selectize-control.single::after {
+    display: none;
+  }
+
+  .tp-product-mini-selector {
+    margin: 0 0 0 -55px;
+  }
+
+  .attributes-wrapper {
+    .color.out-of-stock::before {
+      //display: none;
+    }
+
+    .capacity {
+      border: 1px solid $c-grey-5l;
+      font-size: 18px;
+      color: $c-black;
+      margin-right: 15px;
+
+      &.selected {
+        border: 2px solid $c-black;
+      }
+    }
+
+    .condition-label {
+      border: 1px solid $c-grey-5l;
+      font-size: 18px;
+      color: $c-black;
+      margin-right: 15px;
+
+      &.selected {
+        border: 2px solid $c-black;
+      }
+    }
+
+    .condition-description {
+      .description {
+        margin-right: 0;
+      }
+      .description.closed {
+        border: 1px solid $c-grey-5l;
+        font-size: 18px;
+        color: $c-black;
+        margin-right: 0px;
+        min-height: 55px;
+      }
+
+    }
+    .payment-option {
+      border: 1px solid $c-grey-5l;
+      font-size: 18px;
+      color: $c-black;
+      margin-right: 15px;
+
+      &.selected {
+        border: 2px solid $c-black;
+      }
+    }
+  }
+
+  .condition-wrapper {
+    .label .tooltip-link {
+      font-weight: 400;
+      color: #9B9B9B;
+    }
+    .condition-label {
+      width: 100%;
+      max-width:100%;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .price-description {
+    font-size: 30px;
+
+    &.element {
+      margin-top: 20px;
+      .leasing-length-price {
+        text-align: left;
+        padding-left: 0;
+        .term_length_price {
+          font-size: 45px;
+          font-weight: bold;
+          letter-spacing: 0;
+          line-height: 45px;
+          b {
+            font-size: 30px;
+          }
+        }
+        &.old-price {
+          .term_length_price {
+            color: $c-red;
+          }
+          .term_length_oldprice {
+            font-weight: normal;
+            margin-left: 12px;
+            color: $c-grey-8l;
+            text-decoration:line-through;
+          }
+        }
+      }
+    }
+
+    .lease span {
+      font-size: 45px;
+    }
+  }
+
+  .full-price-description {
+    .main {
+      font-size: 18px;
+      color: $c-black;
+
+      strong {
+        color: $c-violet;
+      }
+    }
+
+    .open-subscription-benefits-lease,
+    .open-subscription-benefits {
+      color: #9b9b9b;
+    }
+    .promo-code-discount {
+      color: $c-red;
+      font-weight: bold;
+    }
+  }
+
+  .special-offer-info {
+    margin-top: 1rem;
+    border: 2px solid $c-red;
+    .special-offer-info-title {
+      color: $c-white;
+      background-color: $c-red;
+      padding: 0.8rem;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      .specialoffertips-info {
+        float: right;
+        background-image: url(../img/tooltip-icon--white.svg);
+
+        .rrp-tooltip-link {
+          font-size: 0;
+          text-decoration: none;
+        }
+        .specialoffertips-info {
+          font-weight: normal;
+          text-transform: none;
+          background-image: none;
+        }
+      }
+    }
+    .special-offer-info-body {
+      padding: 1.5rem;
+      a {
+        color: inherit;
+      }
+    }
+  }
+}
+
+.phone-selection-left {
+  .manufacturers {
+    .label {
+      margin-bottom: 0;
+    }
+  }
+}
+.button-wrapper {
+  .button.out-of-stock {
+    background: $c-black;
+    border-color: $c-black;
+    padding: 15px 30px;
+  }
+}
+
+.payment-options {
+  .payment-option {
+    width: 100%;
+    max-width: 100%;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+.payment-options-wrapper>.label>a,
+.payment-options-wrapper>.label .tooltip-link,
+.condition-wrapper>.label>a,
+.condition-wrapper>.label .tooltip-link,
+.full-price-description .tooltip-link,
+.full-price-description .open-subscription-benefits-lease,
+.full-price-description .open-subscription-benefits {
+  font-weight: 400;
+}
+
+.green-info-outer {
+  max-width: 358px;
+  margin: 0 auto;
+  margin-top: 15px;
+  text-align: center;
+
+  h4 {
+    font-size: 24px;
+    color: #6038cb;
+    font-weight: bold;
+    margin: 15px 0 0 0;
+  }
+
+  .green-info {
+    background: rgba(37, 206, 121, 0.1);
+    padding: 15px;
+    display: flex;
+    text-align: left;
+    align-items: center;
+
+    p {
+      font-size: 14px;
+      margin: 0 0 0 10px;
+
+      a {
+        color: #25CE79;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.accordion-wrapper {
+  .accordion-item {
+    .title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+    &.review {
+      .trustpilot-product-multi-score {
+        iframe {
+          height: 200px !important;
+          overflow: scroll;
+        }
+      }
+    }
+  }
+}
+
+#block-mint-content {
+  .continue-checkout-button-wrapper {
+    max-width: 427px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    .button {
+      display: inline-block;
+      width: 100%;
+      margin: 5px 0;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 15px 20px;
+    }
+    .grab-awsome-deal-button  {
+      background: #FF4638;
+      border-color: #FF4638;
+    }
+    .no-thanks-button {
+      background: $c-violet;
+      border-color: $c-violet;
+    }
+  }
+}
+
+.payment-options-wrapper {
+	.payment-options.flex {
+		justify-content: flex-start;
+	}
+}
+.payment-options.flex {
+	.leasing.payment-option {
+		width: 100%;
+		max-width: 100%;
+		font-size: 20px !important;
+		line-height: 24px;
+		min-width: auto;
+	}
+}
+
+
+@media(min-width: 1000px) {
+  .phone-selection-left {
+    .green-info-outer {
+      display: none;
+    }
+  }
+}
+@media(max-width: 999px) {
+  .advantages {
+    .item {
+      width: 100%;
+    }
+  }
+}
+
+@media(max-width: $mobile-main) {
+  .phone-selection-wrapper {
+    .selectize-control.single {
+      margin-top: 0;
+    }
+    .label {
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    .price-description {
+      font-size: 25px;
+    }
+    .phone-selection-left {
+      width: 100%;
+      padding: 0 20px;
+    }
+    .selectize-control.single {
+      .selectize-input.disabled {
+        .item {
+          font-size: 26px;
+        }
+      }
+    }
+    .tp-product-mini-selector {
+      margin-left: -30px;
+    }
+    .attributes-wrapper {
+      .element {
+        margin-top: 20px;
+         .button {
+          margin-bottom: 40px;
+        }
+      }
+      .payment-option {
+        min-width: calc(50% - 15px);
+      }
+      .capacity + .capacity {
+        margin-left: 7.5px;
+        margin-right: 0px;
+      }
+      .capacity {
+        width: calc(50% - 7.5px);
+        margin-right: 7.5px;
+      }
+      .capacity,
+      .condition-label,
+      .payment-option {
+        min-height: 49px;
+        height: auto;
+        font-size: 16px;
+        .char {
+          font-size: 16px;
+        }
+      }
+      .color {
+        .jquery_colorpicker_color_display {
+          height: 33px;
+          width: 33px;
+        }
+      }
+    }
+    .button-wrapper {
+      .button {
+        font-size: 14px;
+      }
+    }
+
+    .green-info-outer {
+      width: calc(100% + 40px);
+      margin-left: -20px;
+      margin-right: -20px;
+      max-width: none;
+    }
+
+    .full-price-description {
+      .main {
+        .rrp-tooltip-link,
+        .pre-rrp-text{
+          font-weight: bold;
+          color: $c-violet;
+        }
+      }
+    }
+  }
+  .phone-selection-wrapper {
+    .full-price-description {
+      .main {
+        font-size: 16px;
+        font-weight: 400;
+      }
+    }
+  }
+
+
+  .advantages {
+    .item {
+      font-size: 16px;
+    }
+  }
+
+  .green-info-outer {
+    .green-info {
+      img {
+        width: auto;
+      }
+    }
+  }
+}

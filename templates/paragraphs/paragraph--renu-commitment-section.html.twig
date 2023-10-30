@@ -1,0 +1,71 @@
+{% if paragraph.field_card_type.value == 'banner-card-image-header' %}
+<section class="page--banner {{ paragraph.field_card_type.value }}">
+        {% if content.field_img is not empty %}
+        <div class="desktop-img">
+         {{ content.field_img }}
+         </div>
+        {% endif %}
+        {% if content.field_mobile_images is not empty %}
+        <div class="mobile-img">
+         {{ content.field_mobile_images }}
+         </div>
+        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2 class="text-center"><span class="cursive">{{ content.field_main_heading }}</span></h2>
+                        <h2 class="text-center clr-white">{{ content.field_description }}
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endif %}         
+
+{% if paragraph.field_card_type.value == 'banner-card-header' %}
+<section class="page--banner bg-black {{ paragraph.field_card_type.value }}">
+            {% if content.field_img is not empty %}
+            <div class="desktop-img">
+            {{ content.field_img }}
+            </div>
+            {% endif %}
+            {% if content.field_mobile_images is not empty %}
+            <div class="mobile-img">
+            {{ content.field_mobile_images }}
+            </div>
+            {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <h2><text class="block-element">{{ content.field_main_heading }}</text> </h2>
+                            <h2><span class="green block">{{content.field_description}}</span></h2>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endif %}    
+
+{% if paragraph.field_card_type.value == 'banner-card-image-header-text' %}
+<section class="page--banner {{ paragraph.field_card_type.value }}">
+            {% if content.field_img is not empty %}
+            <div class="desktop-img">
+            {{ content.field_img }}
+            </div>
+            {% endif %}
+            {% if content.field_mobile_images is not empty %}
+            <div class="mobile-img">
+            {{ content.field_mobile_images }}
+            </div>
+            {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h2 class="text-center clr-white">{{content.field_description}}
+                        </h2>
+                         <a class="btn btn-green tpt" href="{{ content.field_link.0['#url'] }}">
+                         {{ content.field_link.0['#title'] }}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endif %}    

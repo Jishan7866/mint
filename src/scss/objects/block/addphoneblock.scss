@@ -1,0 +1,66 @@
+
+.block-add_phone_block {
+	background: #000;
+	width: 100%;
+	display: inline-block;
+	.col-md-2 {
+		width: 20%;
+		float: left;
+		padding: 0px 15px;
+	}
+	.col-md-3 {
+		width: 30%;
+		float: left;
+		padding: 0px 15px;
+		text-align: center;
+	}
+	.field--name-field-image {
+		img {
+			margin: 20px 0px 0px;
+		}
+	}
+	.col-md-4 {
+		width: 50%;
+		float: left;
+		padding: 0px 15px;
+		padding-top: 25px;
+		padding-left: 30px;
+	}
+	.field--name-field-phone-block-title {
+		color: #FFFFFF;
+		font-family: "Paul Grotesk";
+		font-size: 20px;
+		letter-spacing: 0;
+		line-height: 22px;
+		text-align: left;
+		font-weight: bold;
+	}
+	.field--type-text-with-summary {
+		color: #FFFFFF;
+		font-family: "Paul Grotesk";
+		font-size: 20px;
+		letter-spacing: 0;
+		line-height: 22px;
+		text-align: left;
+	}
+	.field--name-field-link {
+		a {
+			display: inline-block;
+			color: #FFFFFF;
+			font-family: "Paul Grotesk";
+			font-size: 14px;
+			font-weight: 600;
+			letter-spacing: 0;
+			line-height: 16px;
+			text-align: center;
+			height: 50px;
+			background-color: #6038CD;
+			box-shadow: 0 1px 2px 0 rgba(0,0,0,0.2);
+			text-decoration: none;
+			padding: 1rem 3rem;
+			text-transform: uppercase;
+			transition: all .1s linear;
+			margin-top: 40px;
+		}
+	}
+}

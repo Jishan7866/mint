@@ -1,0 +1,55 @@
+global-styling:
+  css:
+    component:
+      dist/css/main.css: {}
+
+global-js:
+  js:
+    dist/js/common.js: {}
+    dist/js/hc-offcanvas-nav.js: {}
+    dist/js/main.js: {}
+    dist/js/custom.js: {}
+    dist/js/customStickyBanner.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.dialog.ajax
+    - blazy/load
+
+selectize:
+  css:
+    component:
+      lib/selectize/selectize.css: {}
+  js:
+    lib/selectize/selectize.min.js: {}
+
+datepicker:
+  css:
+    component:
+      lib/datepicker/datepicker.min.css: {}
+  js:
+    lib/datepicker/datepicker.min.js: {}
+
+jqueryloadingoverlay:
+  js:
+    lib/jqueryloadingoverlay/jqueryloadingoverlay.min.js: {}
+
+countrysort:
+  js:
+    dist/js/countrysort.js: {}
+  dependencies:
+    - core/jquery
+
+customJQueryComparsionTabs:
+  js:
+    src/js/customJQueryComparsionTabs.js: {}
+    src/js/renu-page.js: {}
+  dependencies:
+    - core/jquery
+
+user_account:
+  js:
+    dist/js/user_account.js: {}
+  dependencies:
+    - core/jquery
+    - mint_commerce/braintree_client

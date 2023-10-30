@@ -1,0 +1,17 @@
+.paragraph--type--media-element {
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .paragraph-content {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 45px 0;
+
+    @media screen and (max-width: $mobile) {
+      padding: 35px 0;
+    }
+  }
+}

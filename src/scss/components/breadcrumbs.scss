@@ -1,0 +1,39 @@
+.breadcrumb {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 25px 0 5px 0;
+
+  li {
+    color: #6D6E70;
+    font-size: 12px;
+    position: relative;
+    margin: 0 10px 0 0;
+    padding: 0 10px 0 0;
+
+    a {
+      color: #6D6E70;
+      text-decoration: none;
+    }
+
+    &:before {
+      content: ">";
+      position: absolute;
+      left: -11px;
+      top: -1px;
+    }
+
+  }
+}
+
+@media(max-width: 991px) {
+  .breadcrumb {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media(max-width: 767px) {
+  .breadcrumb {
+    padding: 20px 20px 0px 20px;
+  }
+}

@@ -1,0 +1,109 @@
+.block-search-page-block,
+.block-mint-search-page-block {
+  position: relative;
+  padding: 0 42px;
+  text-align: center;
+  color: $c-white;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .search-page-block {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 85px 0 62px;
+
+    @media screen and (max-width: $mobile) {
+      padding: 70px 0 50px;
+    }
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    img {
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .description {
+    position: relative;
+    font-size: 21px;
+    font-weight: 500;
+    margin-bottom: 15px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .form {
+    position: relative;
+  }
+
+  .form-item,
+  .form-actions {
+    margin: 0;
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+  }
+
+  .form--inline {
+    display: flex;
+
+    @media screen and (max-width: $mobile) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .form-item-search-api-fulltext {
+    flex-grow: 1;
+
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 5px;
+    }
+
+    [type="text"] {
+      height: 100%;
+      border-radius: 0;
+    }
+  }
+
+  .form-submit {
+    position: relative;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    min-width: 143px;
+    border: none;
+    border-radius: 0;
+    padding: 15px 30px 14px;
+    margin: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: $c-white;
+    background-color: $accent-color;
+    transition: .2s ease-out;
+
+    &:hover {
+      background-color: lighten($accent-color, 8);
+    }
+
+    @media screen and (max-width: $mobile) {
+      min-width: 100%;
+    }
+  }
+}

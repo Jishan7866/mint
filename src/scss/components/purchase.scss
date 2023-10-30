@@ -1,0 +1,134 @@
+.purchase {
+  &__main-image {
+    position: relative;
+    width: 100%;
+    padding: 10px 0;
+    margin: 0 20px;
+    border-bottom: 1px solid $border-color;
+
+    @media screen and (min-width: $tablet) {
+      border-bottom: none;
+    }
+
+    img {
+      margin: auto;
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &__content {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $text-color-l;
+    font-size: 14px;
+    border-top: 1px solid $border-color;
+
+    @media screen and (min-width: $mobile) {
+      padding: 15px 35px 15px 20px;
+      font-size: 15px;
+    }
+  }
+
+  &__info {
+
+    @media screen and (min-width: $mobile) {
+      padding-right: 30px;
+    }
+
+    .change-cart-link {
+      margin-top: 5px;
+      font-size: 13px;
+      text-decoration: underline;
+
+      a {
+        color: $text-color-l;
+      }
+
+      &.change-plan,
+      &.change-sim-type {
+        display: inline-block;
+        text-decoration: none;
+
+        span {
+          margin: 0 0.2rem;
+        }
+      }
+    }
+  }
+
+  &__product-title {
+    color: $primary-color;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    @media screen and (max-width: $mobile) {
+      display: none;
+      font-size: 18px;
+    }
+
+    * {
+      display: inline;
+      font-size: 0;
+    }
+
+    .esim-type-title {
+      font-size: inherit;
+    }
+
+    .field--name-name:after,
+    .field--name-attribute-iphone-capacity:after,
+    .field--name-attribute-samsung-capacity:after,
+    .field--name-attribute-iphone-color:after,
+    .field--name-attribute-samsung-color:after {
+      content: ", ";
+    }
+
+    .field--name-name,
+    .field--name-attribute-iphone-color,
+    .field--name-attribute-samsung-color,
+    &-price {
+      font-size: 18px;
+
+      @media screen and (min-width: $mobile) {
+        font-size: 21px;
+      }
+    }
+
+    &--mobile {
+      display: none;
+
+      @media screen and (max-width: $mobile) {
+        display: block;
+      }
+    }
+  }
+
+  &__product-monthly-price {
+    font-size: 13px;
+
+    @media screen and (max-width: $mobile) {
+      display: none;
+    }
+  }
+
+  &__product-total-cost-summary {
+    .paragraph--type--text-element {
+      padding: 0;
+
+      .field--name-field-text {
+        font-size: inherit;
+      }
+    }
+
+    .paragraph-content {
+      padding: 0px;
+    }
+  }
+}

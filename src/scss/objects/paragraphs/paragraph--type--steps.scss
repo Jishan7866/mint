@@ -1,0 +1,110 @@
+.paragraph--type--steps {
+  text-align: center;
+  color: $text-color-l;
+  box-shadow: 0 -2px 9px 0 rgba(0, 0, 0, 0.15);
+
+  .steps-wrapper {
+    padding: 50px 42px 35px;
+
+    @media screen and (max-width: $mobile) {
+      padding: 40px 30px 35px;
+    }
+  }
+
+  .field--name-field-steps-items {
+    max-width: 940px;
+    margin: 0 auto;
+    margin-bottom: 43px;
+    display: flex;
+
+    @media screen and (max-width: $mobile) {
+      display: block;
+      margin-bottom: 23px;
+      text-align: left;
+    }
+
+    >.field__item {
+      position: relative;
+      width: calc(100% / 3);
+      padding: 0 7px;
+
+      &:not(:last-child)::after {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        width: 45%;
+        height: 20px;
+        transform: translateX(50%);
+        background-image: url('../img/oval-small.svg'),
+          url('../img/oval-big.svg'),
+          url('../img/oval-small.svg');
+        background-position: left, center, right;
+        background-repeat: no-repeat;
+        content: '';
+
+        @media screen and (max-width: $mobile) {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: $mobile) {
+        display: flex;
+        align-items: flex-start;
+        padding: 0;
+        width: 100%;
+        margin-bottom: 23px;
+
+        &:last-child {
+          margin-bottom: 13px;
+        }
+      }
+    }
+  }
+
+  .field--name-field-image,
+  .step-number {
+    max-width: 80px;
+    margin: 0 auto;
+    margin-bottom: 27px;
+
+    @media screen and (max-width: $mobile) {
+      max-width: 60px;
+      margin: 0 12px 0 6px;
+      flex-shrink: 0;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  .step-number {
+    display: block;
+    width: 100%;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 80px;
+    text-align: center;
+    border-radius: 50%;
+    color: $c-white;
+    background-color: $c-black;
+
+    @media screen and (max-width: $mobile) {
+      line-height: 60px;
+      font-size: 25px;
+    }
+  }
+
+  .field--name-title {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: $text-color;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+  }
+}

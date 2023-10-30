@@ -1,0 +1,94 @@
+{#
+/**
+ * @file
+ * Two column template for the checkout form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="cart-payment-summary orderdetails tooltip-text showed--bottom-align">
+  <div class="total-items">
+    <b>My purchases</b> – {{ paid_order_details['total_items'] }} items
+  </div>
+  <ul class="cart-pay-list">
+    {% if paid_order_details.phoneQty > 0 %}
+      <li class="item-type"><b>Subscription items</b> – {{ paid_order_details.phoneQty }} items</li>
+      {% for phone in paid_order_details.phone %}
+      {% set minCostTips = '<span class="mincosttips' ~ loop.index ~ ' tooltip-icon">' ~ phone.min_cost ~ '</span><div class="mincosttips' ~ loop.index ~ ' tooltip-text">' ~ phone.min_cost ~ ' if you return or upgrade early after ' ~ (phone.termMonth - 6) ~ ' mths of your ' ~ phone.termMonth ~ ' mths subscription term.</div>' %}
+        <li class="item">
+          <div class="item-image">
+            {{ phone.image|raw }}
+          </div>
+          <div class="item-details">
+            <div class="label">{{ phone.label|raw }}</div>
+            <div class="min-cost">{{ minCostTips|raw }}</div>
+            <div class="monthly-price">{{ phone.monthly_total|raw }}</div>
+            <div class="min-term">{{ phone.term|raw }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    {% endif %}
+
+    {% if paid_order_details.planQty > 0 %}
+      <li class="item-type"><b>SIM plan</b> – {{ paid_order_details.planQty }} items</li>
+      {% for plan in paid_order_details.plan %}
+        <li class="item">
+          <div class="item-image">
+            {{ plan.image|raw }}
+          </div>
+          <div class="item-details">
+            <div class="label">{{ plan.label|raw }}</div>
+            <div class="min-cost">{{ plan.min_cost|raw }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+</div>
+
+{% set orderDetails = '<span class="orderdetails tooltip-icon">View order details</span>' %}
+
+<div class="layout-checkout-form-leasing clearfix">
+  <div class="checkout-progress-steps-leasing">{{ mint_checkout_progress }}</div>
+
+  <div class="payment-method-message">
+    {{ mint_payment_method_message|raw }}
+    <div class="summary-box">
+      {% if id_check == 'REFER' %}
+        <div class="good-news refer">
+          <h2><span class="bhighlight-violet bhighlight">Almost there!</span></h2>
+          <p>We’re still verifying your details in <br/>the background…</p>
+        </div>
+        <div class="good-news hide">
+          <h2><span class="bhighlight-violet bhighlight">Good news!</span></h2>
+          <p>Your ID and credit check were completed.<br/>The final step is your payment.</p>
+        </div>
+      {% endif %}
+      {% if id_check == 'APPROVE' %}
+        <div class="good-news">
+          <h2><span class="bhighlight-violet bhighlight">Good news!</span></h2>
+          <p>Your ID and credit check were completed.<br/>The final step is your payment.</p>
+        </div>
+      {% endif %}
+      <div class="payment-summary">
+        <p class="total-pay">Your total to pay today is: <br /><span>${{ order_info['total_cost'] }}</span></p>
+        <p class="view-order-details">{{ orderDetails|raw }}</p>
+        <p>You can come back anytime to complete your order, but we cannot guarantee the items you’re ordering will be in stock.</p>
+      </div>
+    </div>
+
+    {% if id_check == 'REFER' %}
+      <div class="refer-msg"><b>Fill in your payment details below and as soon as we’ve verified your ID, your order will be complete and payment will be taken.</b> If we may need more info, our team will get in touch!</div>
+    {% endif %}
+
+  </div>
+  <div class="layout-region layout-region-checkout-main-leasing">
+    {{ form|without('sidebar') }}
+    <div class="need-help">{{ need_help|raw }}</div>
+  </div>
+  <div class="layout-region layout-region-checkout-footer"></div>
+</div>

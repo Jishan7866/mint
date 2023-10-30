@@ -1,0 +1,211 @@
+.billing-details.payment-form {
+  label {
+    display: block;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+    }
+  }
+
+  #edit-payment-text-container {
+    font-size: 16px;
+    font-weight: 500;
+    color: $text-color-l;
+    margin-bottom: 20px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+      margin-bottom: 17px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px !important;
+        margin-bottom: 5px;
+      }
+    }
+  }
+
+  #payment-form-container {
+    @media screen and (max-width: $mobile) {
+      overflow: hidden;
+    }
+
+    div[data-drupal-messages] {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .form-wrapper {
+    position: relative;
+    font-size: 16px;
+    margin-bottom: 25px;
+
+    p {
+      font-size: 1.2rem;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 17px;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    >label:first-child {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: $text-color;
+      margin-bottom: 12px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 14px;
+      }
+    }
+
+    &.wrapper-tooltip {
+      position: absolute;
+      left: calc(100% + 20px);
+      top: 10px;
+      width: 17px;
+      height: 17px;
+      margin-bottom: 0;
+
+      @media screen and (max-width: 992px) {
+        position: relative;
+        left: 0;
+        margin-left: 10px;
+      }
+    }
+
+    &.tooltip-icon {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      background-image: url('../../src/img/tooltip-icon--blood.svg');
+    }
+
+    &.tooltip-text {
+      position: absolute;
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
+
+  .form-radios {
+    margin-bottom: 10px;
+  }
+
+  .prenotes-label {
+    margin-top: 25px;
+
+    @media screen and (max-width: $mobile) {
+      margin-top: 15px;
+      margin-bottom: 5px;
+    }
+  }
+
+  .data-card-wrapper .form-item:nth-child(2) {
+    @media screen and (max-width: $mobile) {
+      width: calc(70% - 19px);
+    }
+  }
+
+  #edit-paypal-description {
+    max-width: 700px;
+    padding: 5px 0;
+    margin-bottom: 20px;
+    text-align: right;
+
+    @media screen and (max-width: $mobile) {
+      text-align: left;
+      padding: 0;
+      margin-bottom: 17px;
+    }
+
+    &::after {
+      display: table;
+      clear: both;
+      content: '';
+    }
+
+    label {
+      margin-bottom: 0;
+      font-size: 16px;
+      font-weight: 400;
+      color: $text-color-l;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 12px;
+      }
+    }
+  }
+
+  #edit-actions-next {
+    display: block;
+    max-width: 296px;
+    margin-bottom: 0;
+
+    @media screen and (max-width: $mobile) {
+      max-width: 100%;
+    }
+  }
+
+  .btn-finalize-payment {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+
+    max-width: 700px;
+
+    @media screen and (max-width: $tablet) {
+      display: block;
+    }
+
+    .change-details-button-wrapper {
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      .fake-button {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 300px;
+        height: 100%;
+        z-index: 2;
+        cursor: pointer;
+      }
+
+      .btn {
+        align-self: flex-start;
+        width: auto;
+        margin-right: 1rem;
+        position: relative;
+      }
+
+      &:hover .btn {
+        background-color: #fa6862;
+      }
+
+      .ajax-progress {
+        position: static;
+      }
+    }
+
+    .payment-success-message {
+      margin: 0 0 1rem;
+
+      @media screen and (max-width: $tablet) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .form-item-id-type-radio-credit-card {
+    @include credit-cards;
+  }
+}

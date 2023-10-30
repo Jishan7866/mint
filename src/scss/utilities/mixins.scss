@@ -1,0 +1,169 @@
+/* Mixins */
+
+@mixin list-reset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin btn-reset {
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+@mixin clearfix {
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+}
+
+@mixin text-hide {
+  font-size: 0;
+  line-height: 0;
+  color: transparent;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin absolute-vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+@mixin absolute-horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+
+@mixin element-cover {
+  width: auto;
+  height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  max-width: none;
+  max-height: none;
+}
+
+@mixin element-100 {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin element-absolute-100 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+@mixin arrow {
+  &::after {
+    display: block;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+    width: 9px;
+    height: 9px;
+    border: 2px solid currentColor;
+    border-top: none;
+    border-left: none;
+    content: '';
+  }
+}
+
+@mixin popup-close {
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 30px;
+  right: 25px;
+  top: 25px;
+  background: none;
+  text-indent: -9999px;
+  outline: none;
+  transition: .3s;
+  z-index: 101;
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42.4px;
+    height: 2px;
+    background-color: $close-color;
+    content: '';
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: close-button-animation-before .2s;
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+    animation: close-button-animation-after .2s;
+  }
+
+  @media screen and (max-width: $mobile) {
+    width: 13px;
+    height: 13px;
+    right: 18px;
+    top: 18px;
+
+    &::before,
+    &::after {
+      width: 18.4px;
+    }
+  }
+
+  &:hover {
+    transform: rotate(90deg);
+
+    &::before,
+    &::after {
+      background-color: rgba($c-violet, 0.5);
+    }
+  }
+}
+
+@mixin gradient-line {
+  &::after {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+    content: '';
+  }
+}
+
+@mixin credit-cards {
+  background:
+    url('../img/mastercard.svg') no-repeat,
+    url('../img/visa.svg') no-repeat;
+  background-size: 24px, 42px;
+  background-position: calc(100% - 2px) 2px, calc(100% - 42px) 4px;
+
+  @media screen and (max-width: $mobile) {
+    min-height: 24px;
+  }
+}

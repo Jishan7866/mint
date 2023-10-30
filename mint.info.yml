@@ -1,0 +1,37 @@
+name: Mint
+type: theme
+description: "Mint theme"
+version: 1.0
+core: 8.x
+core_version_requirement: ^8 || ^9
+libraries:
+  - mint/selectize
+  - mint/datepicker
+  - mint/jqueryloadingoverlay
+  - mint/global-styling
+  - mint/global-js
+  - mint/customJQueryComparsionTabs
+  - mint_catalogue/new_design
+base theme: classy
+screenshot: Screen.png
+
+regions:
+  important_message: "Important Message"
+  header_left: "Header left"
+  header_middle: "Header middle"
+  header_right: "Header right"
+  header_mobile: "Header Mobile"
+  ticker: "Ticker"
+  highlighted: "Highlighted"
+  content: "Content"
+  content_bottom: "Content Bottom"
+  main_footer: "Main Footer"
+  secondary_footer: "Secondary Footer"
+  required_blocks_content: "Block Content to display"
+
+# cke
+ckeditor_stylesheets:
+  - dist/css/main.css
+
+dependencies:
+  - config_pages

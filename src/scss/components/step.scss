@@ -1,0 +1,33 @@
+.wrapper-step {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: $tablet) {
+    font-weight: 500;
+    color: $text-color;
+  }
+
+  .field--name-field-step {
+    flex-shrink: 0;
+    width: 45px;
+    margin-right: 17px;
+    border: 1px solid $c-black;
+    border-radius: 50%;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 43px;
+    text-align: center;
+    background-color: $c-black;
+    color: $c-white;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 18px !important;
+      font-weight: 700;
+      width: 42px !important;
+      line-height: 40px !important;
+      margin-right: 14px;
+    }
+  }
+}

@@ -1,0 +1,240 @@
+.checkout-progress-steps-leasing {
+  background-color: $c-black;
+  color: $c-white;
+  width: 100%;
+  margin: 0;
+  margin-bottom: 0;
+  padding: 40px 1.7rem;
+
+  ul.checkout-progress {
+    position: relative;
+    max-width: 740px;
+    padding: 0;
+    margin: 60px 10px 0 10px;
+    height: 8px;
+    background-color: #2F2E2E;
+    border-radius: 5.5px;
+
+    @media screen and (min-width: $tablet) {
+      margin: 70px auto 0 auto;
+    }
+
+    li {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      font-size: 0;
+      text-indent: -9999px;
+      text-align: center;
+      width: 50px;
+      height: 8px;
+
+      @media screen and (min-width: $tablet) {
+        width: 60px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -60px;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+        display: block;
+        text-indent: -999px;
+        overflow: hidden;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+
+        @media screen and (min-width: $tablet) {
+          width: 60px;
+          height: 60px;
+          top: -70px;
+        }
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        background-color: #6038CD;
+        border-radius: 15px;
+        top: -3.5px;
+        left: 0px;
+        right: 0px;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      &.checkout-progress--step__previous,
+      &.checkout-progress--step__current {
+        &:after {
+          background-color: #FF4638;
+        }
+      }
+
+      &.subscription_employment_rental_history {
+        left: -1rem;
+
+        &:before {
+          background-image: url("../img/details-icon.svg");
+          background-position: left center;
+        }
+
+        &:after {
+          left: -22px;
+        }
+      }
+
+      &.subscription_order_information {
+        left: 26%;
+
+        @media screen and (min-width: $tablet) {
+          left: 30%;
+        }
+
+        &:before {
+          background-image: url("../img/identity-icon.svg");
+        }
+      }
+
+      &.subscription_payment {
+        right: 26%;
+
+        @media screen and (min-width: $tablet) {
+          right: 30%;
+        }
+
+        &:before {
+          background-image: url("../img/payment-icon.svg");
+        }
+      }
+
+      &.subscription_complete {
+        right: -1rem;
+
+        &:before {
+          background-image: url("../img/complete-icon.svg");
+          background-position: right center;
+        }
+
+        &:after {
+          right: -22px;
+        }
+      }
+    }
+  }
+}
+
+.retry-id-verification-wrapper {
+  overflow: hidden;
+  background-color: $c-black;
+  color: $c-white;
+  width: 100%;
+
+  .container {
+    max-width: 520px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 110px 15px 0 15px;
+    background: url("../img/good-news-refer-icon.svg") no-repeat top center;
+  }
+
+  h1 {
+    font-size: 32px;
+    list-style: 1.2em;
+    color: inherit;
+  }
+
+  ul.retry-id-verification-points {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      list-style: none;
+      padding: 0 0 0 2.5rem;
+      margin: 1rem 0;
+      background: url("../img/retry-check-icon.svg") no-repeat 0 8px;
+    }
+  }
+
+  .retry-id-verification-btn {
+    margin: 3rem 0;
+
+    .btn {
+      max-width: 350px;
+      width: 100%;
+      background-color: $c-violet;
+      color: $c-white;
+      border-radius: 25px;
+      text-transform: none;
+    }
+  }
+}
+
+.retry-id-verification-fail-wrapper {
+  overflow: hidden;
+  background-color: $c-black;
+  color: $c-white;
+  width: 100%;
+
+  .container {
+    max-width: 550px;
+    margin: 2rem auto 1rem auto;
+    text-align: center;
+    padding: 110px 15px 0 15px;
+    background: url("../img/order-refer-icon.svg") no-repeat top center;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 1.2em;
+    color: inherit;
+  }
+
+  .retry-id-verification-fail-btn {
+    margin: 3rem 0;
+
+    .btn {
+      max-width: 350px;
+      width: 100%;
+      background-color: $c-violet;
+      color: $c-white;
+      border-radius: 25px;
+      text-transform: none;
+    }
+  }
+}
+
+.decline-banner-wrapper {
+  overflow: hidden;
+  background-color: $c-black;
+  color: $c-white;
+  width: 100%;
+  font-size: 16px;
+
+  .container {
+    max-width: 625px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 110px 15px 0 15px;
+    background: url("../img/order-refer-icon.svg") no-repeat top center;
+  }
+
+  h1 {
+    font-size: 32px;
+    line-height: 1.2em;
+    color: inherit;
+  }
+
+  a {
+    color: $c-white !important;
+  }
+}

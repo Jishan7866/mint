@@ -1,0 +1,255 @@
+/* Braintree Hosted Fields styling classes*/
+.braintree-hosted-fields-focused {
+  border-color: rgba(grey, 0.3);
+
+  @media screen and (min-width: $tablet) {
+    box-shadow: 0px 1px 3px 0px rgba(grey, 0.3);
+  }
+}
+
+.braintree-hosted-fields-focused.focused-invalid {
+  border: 1px solid #d0021b;
+  box-shadow: 0 0 2px 0 rgba(208, 2, 27, 0.7);
+}
+
+#card-number,
+#expiration-date,
+#cvv {
+  height: 35px;
+  border: 1px solid #d4d3d4;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-bottom: 0;
+  transition: .2s ease-out;
+
+  &:hover {
+    border-color: rgba(grey, 0.3);
+
+    @media screen and (min-width: $tablet) {
+      box-shadow: 0px 1px 3px 0px rgba(grey, 0.3);
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    border-radius: 0;
+  }
+}
+
+#cvv {
+  margin-right: 0;
+}
+
+#card-number {
+  margin-bottom: 10px;
+
+  &::after {
+    background-image: none;
+  }
+}
+
+#edit-mint-commerce-payment-method-checkout-pane-payment-check-id-type-radio-paypal,
+#edit-id-type-radio-paypal {
+  position: relative;
+  float: left;
+  margin-right: 30px;
+  z-index: 2;
+
+  @media screen and (max-width: $mobile) {
+    float: none;
+    margin-bottom: 5px;
+  }
+
+  label {
+    display: block;
+    width: 135px;
+    height: 28px;
+    text-indent: -9999px;
+    background-image: url('../img/paypal-logo.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: 25px center;
+
+    &::before {
+      top: 5px;
+    }
+
+    &::after {
+      top: 9px;
+    }
+  }
+}
+
+#edit-mint-commerce-payment-method-checkout-pane-payment-check-credit-card-holder {
+  .form-item {
+    margin-top: 0;
+  }
+}
+
+#edit-mint-commerce-payment-method-checkout-pane-payment-check-paypal {
+  max-width: 700px;
+  padding: 5px 0;
+  text-align: right;
+
+  @media screen and (max-width: $mobile) {
+    text-align: left;
+    padding: 0;
+
+    label {
+      font-size: 12px !important;
+    }
+  }
+
+  label {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 400;
+    color: $text-color-l;
+  }
+}
+
+#edit-paypal {
+  position: relative;
+  height: 45px;
+  overflow: hidden;
+  z-index: -1;
+  margin-bottom: -44px;
+  opacity: 0.001;
+}
+
+#paypal-button {
+  width: 300px;
+}
+
+.dialog-off-canvas-main-canvas .btn-finalize-payment {
+  max-width: 296px;
+  width: 100% !important;
+  height: auto;
+
+  margin-left: 0;
+  margin-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  transform: none;
+
+  .btn {
+    padding: 14px 10px;
+  }
+}
+
+.data-card-wrapper {
+  display: flex;
+  max-width: 700px;
+
+  @media screen and (max-width: $mobile) {
+    flex-flow: wrap;
+  }
+
+  [type="text"],
+  [type="tel"],
+  [type="email"],
+  [type="password"],
+  [type="date"] {
+    font-family: sans-serif;
+    font-weight: 400;
+  }
+
+  .form-item {
+    margin-right: 20px;
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    &:nth-child(1) {
+      width: 100%;
+
+      @media screen and (max-width: $mobile) {
+        margin-right: 0;
+      }
+    }
+
+    &:nth-child(2) {
+      width: 140px;
+      flex-shrink: 0;
+
+      @media screen and (max-width: $mobile) {
+        width: calc(70% - 5px);
+        margin-right: 5px;
+      }
+    }
+
+    &:nth-child(3) {
+      width: 60px;
+      flex-shrink: 0;
+      margin-right: 0;
+
+      @media screen and (max-width: $mobile) {
+        width: calc(30% - 27px);
+      }
+    }
+  }
+}
+
+.checkout-pane-mint-commerce-payment-method-checkout-pane {
+
+  .form-radios {
+    margin-bottom: 10px;
+  }
+
+  .terms-and-conditions {
+    margin-bottom: 20px !important;
+
+    .form-type-checkbox {
+      position: relative;
+
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      .slabel {
+        padding-left: 25px;
+      }
+    }
+
+    label,
+    .slabel {
+      display: block;
+      font-size: 16px;
+      font-weight: normal;
+      color: $text-color-l;
+
+      a {
+        color: $primary-color;
+      }
+    }
+
+    .form-item {
+      max-width: none;
+      margin-bottom: 20px;
+    }
+
+    .terms-and-conditions-label {
+      padding-left: 0px;
+    }
+  }
+
+  .form-item-mint-commerce-payment-method-checkout-pane-payment-check-id-type-radio-credit-card {
+    @include credit-cards;
+  }
+
+}
+
+.leaving-soon-title {
+  font-size: 30px !important;
+  color: $c-black !important;
+}
+
+.leaving-so-soon p {
+  color: $c-black;
+}
+
+.leave-now-wrapper {
+  margin-top: 15px;
+}

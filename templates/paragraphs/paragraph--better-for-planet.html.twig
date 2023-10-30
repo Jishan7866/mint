@@ -1,0 +1,24 @@
+<section class="cards masnory-block better-planet-new">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card ">
+                    <div class="head">
+                        <h2><span class="green block">{{ content.field_main_heading }}</span></h2>
+                        <p>{{ content.field_description }}</p>
+                    </div>
+                    <div class="masnory-grid layout-two"> 
+                         {% if content.field_iconbox_reference[0] is not empty %}
+                            {% for key, iconbox in content.field_iconbox_reference if key|first != '#' %}
+                              <div class="masnory-block-{{ loop.index }}"> {{ iconbox }}</div>
+                            {% endfor %}
+                        {% endif %}    
+                    </div>                    
+                </div>
+                <div class="desc-content">
+                  {{ content.field_footer_text }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

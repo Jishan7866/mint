@@ -1,0 +1,129 @@
+.paragraph--type--faq {
+  padding: 30px 30px;
+
+  .title {
+    text-align: center;
+    font-family: $main-font;
+    font-weight: bold;
+    font-size: 2.8125rem;
+    line-height: 1.1;
+    margin-bottom: 1.3rem;
+  }
+
+  .description {
+    font-size: 1.25rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .faq-accordion {
+    position: relative;
+    padding-top: 2rem;
+
+    &:before {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-image: linear-gradient(90deg, #f2f2f2 0, #a0a0a0 50%, #f2f2f2);
+      content: "";
+    }
+
+    .question {
+      text-align: left;
+      font-size: 1.1rem;
+      position: relative;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+
+      &:after {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(90deg, #f2f2f2 0, #a0a0a0 50%, #f2f2f2);
+        content: "";
+      }
+
+      .question-title {
+        font-weight: bold;
+        margin-bottom: 1rem;
+        position: relative;
+        cursor: pointer;
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          margin-top: -10px;
+          width: 30px;
+          height: 20px;
+          background: url("../img/down.svg") no-repeat center center;
+          transition: .42s;
+        }
+      }
+
+      .question-body {
+        display: none;
+        padding-bottom: 1rem;
+      }
+
+      &.open {
+        .question-title:after {
+          transform: rotate(180deg);
+          transition: .3s;
+        }
+
+        .question-body {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width: 767px) {
+  .paragraph--type--faq {
+    .title {
+      font-size: 30px;
+    }
+    .description {
+      font-size: 16px;
+    }
+    .faq-accordion {
+      .question {
+        text-align: center;
+        font-size: 14px;
+        position: relative;
+        .question-title {
+          font-size: 17px;
+          text-decoration: underline;
+          position: static;
+          &:after {
+            display: none;
+          }
+        }
+        .question-body {
+          padding-bottom: 2rem;
+        }
+        &.open .question-title:after {
+          display: block;
+          background: url("../img/down-orange.svg") no-repeat center center;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 1rem;
+          top: auto;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}

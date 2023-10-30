@@ -1,0 +1,65 @@
+#colorbox {
+  border-radius: 0;
+  box-shadow: 0 0 12px 0 rgba($c-black, .5);
+}
+
+#cboxContent {
+  margin-bottom: 0;
+  border-radius: 0;
+
+  .cboxPhoto {
+    border-radius: 0;
+  }
+}
+
+#cboxPrevious,
+#cboxNext {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  outline: none;
+  text-indent: -9999px;
+  cursor: pointer;
+  background: none;
+
+  &::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    border: 2px solid $primary-color;
+    border-top: none;
+    border-left: none;
+    transition: .3s;
+    content: '';
+  }
+}
+
+#cboxPrevious {
+  left: 0;
+
+  &::after {
+    left: 25px;
+    transform: translateY(-50%) rotate(135deg);
+  }
+}
+
+#cboxNext {
+  right: 0;
+
+  &::after {
+    right: 25px;
+    transform: translateY(-50%) rotate(-45deg);
+  }
+}
+
+#cboxClose.cbox-close-plain {
+  @include popup-close;
+}
+
+#cboxOverlay {
+  background: $c-black;
+  opacity: .5 !important;
+}

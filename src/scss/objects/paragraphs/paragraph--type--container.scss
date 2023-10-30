@@ -1,0 +1,22 @@
+.paragraph--type--container {
+  padding: 0 42px;
+  text-align: center;
+  color: $text-color;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .paragraph-content {
+    max-width: 940px;
+    margin: 0 auto;
+  }
+
+  .field--name-field-container-item {
+    display: flex;
+
+    @media screen and (max-width: $tablet) {
+      display: block;
+    }
+  }
+}

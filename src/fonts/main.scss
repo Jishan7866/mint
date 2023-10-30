@@ -1,0 +1,71 @@
+@font-face {
+  font-family: 'Paul Grotesk';
+  font-style: normal;
+  font-weight: 300;
+  src: url('PaulGrotesk-Light.woff2') format('woff2'),
+    url('PaulGrotesk-Light.woff') format('woff'),
+    url('PaulGrotesk-Light.ttf') format('truetype'),
+    url('PaulGrotesk-Light.svg#PaulGrotesk-Light') format('svg');
+}
+
+@font-face {
+  font-family: 'Paul Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  src: url('PaulGrotesk-Regular.woff2') format('woff2'),
+    url('PaulGrotesk-Regular.woff') format('woff'),
+    url('PaulGrotesk-Regular.ttf') format('truetype'),
+    url('PaulGrotesk-Regular.svg#PaulGrotesk-Regular') format('svg');
+}
+
+@font-face {
+  font-family: 'Paul Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  src: url('PaulGrotesk-Medium.woff2') format('woff2'),
+    url('PaulGrotesk-Medium.woff') format('woff'),
+    url('PaulGrotesk-Medium.ttf') format('truetype'),
+    url('PaulGrotesk-Medium.svg#PaulGrotesk-Medium') format('svg');
+}
+
+@font-face {
+  font-family: 'Paul Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  src: url('PaulGrotesk-SemiBold.woff2') format('woff2'),
+    url('PaulGrotesk-SemiBold.woff') format('woff'),
+    url('PaulGrotesk-SemiBold.ttf') format('truetype'),
+    url('PaulGrotesk-SemiBold.svg#PaulGrotesk-SemiBold') format('svg');
+}
+
+@font-face {
+  font-family: 'Paul Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  src: url('PaulGrotesk-Bold.woff2') format('woff2'),
+    url('PaulGrotesk-Bold.woff') format('woff'),
+    url('PaulGrotesk-Bold.ttf') format('truetype'),
+    url('PaulGrotesk-Bold.svg#PaulGrotesk-Bold') format('svg');
+}
+
+@font-face {
+  font-family: 'Paul Grotesk Black';
+  font-style: normal;
+  font-weight: 800;
+  src: url('PaulGrotesk-Black.woff2') format('woff2'),
+    url('PaulGrotesk-Black.woff') format('woff'),
+    url('PaulGrotesk-Black.ttf') format('truetype'),
+    url('PaulGrotesk-Black.svg#PaulGrotesk-SemiBold') format('svg');
+}
+@font-face {
+  font-family: 'Hey-Brothers';
+  src:url('Hey-Brothers.woff') format('woff'),
+        url('Hey-Brothers.woff2') format('woff2'),
+        url('Hey-Brothers.eot'),
+        url('Hey-Brothers.eot?#iefix') format('embedded-opentype'),
+        url('Hey-Brothers.ttf') format('truetype');
+
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}

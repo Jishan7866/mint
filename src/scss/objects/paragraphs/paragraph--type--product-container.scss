@@ -1,0 +1,89 @@
+.paragraph--type--product-container {
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .paragraph-content {
+    max-width: 940px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+
+    @media screen and (max-width: $mobile) {
+      padding-bottom: 30px;
+    }
+
+    .group-title {
+      display: flex;
+
+      @media screen and (max-width: $mobile) {
+        display: block;
+      }
+    }
+
+    .field--name-field-addition-title {
+      padding-left: 20px;
+      color: $accent-color;
+      font-weight: 700;
+      font-size: 15px;
+
+      @media screen and (max-width: $mobile) {
+        padding-left: 0;
+      }
+
+      &:before {
+        content: "|";
+        padding-right: 20px;
+        color: $c-grey-2l;
+
+        @media screen and (max-width: $tablet-wide) {
+          content: "";
+          padding-right: 0;
+        }
+      }
+
+      a {
+        color: $accent-color;
+      }
+    }
+  }
+
+  .wrapper-step {
+    .field--name-field-step {
+      flex-shrink: 0;
+      margin-right: 10px;
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 28px;
+      text-align: center;
+      background-color: $accent-color;
+      color: $c-white;
+
+      padding-left: 5px;
+      padding-right: 5px;
+
+      border-radius: 0px;
+      width: auto;
+      border-width: 0px;
+
+      @media screen and (max-width: $tablet) {
+        font-size: 18px !important;
+        font-weight: 700;
+        line-height: 40px !important;
+        margin-right: 14px;
+        width: auto !important;
+        line-height: 24px !important;
+      }
+    }
+
+    &.step-1 {
+      margin-top: 20px;
+    }
+
+    &.step-2 .field--name-field-title {
+      line-height: 22px;
+    }
+  }
+
+}

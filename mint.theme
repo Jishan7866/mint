@@ -1,0 +1,1505 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Asset\AttachedAssetsInterface;
+use Drupal\block\Entity\Block;
+use Drupal\node\NodeInterface;
+use Drupal\eck\Entity\EckEntity;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\Component\Utility\Html;
+use Drupal\Component\Utility\Unicode;
+use Drupal\config_pages\Entity\ConfigPages;
+use Drupal\user\Entity\User;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\Core\Link;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\mint_octane_integration\MintServiceDetailOctaneIntegration;
+/**
+ * Implements hook_preprocess_eck_entity().
+ */
+function mint_preprocess_eck_entity(&$vars) {
+  if (isset($vars['elements']['#container_item'])) {
+    $url = $vars['elements']['#container_item']->get('field_link')->getValue();
+    if (!empty($url[0]['uri'])) {
+      $vars['container_item_link'] = Url::fromUri($url[0]['uri']);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ */
+function mint_preprocess_paragraph(&$variables) {
+  $paragraph = $variables['elements']['#paragraph'];
+  if ($paragraph->getType() == 'steps' || $paragraph->getType() == 'color_strip') {
+    if ($paragraph->hasField('field_background_color') && $paragraph->get('field_background_color')->value) {
+      $variables['background_color'] = '#' . $paragraph->get('field_background_color')->value;
+    }
+    if ($paragraph->hasField('field_text_color') && $paragraph->get('field_text_color')->value) {
+      $variables['text_color'] = '#' . $paragraph->get('field_text_color')->value;
+    }
+  }
+  if ($paragraph->getType() == 'container') {
+    if ($paragraph->hasField('field_container_type') && $paragraph->hasField('field_container_item_width')) {
+      $container_type = $paragraph->get('field_container_type')->getValue();
+      $container_item_width = $paragraph->get('field_container_item_width')
+        ->getValue();
+    }
+    if (!empty($container_type[0]['value']) && !empty($container_item_width[0]['value'])) {
+      $variables['container_type'] = $container_type[0]['value'];
+      $variables['container_item_width'] = $container_item_width[0]['value'];
+    }
+  }
+  if ($paragraph->getType() == 'product_container') {
+    if ($paragraph->hasField('field_product_container_type') && $paragraph->get('field_product_container_type')->value) {
+      $variables['product_container_type'] = $paragraph->get('field_product_container_type')->value;
+    }
+    if ($paragraph->hasField('field_step')) {
+      $step_id = $paragraph->get('field_step')->getValue();
+      if(isset($step_id) && !empty($step_id)){
+        $variables['step_paragraph'] = 'step_' . $step_id[0]['value'];
+      }
+    }
+  }
+  if ($paragraph->getType() == 'half_width_banner' || $paragraph->getType() == 'text_element') {
+    $variables['background_color'] = '#' . $paragraph->get('field_background_color')->value;
+  }
+  if ($paragraph->getType() == 'trustpilot_grid_widget_') {
+    $variables['trustpilot_banner_color'] = '#' . $paragraph->get('field_trustpilot_background')->value;
+  }
+
+}
+/**
+ * Implements hook__preprocess_HOOK().
+ */
+
+function mint_preprocess_breadcrumb(&$variables) {
+  unset($variables['breadcrumb'][1]);
+  $pathInfo = \Drupal::request()->getpathInfo();
+  if (strpos($pathInfo, "phone-only") !== false) {
+    $phoneOnly = isset($variables["breadcrumb"][2]["text"]) ? $variables["breadcrumb"][2]["text"] : '';
+    $variables["breadcrumb"][2]["text"] = "Smartphones";
+    $variables["breadcrumb"][3]["url"] = "/subscribe/phone-only/iphone";
+  }
+  if (strpos($pathInfo, "phone-and-sim") !== false) {
+    $phonesim = isset($variables['breadcrumb'][2]['text']) ? $variables['breadcrumb'][2]['text'] : '';
+    $variables["breadcrumb"][2]["text"] = "Phone and SIM";
+    $variables["breadcrumb"][3]["url"] = "/subscribe/phone-and-sim/iphone";
+  }
+  $variables["breadcrumb"][3]["text"] = "iPhone";
+}
+
+/**
+ * Implements hook_preprocess_field__media__field_media_file__downloads().
+ *
+ * @param $variables
+ */
+function mint_preprocess_field__media__field_media_file__downloads(&$variables) {
+  $view_mode = $variables['element']['#view_mode'];
+  $options = [];
+
+  foreach ($variables['items'] as $key => $item) {
+    $file = $item['content']['#file'];
+    $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+    $url = file_create_url($file_entity->getFileUri());
+    // Get file format.
+    $parts = pathinfo($url);
+
+    if ($view_mode == 'show_file_in_new_tab') {
+      $options['attributes']['onclick'] = 'target="_blank";return true;';
+    }
+    else {
+      $options['attributes']['download'] = '';
+    }
+    $variables['items'][$key]['content']['link'] = '';
+
+    if (!empty($item['content']['#description'])) {
+      $variables['items'][$key]['content']['description'] = $item['content']['#description'];
+      $variables['items'][$key]['content']['link'] = Link::fromTextAndUrl($item['content']['#description'], Url::fromUri($url, $options));
+    }
+    else {
+      $variables['items'][$key]['content']['file_name'] = $file_entity->getFilename();
+      $variables['items'][$key]['content']['file_name'] = substr($variables['items'][$key]['content']['file_name'], 0, -4);
+      $variables['items'][$key]['content']['link'] = Link::fromTextAndUrl($variables['items'][$key]['content']['file_name'], Url::fromUri($url, $options));
+    }
+    if ($view_mode != 'show_file_in_new_tab') {
+      $variables['items'][$key]['content']['format'] = $parts['extension'];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block__user_login_block().
+ */
+function mint_preprocess_block__user_login_block(&$variables) {
+  unset($variables['content']['user_links']['#items']['create_account']);
+  if (\Drupal::routeMatch()
+    ->getRouteName() == 'mint_coming_soon.coming_soon_custom_login') {
+    unset($variables['content']['user_links']['#items']['request_password']);
+  }
+  else {
+    $variables['content']['user_login_form']['request_password'] = $variables['content']['user_links']['#items']['request_password'];
+    unset($variables['content']['user_links']['#items']['request_password']);
+    $variables['content']['user_login_form']['request_password']['#weight'] = 0.002;
+    $variables['content']['user_login_form']['request_password']['#title'] = t('Forgotten your password?');
+    $variables['content']['user_login_form']['request_password']['#attached']['library'][] = 'core/drupal.dialog.ajax';
+    $attributes = $variables['content']['user_login_form']['request_password']['#url']->getOptions()['attributes'];
+    $attributes['class'][] = 'use-ajax';
+    $attributes['data-dialog-type'] = 'modal';
+    $attributes['data-dialog-options'] = '{"width":620,"height":400}';
+    $variables['content']['user_login_form']['request_password']['#url']->setOption('attributes', $attributes);
+  }
+}
+
+/**
+ * Implements hook_preprocess_block__system_branding_block().
+ */
+function mint_preprocess_block__system_branding_block(&$variables) {
+  $config = \Drupal::config('mint.settings');
+  $use_site_logo_mobile = $config->get('logo.use_site_logo_mobile');
+
+  if ($use_site_logo_mobile) {
+    $current_path = \Drupal::service('path.current')->getPath();
+    if ($current_path == '/catalogue/refurbished-phones' || substr($current_path, strlen('/phones')) == '/phones') {
+      $variables['site_logo_mobile'] = drupal_get_path('theme', 'mint') . '/logo.svg?nu';
+    }
+    else {
+      $site_logo_mobile = $config->get('logo.mobile_path');
+      if (!empty($site_logo_mobile)) {
+        $variables['site_logo_mobile'] = file_url_transform_relative(file_create_url($site_logo_mobile));
+      }
+    }
+  }
+  $variables['site_logo'] = '/' . drupal_get_path('theme', 'mint') . '/logo.svg?nu';
+}
+
+/**
+ * Implements hook_preprocess_mint_welcome_back_page().
+ */
+function mint_preprocess_mint_welcome_back_page(&$variables) {
+  unset($variables['block']['user_links']['#items']['create_account']);
+  unset($variables['block']['user_login_form']['persistent_login']);
+
+  $variables['block']['user_links']['#items']['request_password']['#url'] = Url::fromRoute('mint_commerce.checkout_forgot_password');
+  $variables['block']['user_login_form']['request_password'] = $variables['block']['user_links']['#items']['request_password'];
+  unset($variables['block']['user_links']['#items']['request_password']);
+
+  $variables['block']['user_login_form']['request_password']['#weight'] = 200;
+  $variables['block']['user_login_form']['request_password']['#title'] = t('Forgotten your password?');
+  $variables['block']['user_login_form']['request_password']['#attached']['library'][] = 'core/drupal.dialog.ajax';
+
+  if (isset($variables['block']['user_login_form']['request_password']['#url']->getOptions()['attributes'])) {
+    $attributes = $variables['block']['user_login_form']['request_password']['#url']->getOptions()['attributes'];
+  }
+
+  $attributes['class'][] = 'use-ajax';
+  $attributes['data-dialog-type'] = 'modal';
+  $attributes['data-dialog-options'] = '{"width":620,"height":400, "classes":{"ui-dialog":"forgot-password-window"}}';
+  $variables['block']['user_login_form']['request_password']['#url']->setOption('attributes', $attributes);
+}
+
+/**
+ * Implements hook_preprocess_page_title().
+ */
+function mint_preprocess_page_title(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+  if ($route_name == 'commerce_checkout.form') {
+    $variables['title'] = t('Secure checkout');
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function mint_preprocess_field(&$variables) {
+  if ($variables['element']['#object'] instanceof
+  EckEntity    && $variables['element']['#object']->bundle() == 'container_item_bundle') {
+    if (!empty($variables['element']['#object']->_referringItem)) {
+      $referenced_entity = $variables['element']['#object']->_referringItem;
+      $field_item_list = $referenced_entity->getParent();
+      if (!empty($field_item_list)) {
+        $container_paragraph = $field_item_list->getParent();
+        if (!empty($container_paragraph)) {
+          switch ($variables['field_name']) {
+            case 'field_text':
+              $color = $container_paragraph->get('field_text_color')
+                ->getValue();
+              break;
+
+            case 'title':
+              $color = $container_paragraph->get('field_title_color')
+                ->getValue();
+              break;
+          }
+        }
+      }
+      if (!empty($color[0]['value'])) {
+        $variables['text_color'] = $color[0]['value'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function mint_preprocess_field__paragraph__field_title__banner(&$variables) {
+  if ($variables['element']['#object']->hasField('field_title_color') && $variables['element']['#object']->get('field_title_color')->value) {
+    $variables['title_color'] = '#' . $variables['element']['#object']->get('field_title_color')->value;
+  }
+}
+function mint_preprocess(&$variables) {
+global $base_url;
+$theme = \Drupal::theme()->getActiveTheme();
+$variables['active_theme_url'] = $base_url.'/'. $theme->getPath();
+}
+/**
+ * Implements hook_preprocess_html().
+ */
+function mint_preprocess_html(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  if (isset($variables['node_type']) && ($variables['node_type'] == 'static_page' || $variables['node_type'] == 'product' || $variables['node_type'] == 'popup' || $variables['node_type'] == 'technical_page')) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node instanceof NodeInterface && $node->hasField('field_page_class')) {
+      $classes = $node->get('field_page_class')->getValue();
+      if (!empty($classes[0]['value'])) {
+        $token = \Drupal::service('token');
+        $classes = $token->replace($classes[0]['value']);
+        $classes = Html::cleanCssIdentifier($classes);
+        $variables['field_page_class'] = mb_strtolower($classes);
+      }
+    }
+  }
+  $body_classes = [
+    '/catalogue/refurbished-phones' => 'refurbished-phones',
+    '/catalogue/sim-only' => 'sim-only',
+  ];
+  foreach ($body_classes as $key => $body_class) {
+    if ($current_path == $key) {
+      $variables['attributes']['class'][] = $body_class;
+    }
+    if (substr($current_path, 0, strlen('/catalogue/refurbished-phones/iphone')) == '/catalogue/refurbished-phones/iphone') {
+      $variables['attributes']['class'][] = 'page-iphone';
+    }
+    if (substr($current_path, 0, strlen('/catalogue/refurbished-phones/samsung')) == '/catalogue/refurbished-phones/samsung') {
+      $variables['attributes']['class'][] = 'page-samsung';
+    }
+    if (substr($current_path, 0, strlen('/catalogue/refurbished-phones/galaxy')) == '/catalogue/refurbished-phones/galaxy') {
+      $variables['attributes']['class'][] = 'page-samsung';
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function mint_preprocess_page(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name == 'commerce_checkout.form') {
+    $variables['#attached']['library'][] = 'mint_catalogue/new_design';
+  }
+
+  $variables['page']['user_page_link'] = Url::fromRoute('user.page');
+  $variables['page']['user_logout_link'] = Url::fromRoute('user.logout');
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function mint_preprocess_node(&$variables) {
+  if (($variables['elements']['#node']->getType() == 'static_page'
+    || $variables['elements']['#node']->getType() == 'popup')
+    && $variables['elements']['#node']->hasField('field_page_class')
+    && !empty($_REQUEST['_wrapper_format'])
+    && $_REQUEST['_wrapper_format'] == 'drupal_modal') {
+    $classes = $variables['elements']['#node']->get('field_page_class')
+      ->getValue();
+    if (!empty($classes[0]['value'])) {
+      $token = \Drupal::service('token');
+      $classes = $token->replace($classes[0]['value']);
+      $classes = Html::cleanCssIdentifier($classes);
+      $variables['attributes']['class'][] = mb_strtolower($classes);
+    }
+  }
+  $current_path = \Drupal::service('path.current')->getPath();
+  $aliasPath = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $search = 'countries';
+  if ($variables['elements']['#node']->getType() == 'popup' && preg_match("/{$search}/i", $aliasPath)) {
+    $variables['#attached']['library'][] = 'mint/countrysort';
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_field().
+ */
+function mint_preprocess_field__field_steps_items(&$variables, $hook) {
+  foreach ($variables['items'] as $index => $item) {
+    /** @var \Drupal\eck\Entity\EckEntity $step_item */
+    $step_item = $item['content']['#step_item'];
+    /** @var \Drupal\Core\Field\EntityReferenceFieldItemList $image */
+    $image = $step_item->get('field_image');
+    if (!$image->getValue()) {
+      $content = [
+        'element_wrapper' => [
+          '#type' => 'container',
+          '#attributes' => [
+            'class' => 'step-number',
+          ],
+          'index' => [
+            '#markup' => sprintf('%02d', $index + 1),
+          ],
+        ],
+        'step_text' => [
+          '#type' => 'container',
+          '#attributes' => [
+            'class' => 'step-text',
+          ],
+          'title_wrapper' => [
+            '#type' => 'container',
+            '#attributes' => [
+              'class' => 'field field--name-title field--type-string field--label-hidden field__item',
+              'data-quickedit-field-id' => 'step_item/' . $step_item->id() . '/title/en/default',
+            ],
+            'index' => [
+              '#markup' => $step_item->get('title')->getString(),
+            ],
+          ],
+          'text_wrapper' => [
+            '#type' => 'container',
+            '#attributes' => [
+              'class' => 'clearfix text-formatted field field--name-field-text field--type-text-long field--label-hidden field__item',
+              'data-quickedit-field-id' => 'step_item/' . $step_item->id() . '/title/en/default',
+            ],
+            'index' => [
+              '#markup' => $step_item->get('field_text')
+                ->get(0)
+                ->getValue()['value'],
+            ],
+          ],
+        ],
+      ];
+      $variables['items'][$index]['content'] = [$content];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_layout__onecol().
+ */
+function mint_preprocess_layout__onecol(&$variables) {
+  if ($variables['content']['#entity_type'] == 'paragraph') {
+    $variables['paragraph_class'] = 'paragraph';
+  }
+}
+
+/**
+ * Implements hook_preprocess_fieldset().
+ */
+function mint_preprocess_fieldset(&$variables) {
+  if (in_array('attribute_iphone_capacity', $variables['element']['#parents'], TRUE) || in_array('attribute_samsung_capacity', $variables['element']['#parents'], TRUE)) {
+    $variables['tooltip_text'] = TRUE;
+    $variables['tooltip_number'] = $variables['element']['#value'];
+  }
+  if ($variables['element']['#type'] == 'commerce_product_rendered_attribute') {
+    $variables['attributes']['class'][] = end($variables['element']['#parents']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_video_embed_iframe__youtube().
+ */
+function mint_preprocess_video_embed_iframe__youtube(&$variables) {
+  $variables['query']['showinfo'] = 0;
+  $variables['query']['fs'] = 0;
+  $variables['query']['controls'] = 0;
+  $variables['query']['disablekb'] = 1;
+  $variables['query']['loop'] = 1;
+
+  if (!empty($variables['url'])) {
+    $parts = parse_url($variables['url']);
+    if (isset($parts['path']) && !empty($path_parts = explode('/', $parts['path']))) {
+      $variables['query']['playlist'] = end($path_parts);
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product().
+ */
+function mint_preprocess_commerce_product(&$variables) {
+  $product_type = $variables['product_entity']->get('type')->getValue();
+  $variables['product_type'] = $product_type[0]['target_id'];
+
+  if ($variables['product_type'] == 'plan' && isset($variables['product']['title'])) {
+    $token_service = \Drupal::token();
+    $variables['product']['title'] = [
+      '#markup' => $token_service->replace($variables['product']['title'][0]['#context']['value'], ['product_entity' => $variables['product_entity']]),
+    ];
+  }
+}
+
+/**
+ *
+ */
+function mint_render_settings_field_entity($settings, $field, $entity_type = 'paragraph') {
+  $checkout_settings = ConfigPages::config($settings);
+  if ($checkout_settings->hasField($field)) {
+    $entity_ids = $checkout_settings->get($field)->getValue();
+    if (!$entity_ids) {
+      return "";
+    }
+    $entity_id = $entity_ids[0]['target_id'];
+    $view_mode = 'full';
+    $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($entity_id);
+
+    if (isset($entity)) {
+      $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entity_type);
+      $pre_render = $view_builder->view($entity, $view_mode);
+      $render_output['content'] = [
+        '#markup' => render($pre_render),
+      ];
+
+      return $render_output;
+    }
+  }
+  return "";
+}
+
+/**
+ * Implements hook_preprocess_commerce_product_variation().
+ */
+function mint_preprocess_commerce_product_variation(&$variables) {
+  $variables['#cache']['max-age'] = 0;
+  $variables['checkout_total_cost_summary'] =
+    mint_render_settings_field_entity(
+      'checkout_settings',
+      'field_phone_checkout_summary',
+      'paragraph'
+    );
+
+  $variation_type = $variables['product_variation_entity']->get('type')
+    ->getValue();
+  $variables['variation_type'] = $variation_type[0]['target_id'];
+
+  if ($variables['variation_type'] == 'iphone' || $variables['variation_type'] == 'samsung') {
+    $price = $variables['product_variation_entity']->get('price')->getValue();
+    // TODO: Should we add number of months field?
+    $price = $price[0]['number'] = 24 * $price[0]['number'];
+    $variables['total_price'] = $price;
+    $variables['phone_condition'] = \Drupal::service(
+      'mint_catalogue.phone_condition'
+    )->getPhoneConditionLabel($variables['product_variation_entity'])['#text'];
+  }
+  elseif ($variables['variation_type'] == 'plan') {
+    $plan_addons = [
+      'attribute_unlimited_australia',
+      'attribute_unlimited_netflix',
+      'attribute_10_countries',
+      'attribute_36_countries',
+    ];
+    $totalItems = '';
+    foreach ($plan_addons as $plan_add_on) {
+      check_plan_add_on_value($variables, $plan_add_on);
+      $store = \Drupal::service('commerce_store.current_store')->getStore();
+      if (!empty($store)) {
+        $cart = \Drupal::service('commerce_cart.cart_provider')
+          ->getCart('default', $store);
+        if (!empty($cart)) {
+          $order_items = $cart->getItems();
+          $totalItems = count($order_items);
+          foreach ($order_items as $order_item) {
+            $variation_id = $order_item->getPurchasedEntityId();
+            $variation = \Drupal::entityTypeManager()
+              ->getStorage('commerce_product_variation')
+              ->load($variation_id);
+            if ($variation) {
+              $type = $variation->get('type')->getValue();
+              if (!empty($type) && ($type[0]['target_id'] == 'iphone' || $type[0]['target_id'] == 'samsung')) {
+                $variables['current_product_type'] = $type[0]['target_id'];
+                // Check phone eSIM compatibility.
+                $esimPhoneCompatibility = $variation->get('field_esim')->getValue()[0]['value'];
+              }
+            }
+          }
+        }
+      }
+    }
+    $product_id = $variables['product_variation_entity']->get('product_id')
+      ->getValue();
+    $product = \Drupal::entityTypeManager()
+      ->getStorage('commerce_product')
+      ->load($product_id[0]['target_id']);
+    $variation_id = $variables['product_variation_entity']->id();
+    $image_gb = '';
+    if (!empty($product)) {
+      $field_price = $product->get('field_base_price')->getValue();
+      $field_data_bank = $product->get('field_data_bank')->getValue();
+      $extra_gb_image_url = $product->get('field_gb_plan_image')->target_id;
+      if (!empty($extra_gb_image_url)) {
+      $extra_gb_image_url = $product->get('field_gb_plan_image')->target_id;
+      $file = File::load($extra_gb_image_url);
+      $image_gb = file_create_url($file->getFileUri());
+      }
+      $five_g_plan_label = $product->get('field_5g_plan_label')->getValue();
+      if (!empty($five_g_plan_label)) {
+        $five_g_plan_label = [
+          '#type' => 'processed_text',
+          '#format' => $five_g_plan_label[0]['format'],
+          '#text' => $five_g_plan_label[0]['value'],
+        ];
+      }
+      $field_cis_link = $product->get('field_cis_link')->getValue();
+      $field_title = $product->get('title')->getValue();
+      $field_data_word = !empty($product->get('field_data_word')
+        ->getValue()[0]) ?
+        $product->get('field_data_word')->getValue()[0]['value'] : '';
+      $field_account_data_word = !empty($product->get('field_account_data_word')
+        ->getValue()[0]) ?
+        $product->get('field_account_data_word')->getValue()[0]['value'] : '';
+      $field_price_text = !empty($product->get('field_price_text')
+        ->getValue()[0]) ?
+        $product->get('field_price_text')->getValue()[0]['value'] : '';
+
+      $variables['base_plan_price'] = isset($field_price[0]['value']) ? $field_price[0]['value'] : '';
+      $variables['data_bank'] = isset($field_data_bank[0]['value']) ? $field_data_bank[0]['value'] : '';
+      $variables['base_gb_image'] = isset($image_gb) ? $image_gb : '';
+      $variables['field_cis_link'] = isset($field_cis_link[0]['value']) ? $field_cis_link[0]['value'] : '';
+      $variables['fiveg_plan_label'] = isset($five_g_plan_label) ? $five_g_plan_label : '';
+      $variables['base_plan_title'] = isset($field_title[0]['value']) ?  $field_title[0]['value'] : '';
+
+      if (isset($variables['product_variation_entity']->get('attribute_monthly_data')->getValue()[0]['target_id'])) {
+        $product_attributes_entity = \Drupal::entityTypeManager()
+          ->getStorage('commerce_product_attribute_value')
+          ->load($variables['product_variation_entity']->get('attribute_monthly_data')->getValue()[0]['target_id']);
+        if (isset($product_attributes_entity)) {
+          $variables['variation_monthly_data'] = $product_attributes_entity->get('field_monthly_data')->getString() . t('GB');
+        }
+      }
+      if ((isset($variables['variation_monthly_data']) && empty($variables['variation_monthly_data'])) || !isset($variables['variation_monthly_data'])) {
+        $token_service = \Drupal::token();
+        $variables['base_plan_title'] = $token_service->replace($field_title[0]['value'], ['product_entity' => $product]);
+      }
+      $variables['product_field_header'] = $product->get('field_header')->getValue()[0]['value'];
+      $variables['field_popular_value'] = $product->get('field_popular')->getValue()[0]['value'];
+      $add_on_total_price = 0;
+      $selected_add_ons = [];
+      foreach ($variables['product_variation'] as $key => $variation_field) {
+        if (in_array($key, $plan_addons)) {
+          if (isset($variation_field[0]['#commerce_product_attribute_value'])) {
+            $add_on_price = $variation_field[0]['#commerce_product_attribute_value']->get('field_price')
+              ->getValue();
+            if (!empty($add_on_price[0]['number'])) {
+              $add_on_total_price = $add_on_total_price + $add_on_price[0]['number'];
+              $selected_add_on_body = $variation_field[0]['#commerce_product_attribute_value']->get('field_body')
+                ->getValue();
+              $selected_add_ons[] = $selected_add_on_body[0]['value'];
+            }
+          }
+        }
+      }
+      $variables['addons_price'] = $add_on_total_price;
+      $variables['addons_name'] = $selected_add_ons;
+
+      $variables['field_data_word'] = $field_data_word;
+      $variables['field_account_data_word'] = $field_account_data_word;
+      $variables['field_price_text'] = $field_price_text;
+      $variables['variation_id'] = $variation_id;
+      // $variables['product_id'] = $product_id[0]['target_id'];
+      // We need sku not product_id and because
+      // my npm local is not working I do this quick fix.
+      $variables['product_id'] = $variables['product_variation_entity']->get('sku')->value;
+
+      // Get current plan sku.
+      $private_tempstore = \Drupal::service('tempstore.private')->get('mint_my_account');
+      if (!empty($private_tempstore->get('current_plan_sku'))) {
+        $variables['current_plan_sku'] = $private_tempstore->get('current_plan_sku');
+      }
+
+      // Check eSIM compatibility.
+      $esimPlanCompatibility = $variables['product_variation_entity']->get('field_esim')->getValue()[0]['value'];
+      if($totalItems > 1) {
+        if($esimPhoneCompatibility && $esimPlanCompatibility) {
+          $variables['esimCompatibility'] = TRUE;
+        }
+      }
+      else {
+        if($esimPlanCompatibility) {
+          $variables['esimCompatibility'] = TRUE;
+        }
+      }
+    }
+  }
+  elseif ($variables['variation_type'] == 'add_on') {
+    $product_id = $variables['product_variation_entity']->get('product_id')
+      ->getValue();
+    $product = \Drupal::entityTypeManager()
+      ->getStorage('commerce_product')
+      ->load($product_id[0]['target_id']);
+    $variation_id = $variables['product_variation_entity']->id();
+
+    if (!empty($product)) {
+      $field_price = $variables['product_variation_entity']->getPrice()
+        ->getNumber();
+      $field_title = $product->get('title')->getValue();
+      $field_data_word = !empty($product->get('field_data_word')
+        ->getValue()[0]) ?
+        $product->get('field_data_word')->getValue()[0]['value'] : '';
+      $variables['base_plan_price'] = (float) $field_price;
+      $variables['base_plan_old_price'] = $variables['product_variation_entity']->hasField('field_old_price')
+        && !empty($variables['product_variation_entity']->get('field_old_price')->getValue()[0])
+        ? (float) $variables['product_variation_entity']->get('field_old_price')->first()->toPrice()->getNumber() : NULL;
+      $variables['base_plan_title'] = $field_title[0]['value'];
+      $body = !empty($product->get('body')
+        ->getValue()[0]) ?
+        $product->get('body')->getValue()[0]['value'] : '';
+
+      $variables['field_data_word'] = $field_data_word;
+      $variables['variation_id'] = $variation_id;
+      $variables['body']['#markup'] = $body;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_product__plan(&$variables) {
+  $product = $variables['elements']['#commerce_product'];
+  $field_popular = $product->get('field_popular');
+  if (!empty($field_popular)) {
+    $field_popular = $field_popular->getValue();
+    if (isset($field_popular[0]['value']) && $field_popular[0]['value'] == 1) {
+      $variables['field_popular_value'] = 'product-plan--popular';
+    }
+  }
+  $product_id = $product->get('product_id')->value;
+  if ($product_id) {
+    $variables['product_id'] = $product_id;
+  }
+
+  $settings = $product->get('field_extra_promo')->getSettings();
+  $suffix_tokens = explode(" ", $settings['suffix']);
+  $variables['field_extra_promo_suffix_pre'] = array_shift($suffix_tokens);
+  $variables['field_extra_promo_suffix'] = implode(" ", $suffix_tokens);
+  $variables['field_extra_promo_value'] = $product->field_extra_promo->value;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_product_attribute_value__add_to_cart(&$variables) {
+  $attribute = $variables['product_attribute_value_entity'];
+  $attribute_type = $attribute->get('name');
+  if (!empty($attribute_type)) {
+    $attribute_name_value = $attribute_type->getValue();
+    if (isset($attribute_name_value[0]['value']) && !empty($attribute_name_value[0]['value'])) {
+      $variables['attribute_name_value'] = $attribute_name_value[0]['value'];
+      $class = strtolower($attribute_name_value[0]['value']);
+      $class = preg_replace('/[^a-z0-9_\s-]/', '', $class);
+      $class = preg_replace('/[\s-]+/', ' ', $class);
+      $class = preg_replace('/[\s_]/', '-', $class);
+      $variables['attributes']['class'][] = $class;
+    }
+  }
+
+  if ($variables["product_attribute_value_entity"]->bundle() == "monthly_data") {
+    $variables['attributes']['class'][] = 'product-plan__hidden';
+  }
+
+  if ($attribute->hasField('field_state_attribute') && !empty($attribute_state = $attribute->get('field_state_attribute'))) {
+    $attribute_state_value = $attribute_state->getValue()[0]['value'];
+    $class = strtolower($attribute_state_value);
+    $class = preg_replace('/[^a-z0-9_\s-]/', '', $class);
+    $class = preg_replace('/[\s-]+/', ' ', $class);
+    $class = preg_replace('/[\s_]/', '-', $class);
+    $variables['attributes']['class'][] = $class;
+  }
+}
+
+/**
+ *
+ */
+function mint_preprocess_field__commerce_product_attribute_value__field_tooltip_text(&$variables) {
+  if (strstr($variables['element']['#bundle'], 'capacity')) {
+    $variables['tooltip_number'] = $variables['element']['#object']->id();
+  }
+}
+
+/**
+ * Helper function to remove unchecked/fixed plan add-ons.
+ *
+ * @param array $variables
+ * @param string $add_on_name
+ */
+function check_plan_add_on_value(&$variables, $add_on_name) {
+  $add_on = $variables['product_variation_entity']
+    ->get($add_on_name)
+    ->first()
+    ->get('entity')
+    ->getTarget()
+    ->getValue()
+    ->get('name')
+    ->getValue();
+  if (!empty($add_on[0]['value'])
+    && ($add_on[0]['value'] == 'Fixed' || $add_on[0]['value'] == 'Unchecked')) {
+    unset($variables['product_variation'][$add_on_name]);
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__login(&$variables) {
+  $order_id = $variables['form']['sidebar']['order_summary']['summary']['#arguments'][0];
+  $order_info = mint_get_order_custom_info($order_id);
+
+  $container = \Drupal::getContainer();
+  $commerce_checkout_pane = $container->get('plugin.manager.commerce_checkout_pane');
+  $all_panes = $commerce_checkout_pane->getDefinitions();
+  $panes_id = [
+    'mint_commerce_identification_checkout_pane',
+    'mint_commerce_payment_method_checkout_pane',
+  ];
+  foreach ($panes_id as $key => $pane) {
+    $variables['mint_panes'][$pane] = $all_panes[$pane]['label']->getUntranslatedString();
+  }
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+  $variables['mint_checkout_login_message'] =
+    mint_render_settings_field_entity(
+      'checkout_settings',
+      'field_checkout_login_message',
+      'paragraph'
+    );
+
+  $variables['mint_checkout_message'] =
+     mint_render_settings_field_entity(
+       'checkout_settings',
+       'field_checkout_message',
+       'paragraph'
+     );
+
+  $block = Block::load('promocode');
+  if (!empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_promo_code_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $esimCompatibility = mint_check_esim_compatibility($order_id);
+  $block = Block::load('esim');
+  if ($esimCompatibility && !empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_esim_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $configs = ConfigPages::config('checkout_settings');
+  $need_help = $configs->get('field_need_help_message')->getValue();
+  $need_help = isset($need_help[0]['value']) ? $need_help[0]['value'] : 'Need some help buying? <a class="open-chat-btn" href="#">Chat with us now</a>';
+  $variables['need_help'] = $need_help;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__order_information(&$variables) {
+  $order_id = $variables['form']['sidebar']['order_summary']['summary']['#arguments'][0];
+  $order_info = mint_get_order_custom_info($order_id);
+
+  $container = \Drupal::getContainer();
+  $commerce_checkout_pane = $container->get('plugin.manager.commerce_checkout_pane');
+  $all_panes = $commerce_checkout_pane->getDefinitions();
+  $panes_id = [
+    'mint_commerce_user_details_pane',
+    'mint_commerce_payment_method_checkout_pane',
+  ];
+  foreach ($panes_id as $key => $pane) {
+    $variables['mint_panes'][$pane] = $all_panes[$pane]['label']->getUntranslatedString();
+  }
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $block = Block::load('promocode');
+  if (!empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_promo_code_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $esimCompatibility = mint_check_esim_compatibility($order_id);
+  $block = Block::load('esim');
+  if ($esimCompatibility && !empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_esim_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__payment(&$variables) {
+  $order_id = $variables['form']['sidebar']['order_summary']['summary']['#arguments'][0];
+  $order_info = mint_get_order_custom_info($order_id);
+
+  $container = \Drupal::getContainer();
+  $commerce_checkout_pane = $container->get('plugin.manager.commerce_checkout_pane');
+  $all_panes = $commerce_checkout_pane->getDefinitions();
+  $panes_id = [
+    'mint_commerce_user_details_pane',
+    'mint_commerce_identification_checkout_pane',
+  ];
+  foreach ($panes_id as $key => $pane) {
+    $variables['mint_panes'][$pane] = $all_panes[$pane]['label']->getUntranslatedString();
+  }
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $block = Block::load('promocode');
+  if (!empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_promo_code_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $esimCompatibility = mint_check_esim_compatibility($order_id);
+  $block = Block::load('esim');
+  if ($esimCompatibility && !empty($block) && $order_info['type'] != 'phone_only') {
+    $variables['mint_esim_form'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__subscription_login(&$variables) {
+
+  $variables['mint_checkout_message'] =
+     mint_render_settings_field_entity(
+       'checkout_settings',
+       'field_checkout_message_subscript',
+       'paragraph'
+     );
+
+  $configs = ConfigPages::config('checkout_settings');
+  $need_help = $configs->get('field_need_help_message')->getValue();
+  $need_help = isset($need_help[0]['value']) ? $need_help[0]['value'] : 'Need some help? <a class="open-chat-btn" href="#">Chat to us now.</a>';
+  $variables['need_help'] = $need_help;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__subscription_employment_rental_history(&$variables) {
+
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $configs = ConfigPages::config('checkout_settings');
+  $need_help = $configs->get('field_need_help_message')->getValue();
+  $need_help = isset($need_help[0]['value']) ? $need_help[0]['value'] : 'Need some help? <a class="open-chat-btn" href="#">Chat to us now.</a>';
+  $variables['need_help'] = $need_help;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__subscription_order_information(&$variables) {
+
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $configs = ConfigPages::config('checkout_settings');
+  $need_help = $configs->get('field_need_help_message')->getValue();
+  $need_help = isset($need_help[0]['value']) ? $need_help[0]['value'] : 'Need some help? <a class="open-chat-btn" href="#">Chat to us now.</a>';
+  $variables['need_help'] = $need_help;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__subscription_payment(&$variables) {
+  $order_id = isset($variables['form']['sidebar']['order_summary']['summary']['#arguments'][0]) ? $variables['form']['sidebar']['order_summary']['summary']['#arguments'][0] : '';
+  if ($order_id) {
+    $order_info = mint_get_order_custom_info($order_id);
+    $paid_order_details = mint_get_paid_order_details($order_id);
+  } else {
+    // Remove all the items from bag.
+    $store = \Drupal::service('commerce_store.current_store')->getStore();
+    if (!empty($store)) {
+      $cart = \Drupal::service('commerce_cart.cart_provider')
+      ->getCart('default', $store);
+      \Drupal::service('commerce_cart.cart_manager')->emptyCart($cart);
+    }
+    // Redirecting to phone page.
+    $response = new RedirectResponse(Url::fromRoute('mint_catalogue_subscription_phones_sim_page')->toString());
+    $response->send();
+    return $response;
+  }
+
+  $temp_store = \Drupal::service('tempstore.private')->get('mint_commerce');
+
+  if($temp_store->get('creditCheckResult')) {
+    $id_check = $temp_store->get('creditCheckResult');
+  }
+  else {
+    $id_check = 'REFER';
+  }
+
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+
+  $configs = ConfigPages::config('checkout_settings');
+  $need_help = $configs->get('field_need_help_message')->getValue();
+  $need_help = isset($need_help[0]['value']) ? $need_help[0]['value'] : 'Need some help? <a class="open-chat-btn" href="#">Chat to us now.</a>';
+  $variables['need_help'] = $need_help;
+  $variables['order_info'] = $order_info;
+  $variables['paid_order_details'] = $paid_order_details;
+  $variables['id_check'] = $id_check;
+}
+
+/**
+ * Implements hook_preprocess_commerce_product__plan().
+ */
+function mint_preprocess_commerce_checkout_form__subscription_complete(&$variables) {
+  if (!empty($block = Block::load('mintcheckoutprogress'))) {
+    $block = Block::load('mintcheckoutprogress');
+    $variables['mint_checkout_progress'] = \Drupal::entityTypeManager()
+      ->getViewBuilder('block')
+      ->view($block);
+  }
+}
+
+/**
+ * Implements hook_preprocess_commerce_order_total_summary().
+ */
+function mint_preprocess_commerce_order_total_summary(&$variables) {
+  $variables['totals']['number_total_price'] = (float) $variables['totals']['total']->getNumber();
+  $order_id = $variables['order_entity']->get('order_id')->getValue()[0]['value'];
+
+  $order_info = mint_get_order_custom_info($order_id);
+  $variables['total_cost_label_description'] = NULL;
+  $variables['total_cost_label_description_mobile'] = NULL;
+  $variables['total_cost_label'] = 'Total cost';
+  $total_cost = isset($order_info['total_cost']) ? $order_info['total_cost'] : '';
+  $variables['total_cost_description'] = 'Min. total cost $' . $total_cost;
+  if (isset($order_info['type']) && $order_info['type'] == 'phone_only') {
+    $variables['total_cost_label'] = 'Total to pay today';
+    $variables['total_cost_label_description'] = 'Then it gets added to your monthly bill - easy!';
+    $variables['total_cost_label_description_mobile'] = 'Then the next phone payment gets added to your monthly bill - easy!';
+  }
+  elseif (isset($order_info['type']) && $order_info['type'] == 'sim_only') {
+    $variables['total_cost_description'] = 'Min. total cost $' . $total_cost;
+  }
+}
+
+/**
+ * Implements hook_preprocess_user().
+ */
+function mint_preprocess_user(&$variables) {
+  $variables['#attached']['library'][] = 'mint/user_account';
+  $uid = \Drupal::currentUser()->id();
+  /** @var \Drupal\user\UserInterface $user */
+  $user = \Drupal::entityTypeManager()->getStorage('user')->load($uid);
+  $user_active_services = \Drupal::service('mint_octane_integration.service_detail')->getServicesUpdatesByUser($user, MintServiceDetailOctaneIntegration::SERVICE_TYPE_ACTIVATED);
+  if(isset($user_active_services['orderType']['Device Lease'])){
+    $device_lease = $user_active_services['orderType']['Device Lease'];
+  }
+  // Footer entities section.
+  $my_account_config = ConfigPages::config('my_account_settings');
+  if ($my_account_config->hasField('field_container') && $my_account_config->get('field_container')
+    ->getValue()) {
+    $paragraph_id = $my_account_config->get('field_container')
+      ->getValue()[0]['target_id'];
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+    $paragraph = \Drupal::entityTypeManager()
+      ->getStorage('paragraph')
+      ->load($paragraph_id);
+    $pre_render_paragraph = $view_builder->view($paragraph, 'default');
+    $footer_entities['content'] = [
+      '#markup' => \Drupal::service('renderer')
+        ->render($pre_render_paragraph),
+    ];
+    $variables['footer_entities'] = $footer_entities;
+  }
+if(!empty($device_lease)){
+  if ($my_account_config->hasField('field_container_leasing') && $my_account_config->get('field_container_leasing')
+    ->getValue()) {
+    $paragraph_id = $my_account_config->get('field_container_leasing')
+      ->getValue()[0]['target_id'];
+    $view_builder = \Drupal::entityTypeManager()->getViewBuilder('paragraph');
+    $paragraph = \Drupal::entityTypeManager()
+      ->getStorage('paragraph')
+      ->load($paragraph_id);
+    $pre_render_paragraph = $view_builder->view($paragraph, 'default');
+    $footer_entities['content'] = [
+      '#markup' => \Drupal::service('renderer')
+        ->render($pre_render_paragraph),
+    ];
+    $variables['footer_entities_leasing'] = $footer_entities;
+  }
+}
+
+}
+
+/**
+ * Implements hook_preprocess_commerce_product_variation__plan__my_account().
+ */
+function mint_preprocess_commerce_product_variation__plan__my_account(array &$variables) {
+  $attributes = [
+    'attribute_unlimited_australia',
+    'attribute_10_countries',
+    'attribute_36_countries',
+    'attribute_unlimited_netflix',
+  ];
+
+  foreach ($attributes as $attribute) {
+    if (isset($variables['elements'][$attribute])) {
+      $variables['product_variation'][$attribute] = $variables['elements'][$attribute];
+      $add_on = $variables['product_variation_entity']
+        ->get($attribute)
+        ->first()
+        ->get('entity')
+        ->getTarget()
+        ->getValue()
+        ->get('name')
+        ->getValue();
+      if (!empty($add_on[0]['value'])
+        && ($add_on[0]['value'] == 'Unchecked')) {
+        // unset($variables['product_variation'][$attribute]);.
+        $variables['product_variation'][$attribute]['#attributes']['class'][] = 'unavailable';
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to get image url.
+ *
+ * @param Drupal\config_pages\Entity\ConfigPages $my_account_config
+ * @param string $field_name
+ *   Machine name of the image field.
+ *
+ * @return string
+ *   Image URL.
+ *
+ * @throws Drupal\Core\TypedData\Exception\MissingDataException
+ */
+function mint_get_image_url($my_account_config, $field_name) {
+  if ($my_account_config->hasField($field_name) && $my_account_config->get($field_name)
+    ->first()) {
+    $first_image_uri = $my_account_config->get($field_name)
+      ->first()
+      ->get('entity')
+      ->getTarget()
+      ->getValue()
+      ->get('field_media_image')
+      ->first()
+      ->get('entity')
+      ->getTarget()
+      ->getValue()
+      ->getFileUri();
+    return file_create_url($first_image_uri);
+  }
+  else {
+    return '';
+  }
+}
+
+/**
+ *
+ */
+function mint_preprocess_views_view(&$variables) {
+  if ($variables['id'] != 'commerce_checkout_order_summary') {
+    return;
+  }
+
+  $variables['view_array']['#attached']['library'][] = 'mint_common/change_link';
+  $variables['view_array']['#attached']['library'][] = 'mint_catalogue/sales_banners';
+  $temp_store = \Drupal::service('tempstore.private')->get('mint_commerce');
+  $variables['view_array']['#attached']['drupalSettings']['order_type'] = $temp_store->get('orderType');
+  $order_id = $variables['view_array']['#arguments'][0];
+  $order_items = \Drupal::entityTypeManager()
+    ->getStorage('commerce_order')
+    ->load($order_id)
+    ->getItems();
+  foreach ($order_items as $order_item) {
+    $variation_id = $order_item->getPurchasedEntityId();
+    $variation = \Drupal::entityTypeManager()
+      ->getStorage('commerce_product_variation')
+      ->load($variation_id);
+    $type = $variation->get('type')->getValue();
+    if (!empty($type) && ($type[0]['target_id'] == 'iphone' || $type[0]['target_id'] == 'samsung')) {
+      $variables['view_array']['#attached']['drupalSettings']['phone_type'] = $type[0]['target_id'];
+      $variables['view_array']['#attached']['drupalSettings']['phone_id'] = $variation_id;
+      if (!empty($variation->get('field_telephone_gallery')->getValue())) {
+        $gallery = $variation->get('field_telephone_gallery')
+          ->first()
+          ->get('entity')
+          ->getTarget()
+          ->getValue();
+        if (!$gallery->get('field_ref_slide')) {
+          return;
+        }
+        $first_slide = $gallery->get('field_ref_slide')->first()
+          ->get('entity')
+          ->getTarget()
+          ->getValue();
+        if (!$first_slide->get('field_image')->getValue()) {
+          return;
+        }
+        $first_media = $first_slide->get('field_image')->first()
+          ->get('entity')
+          ->getTarget()
+          ->getValue();
+        $first_image = $first_media->get('field_media_image')
+          ->first()
+          ->get('entity')
+          ->getTarget()
+          ->getValue();
+        $variables['first_image_gallery'] = file_create_url($first_image->getFileUri());
+        $variables['sales_banner_phone_top'] = $variation->get('field_sales_banner_phonet')->getString() ? $variation->get('field_sales_banner_phonet_text')->getString() : '';
+        $variables['sales_banner_right_1'] = $variation->get('field_sales_banner_purple')->getString() ? $variation->get('field_sales_banner_purple_text')->getString() : '';
+        $variables['sales_banner_right_2'] = $variation->get('field_sales_banner_gray')->getString() ? $variation->get('field_sales_banner_gray_text')->getString() : '';
+      }
+    }
+    elseif (!empty($type) && $type[0]['target_id'] == 'plan') {
+      $variables['view_array']['#attached']['drupalSettings']['plan_id'] = $variation_id;
+      if (!empty($variation->get('field_sim_only_image')->getValue()) && empty($variables['first_image_gallery'])) {
+        $sim_image = $variation->get('field_sim_only_image')
+          ->first()
+          ->get('entity')
+          ->getTarget()
+          ->getValue();
+        $variables['sim_only_image'] = file_create_url($sim_image->getFileUri());
+      }
+    }
+  }
+}
+
+/**
+ *
+ */
+function mint_preprocess_responsive_image(&$variables) {
+  $variables["img_element"]["#attributes"]["class"] = "picture-tag";
+}
+
+/**
+ *
+ */
+
+function mint_preprocess_image(&$variables) {
+
+// Without dimensions specified, layout shifts can occur,
+  // which are more noticeable on pages that take some time to load.
+  // As a result, only mark images as lazy load that have dimensions.
+  if (isset($variables['width'], $variables['height']) && !isset($variables['attributes']['loading'])) {
+    $variables['attributes']['loading'] = 'lazy';
+  }
+
+}
+
+
+
+/**
+ *
+ */
+function mint_preprocess_media(&$variables) {
+  $media = $variables['media'];
+  if ($media->hasField('field_media_image') && !$media->get('field_media_image')->isEmpty()) {
+    $uri = $media->get('field_media_image')->entity->uri->value;
+    $variables['background_image_url'] = file_create_url($uri);
+  }
+}
+
+/**
+ *
+ */
+function mint_js_alter(&$javascript, AttachedAssetsInterface $assets) {
+  /*
+  $url = 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js';
+  $client = \Drupal::httpClient();
+  $response = $client->request('GET', $url);
+  if ($response->getStatusCode() != 200) {
+  // Swap out jQuery to use from local if cannot load from CDN. Mainly for zero data.
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['data'] = drupal_get_path('module', 'mint_common') . '/js/jquery.min.js';
+  $javascript['core/assets/vendor/jquery.ui/ui/core-min.js']['data'] = drupal_get_path('module', 'mint_common') . '/js/jquery-ui.min.js';
+  }
+   */
+  $path = '/' . drupal_get_path('module', 'mint_common');
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['data'] = $path . '/js/jquery.min.js';
+  $javascript['core/assets/vendor/jquery/jquery.min.js']['version'] = '3.6.0';
+
+  $javascript['core/assets/vendor/jquery.ui/ui/core-min.js']['data'] = $path . '/js/jquery-ui.min.js';
+  $javascript['core/assets/vendor/jquery.ui/ui/core-min.js']['version'] = '3.6.0';
+}
+
+
+/**
+ *
+ */
+function mint_preprocess_menu(&$variables) {
+  // If there is main menu we need to set main expanded menu
+  // item as active (if it's in acctive trail).
+  if ($variables['menu_name'] == 'main') {
+    foreach ($variables['items'] as $item_key => $item) {
+      if ($item['in_active_trail']) {
+        $variables['items'][$item_key]['is_active'] = TRUE;
+      }
+    }
+  }
+}
+
+/**
+ * Get order type ant total cost.
+ *
+ * @param $order_id
+ *
+ * @return array
+ *   Array containing type and total_cost keys.
+ *
+ * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+ * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+ */
+function mint_get_order_custom_info($order_id) {
+  static $order_info;
+  if (!isset($order_info)) {
+    $order_items = \Drupal::entityTypeManager()
+      ->getStorage('commerce_order')
+      ->load($order_id)
+      ->getItems();
+
+    // This should not be hardcoded.
+    // @TODO: We should refactor variation types to support other phone manufacturers
+    $phone_variation_types = ['samsung', 'iphone'];
+
+    $phone_only = TRUE;
+    $sim_only = TRUE;
+    $order_info['total_cost'] = 0;
+    $order_info['leaseItems'] = 0;
+    $order_info['planItems'] = 0;
+    $order_info['leaseTotalPrice'] = 0;
+    $order_info['planTotalPrice'] = 0;
+    foreach ($order_items as $order_item) {
+      $variation_id = $order_item->getPurchasedEntityId();
+      /** @var Drupal\commerce_product\Entity\ProductVariation $variation */
+      $variation = \Drupal::entityTypeManager()
+        ->getStorage('commerce_product_variation')
+        ->load($variation_id);
+      $price = (int) strval($order_item->getTotalPrice()) ?? 0;
+      $variation_promo = \Drupal::service('session')->get('validated_promo');
+      if ($variation_promo !== NULL) {
+        $validated_promo = json_decode($variation_promo);
+      }
+      if (in_array($variation->bundle(), $phone_variation_types)) {
+        $sim_only = FALSE;
+        $order_info['leaseTotalPrice'] += $price;
+        $order_info['total_cost'] += $price;
+        $order_info['leaseItems'] += 1;
+      }
+      elseif ($variation->bundle() == 'plan') {
+        $phone_only = FALSE;
+        $order_info['planTotalPrice'] += $price;
+        $order_info['total_cost'] += $price;
+        $order_info['planItems'] += 1;
+      }
+      else {
+        $order_info['total_cost'] += $price;
+      }
+    }
+    if(isset($validated_promo->rate) && $validated_promo->rate){
+      $order_info['total_cost'] = $order_info['total_cost'] - $validated_promo->rate;
+    }
+    if ($sim_only) {
+      $order_info['type'] = 'sim_only';
+    }
+    elseif ($phone_only) {
+      $order_info['type'] = 'phone_only';
+    }
+    else {
+      $order_info['type'] = 'sim_phone';
+    }
+  }
+  return $order_info;
+}
+
+/**
+ *
+ */
+function mint_get_paid_order_details($order_id) {
+  $order_items = \Drupal::entityTypeManager()
+    ->getStorage('commerce_order')
+    ->load($order_id)
+    ->getItems();
+
+  $paid_order_details = [];
+  $leaseMonth = 24;
+  $paid_order_details['total_items'] = count($order_items);
+  $totalMonthlyPayment = 0;
+  $phoneQty = 0;
+  $planQty = 0;
+  foreach ($order_items as $key => $item) {
+    $order_entity = $item->getPurchasedEntity();
+    $phone_condition = strtolower($order_entity->field_condition->entity->machine_name->value) == 'quality_refurbished_phones' ? 'Refurbished' : '';
+    /** @var \Drupal\commerce_product\Entity\Product $product */
+    $product = $order_entity->getProduct();
+    $product_type = $product->get('type')->getValue()[0]['target_id'];
+
+    if ($product_type == 'iphone' || $product_type == 'samsung') {
+      $leaseMonth = $item->getData('termLength');
+      $image = NULL;
+      if ($order_entity->hasField('field_telephone_gallery')) {
+        $gallery = $order_entity->get('field_telephone_gallery')->entity;
+        $image_style = ImageStyle::load('medium');
+        if ($gallery) {
+          $slide_entity = $gallery->get('field_ref_slide')->entity;
+          if ($slide_entity) {
+            $media = $slide_entity->get('field_image')->entity;
+            if ($media) {
+              $file = $media->get('field_media_image')->entity;
+              $image = $image_style->buildUrl($file->getFileUri());
+            }
+          }
+        }
+      }
+      $manufacturer = $order_entity->hasField('attribute_iphone_model') ? 'apple' : 'samsung';
+      $url = "/leasing/" . $manufacturer . '/' . $order_entity->field_url_alias->value . '?offerid=' . $item->getData('offerId');
+      $paid_order_details['phone'][$key]['label'] = "<a href='" . $url . "'>" . $phone_condition.' '.$order_entity->getTitle() . '</a>';
+      $paid_order_details['phone'][$key]['image'] = "<a href='" . $url . "'><img src='" . $image . "'/></a>";
+      $paid_order_details['phone'][$key]['monthly_total'] = '$' . (int) strval($item->getTotalPrice()) . '/mth';
+      $paid_order_details['phone'][$key]['min_cost'] = 'Min. cost $' . number_format(((int) $leaseMonth - 6) * (int) strval($item->getTotalPrice()), 2);
+      $paid_order_details['phone'][$key]['termMonth'] = $leaseMonth;
+      $paid_order_details['phone'][$key]['term'] = $leaseMonth . '-mth subscription';
+      $totalMonthlyPayment += (int) strval($order_entity->getPrice());
+      $phoneQty++;
+    }
+
+    if ($product_type == 'plan') {
+
+      $url = Url::fromRoute('mint_catalogue_subscription_sim_page')->toString();
+      $paid_order_details['plan'][$key]['label'] = "<a href='" . $url . "'>" . $order_entity->getTitle() . '</a>';
+      $paid_order_details['plan'][$key]['image'] = "<a href='" . $url . "'><img src='/" . drupal_get_path('module', 'nu_bag') . "/images/sim-img.png'/></a>";
+      $paid_order_details['plan'][$key]['min_cost'] = 'Min. cost $' . (int) number_format(floatval(strval($order_entity->getPrice())), 2);
+      $totalMonthlyPayment += (int) strval($order_entity->getPrice());
+      $planQty++;
+    }
+  }
+
+  $paid_order_details['phoneQty'] = $phoneQty;
+  $paid_order_details['planQty'] = $planQty;
+
+  return $paid_order_details;
+}
+
+/**
+ * hook_page_attachments_alter.
+ */
+function mint_page_attachments_alter(&$page) {
+  $viewport = array(
+    '#type' => 'html_tag',
+    '#tag' => 'meta',
+    '#attributes' => array(
+      'name' => 'viewport',
+      'content' => 'width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0',
+    ),
+  );
+  $page['#attached']['html_head'][] = [$viewport, 'viewport'];
+}
+
+/**
+ * Implements hook_check_esim_compatibility().
+ */
+function mint_check_esim_compatibility($order_id) {
+  $esimCompatibility = NULL;
+
+  $order_items = \Drupal::entityTypeManager()
+      ->getStorage('commerce_order')
+      ->load($order_id)
+      ->getItems();
+  $totalItems = count($order_items);
+  foreach ($order_items as $item) {
+    $variation_id = $item->getPurchasedEntityId();
+    $variation = \Drupal::entityTypeManager()
+      ->getStorage('commerce_product_variation')
+      ->load($variation_id);
+
+    if ($variation) {
+      $type = $variation->get('type')->getValue();
+      if (!empty($type) && ($type[0]['target_id'] == 'iphone' || $type[0]['target_id'] == 'samsung')) {
+        // Check phone eSIM compatibility.
+        $esimPhoneCompatibility = $variation->get('field_esim')->getValue()[0]['value'];
+      }
+      if (!empty($type) && ($type[0]['target_id'] == 'plan')) {
+        // Check plan eSIM compatibility.
+        $esimPlanCompatibility = $variation->get('field_esim')->getValue()[0]['value'];
+      }
+    }
+  }
+
+  // Check eSIM compatibility.
+  if ($totalItems > 1) {
+    if($esimPhoneCompatibility && $esimPlanCompatibility) {
+      $esimCompatibility = TRUE;
+    }
+  }
+  else {
+    if($esimPlanCompatibility) {
+      $esimCompatibility = TRUE;
+    }
+  }
+
+  return $esimCompatibility;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function mint_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $block_content = isset($variables['elements']['content']['#block_content']) ? $variables['elements']['content']['#block_content'] : FALSE;
+
+  if ($block_content) {
+    // Allows Block Bundle Templates.
+    array_splice($suggestions, 1, 0, 'block__' . $block_content->bundle());
+  }
+}
+function mint_theme_theme_suggestions_menu_alter(array &$suggestions, array $variables) {
+  // Taken from http://kristiankaa.dk/article/drupal8-region-specific-menu-theme-hook-suggestion
+  // bootstrap_barrio_preprocess_block(&$variables)
+  if (isset($variables['attributes']['block'])) {
+    $hook = str_replace(['block-', '-'], ['', '_'], $variables['attributes']['block']);
+    $suggestions[] = $variables['theme_hook_original'] . '__' . $hook;
+  }
+}

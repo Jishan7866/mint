@@ -1,0 +1,35 @@
+.trustpilot-page-banner {
+  margin-top: -25px;
+
+  .truspilot-banner-text {
+    padding-top: 80px;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: $mobile) {
+
+      h1,
+      p {
+        line-height: 1.1;
+      }
+    }
+  }
+
+  .trustpilot-banner-icon {
+    margin: auto;
+    width: 170px;
+    height: 260px;
+
+  }
+}
+
+.trustpilot-grid {
+  margin: auto;
+  width: 80%;
+  padding-top: 30px
+}
+
+.trustpilot-scroller {
+  background-color: #2D2D2D;
+  color: #fff;
+  padding: 60px 0;
+}

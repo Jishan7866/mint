@@ -1,0 +1,1152 @@
+.mint-activate-sim {
+  >.field--name-field-title {
+    padding: 40px 42px 10px;
+    font-size: 30px;
+    font-weight: bold;
+    color: $text-color;
+    text-align: center;
+
+    @media screen and (max-width: $mobile) {
+      padding: 40px 30px 10px;
+      font-size: 21px;
+    }
+  }
+
+  #activate-sim-form-wrapper {
+    padding: 0 42px;
+
+    @media screen and (max-width: $mobile) {
+      padding: 0 30px;
+    }
+  }
+
+  .mint-activate-sim-second-step {
+    position: relative;
+    max-width: 940px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    @include gradient-line;
+
+    @media screen and (max-width: $mobile) {
+      padding-bottom: 30px;
+      margin-bottom: 0;
+    }
+  }
+
+  .step1-form-wrapper {
+    .btn {
+      @media screen and (max-width: $mobile) {
+        background-color: $c-violet !important;
+      }
+    }
+
+    .field-error>div:before,
+    .form-item--error-message:before {
+      width: 17px;
+      height: 0;
+      margin: 0;
+      background: none;
+      content: none;
+    }
+  }
+
+  .step1-form-wrapper,
+  .step2-form-wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+
+    .form-disabled .option {
+      background-color: #000 !important;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+    }
+
+    .form-item {
+      @media screen and (max-width: $mobile) {
+        font-size: 15px;
+      }
+    }
+  }
+
+  .second-step-title {
+    @media screen and (max-width: $mobile) {
+      margin-top: 20px;
+    }
+  }
+
+  .step1-form-wrapper {
+
+    .fields-container {
+      @media screen and (max-width: $mobile) {
+        margin-bottom: 20px;
+      }
+    }
+
+    .sim-number-error-message {
+      margin-left: 27.5%;
+
+      @media screen and (max-width: $mobile) {
+        position: relative;
+        top: -21px;
+        margin-bottom: 29px;
+        margin-top: 21px;
+        margin-left: 0;
+      }
+
+      div {
+        font-size: 12px !important;
+        color: #ff4638;
+        background: none !important;
+        font-weight: 500;
+        margin-left: 0;
+        padding-left: 0;
+
+        @media screen and (max-width: $mobile) {
+          margin-bottom: 70px !important;
+          top: 15px;
+        }
+      }
+    }
+
+    .form-radios {
+      margin: 35px auto 30px;
+      border: 1px solid $border-color;
+      font-size: 21px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+        margin: 15px auto 20px;
+      }
+
+      .form-item {
+        margin: 0;
+      }
+
+      .form-item-select-order {
+        &:nth-child(odd) {
+          background-color: $c-white;
+        }
+
+        &:nth-child(even) {
+          background-color: $c-grey-3l;
+        }
+      }
+
+      [type="radio"] {
+        display: none;
+
+        &:checked~.option {
+          background-color: $primary-color;
+          color: $c-white;
+        }
+      }
+
+      .option {
+        display: block;
+        padding: 3px 10px;
+        cursor: pointer;
+        color: $text-color-l;
+        transition: .2s;
+        width: 100%;
+        margin-right: 0;
+
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+        }
+      }
+    }
+
+    .btn-verify-sim {
+      top: -5px;
+    }
+
+    .btn-verify-sim-change {
+      top: -34px !important;
+    }
+
+    .btn-verify-sim-change-error {
+      top: -51px !important;
+    }
+
+    .sim-number-wrapper {
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+
+    .number-field-disabled {
+      width: 98%;
+      margin-bottom: -49px;
+    }
+
+    .number-field-disabled:after {
+      content: "\2713";
+      color: $c-violet;
+      font-size: 30px;
+      position: relative;
+      top: -52px;
+      left: calc(95% - 2px);
+
+      @media screen and (max-width: $mobile) {
+        left: calc(95% - 12px);
+      }
+    }
+
+    .btn-sim-verified {
+      background-color: $c-violet !important;
+    }
+
+    .btn-wrapper {
+      width: 33%;
+
+      .btn-verify-sim {
+        background-color: $c-black !important;
+      }
+
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+
+        .btn-blue {
+          background-color: $c-violet !important;
+        }
+      }
+    }
+  }
+
+  .fields-buttons-container {
+    display: flex;
+    align-items: flex-end;
+
+    @media screen and (max-width: $mobile) {
+      display: block;
+    }
+
+    .field-error>div {
+      margin-bottom: 0;
+    }
+
+    .number-field {
+      margin-right: 18px;
+
+      @media screen and (max-width: $mobile) {
+        margin-right: 0;
+      }
+    }
+
+    .form-item {
+      display: flex;
+      align-items: center;
+      margin: 0;
+
+      @media screen and (max-width: $tablet) {
+        display: block;
+      }
+
+      label {
+        margin-right: 23px;
+        color: $text-color-l;
+        font-size: 16px;
+        white-space: nowrap;
+
+        @media screen and (max-width: $mobile) {
+          margin-right: 0;
+        }
+      }
+
+      input {
+        margin: 5px 0;
+        max-width: 380px;
+
+        @media screen and (max-width: $mobile) {
+          max-width: 100%;
+        }
+      }
+    }
+
+    .form-actions {
+      flex: 1 1 auto;
+      margin: 0;
+    }
+
+    .button {
+      width: 100%;
+      margin: 0;
+
+      @media screen and (max-width: $mobile) {
+        margin: 10px 0;
+      }
+    }
+  }
+
+  .sim-image-desktop {
+    display: block;
+    margin: 40px 0;
+
+    @media screen and (max-width: $mobile) {
+      display: none;
+    }
+  }
+
+  .sim-image-mobile {
+    display: none;
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: $mobile) {
+      display: block;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .step2-form-wrapper {
+    padding-top: 5px;
+
+    @media screen and (max-width: $mobile) {
+      padding-top: 0;
+    }
+
+    .btn.btn-green {
+      min-width: 300px;
+
+      @media screen and (max-width: $mobile) {
+        min-width: 1px;
+      }
+    }
+
+    .buttons-container {
+      @media screen and (max-width: $mobile) {
+        display: none;
+      }
+
+      &.mobile-buttons-container {
+        display: none;
+
+        @media screen and (max-width: $mobile) {
+          display: block;
+        }
+      }
+
+      .btn-wrapper {
+        display: flex;
+        margin: 0;
+
+        @media screen and (max-width: $mobile) {
+          display: block;
+        }
+
+        input {
+          @media screen and (max-width: $mobile) {
+            padding: 15px 0px;
+            font-weight: 700;
+          }
+        }
+
+        input:first-child {
+          @media screen and (max-width: $mobile) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      .button {
+        min-width: 1px;
+        padding: 11px 20px;
+        font-size: 20px;
+        font-weight: 400;
+        width: 100%;
+        margin: 0;
+        margin-right: 20px;
+        white-space: normal;
+
+        @media screen and (max-width: $tablet) {
+          padding: 9px 5px;
+          font-size: 18px;
+        }
+
+        @media screen and (max-width: $mobile) {
+          margin-right: 7px;
+          font-size: 14px;
+        }
+
+        &:last-of-type {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .fields-container {
+      text-align: center;
+      color: $text-color-l;
+
+      .form-checkboxes {
+        text-align: left;
+        margin-top: 30px;
+        margin-bottom: 35px;
+
+        @media screen and (max-width: $mobile) {
+          margin-bottom: 0px;
+        }
+
+        .form-item {
+          margin-bottom: 18px;
+        }
+      }
+
+      label {
+        display: inline-block;
+        padding-left: 25px;
+      }
+
+      .keep-my-number-description-text label {
+        text-align: left;
+        padding-left: 0;
+
+        p {
+          @media screen and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .form-wrapper {
+        margin: 0;
+      }
+
+      .form-type-textfield {
+        text-align: left;
+
+        label {
+          padding-left: 0;
+        }
+
+        input {
+          display: inline-block;
+          width: 35%;
+          margin-left: 29px;
+          padding-top: 13px;
+          padding-bottom: 13px;
+
+          @media screen and (max-width: $mobile) {
+            display: block;
+            width: 100%;
+            margin-left: 0;
+          }
+
+        }
+      }
+
+      .form-item-dob {
+        text-align: left;
+
+        label {
+          padding-left: 0;
+
+          @media screen and (max-width: $mobile) {
+            margin-bottom: 5px;
+          }
+        }
+
+        input {
+          display: inline-block;
+          width: 35%;
+          margin-left: 120px;
+          padding-top: 13px;
+          padding-bottom: 13px;
+
+          @media screen and (max-width: $mobile) {
+            display: block;
+            width: 100%;
+            margin-left: 0;
+          }
+
+          @supports (-webkit-touch-callout: none) {
+            height: 21px;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mobile) {
+        .reference-number-container-wrapper {
+          margin-right: 0;
+        }
+      }
+
+      .form-item-otp {
+        position: relative;
+        top: -55px;
+        left: 10px;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          top: 0;
+          left: 0;
+        }
+
+        label {
+          margin-left: -11px;
+
+          @media screen and (max-width: $mobile) {
+            margin-left: 0;
+          }
+        }
+
+        input {
+          margin-left: 39px !important;
+
+          @media screen and (max-width: $mobile) {
+            margin-left: 0 !important;
+          }
+        }
+      }
+
+      .pincode-input-container input.first {
+        @media screen and (max-width: $mobile) {
+          display: inline-block;
+          margin-left: 0 !important;
+        }
+      }
+
+      .pincode-input-container {
+        display: inline;
+        margin-left: 28px;
+
+        @media screen and (max-width: $mobile) {
+          display: inline-block;
+          margin-left: 0;
+          margin-top: 6px;
+          white-space: nowrap;
+        }
+
+        input {
+          width: 38px;
+          margin-left: 10px !important;
+
+          @media screen and (max-width: $mobile) {
+            display: inline;
+            width: 14%;
+            margin-left: 3% !important;
+          }
+        }
+      }
+
+      .otp-send-btn {
+        position: relative;
+        top: -58px;
+        left: 261px;
+        width: 257px;
+        background: $c-black;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          width: 100%;
+          top: 0;
+          left: 0;
+          background: $c-black !important;
+        }
+      }
+
+      .otp-resend-link {
+        cursor: pointer;
+        color: #000;
+      }
+
+      .otp-resend {
+        position: relative;
+        top: -58px;
+        left: 267px;
+        font-size: 12px;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          top: 0;
+          left: 0;
+          text-align: left;
+        }
+      }
+
+      .otp-next-btn {
+        position: relative;
+        top: -124px;
+        left: 261px;
+        width: 257px;
+        border-style: solid;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          top: 0;
+          left: 0;
+          width: 100%;
+        }
+      }
+
+      .activation-form-error {
+        font-size: 12px !important;
+        color: #ff4638;
+        background: none !important;
+        font-weight: 500;
+
+        @media screen and (max-width: $mobile) {
+          text-align: left;
+        }
+      }
+
+      .no-access-contact-cs-message {
+        position: relative;
+        top: -25px;
+        text-align: left;
+
+        @media screen and (max-width: $mobile) {
+          padding-bottom: 8px;
+          position: static;
+          top: 0;
+        }
+
+        .activation-form-error {
+          text-align: left;
+        }
+      }
+
+      .otp-error-message {
+        position: relative;
+        top: -54px;
+        margin-right: 106px;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          top: 0;
+          margin-right: 0;
+        }
+      }
+
+      .keep-my-number-dob-error-message {
+        margin-right: 106px;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+        }
+      }
+
+      .keep-my-number-arn-error-message {
+        margin-left: 208px;
+        position: relative;
+        top: -8px;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+          margin-left: 0;
+          top: 0;
+        }
+      }
+
+      .keep-my-number-dob-error,
+      .pincode-input-text-error,
+      .keep-my-number-no-error {
+        -moz-box-shadow: 1px 1px 6px 0px #ff4638;
+        -webkit-box-shadow: 1px 1px 6px 0px #ff4638;
+        box-shadow: 1px 1px 6px 0px #ff4638;
+      }
+
+      .no-to-port-error-message {
+        margin-right: 153px;
+
+        @media screen and (max-width: $mobile) {
+          margin-right: 0;
+        }
+      }
+
+      .otp-form-error {
+        top: -76px;
+      }
+
+      .otp-next-btn-form-error {
+        top: -143px;
+      }
+
+      .otp-next-btn-contact {
+        background-color: #ff4638;
+        border: none;
+        color: $c-white;
+        position: relative;
+        top: -141px;
+        left: 523px;
+        width: 33%;
+        margin-bottom: -82px;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+          position: static;
+          top: 0;
+          left: 0;
+          width: 100%;
+          background-color: #ff4638 !important;
+          margin-bottom: 0;
+        }
+      }
+
+      .otp-next-btn-verify {
+        background-color: $c-violet;
+        border: none;
+        color: $c-white;
+        width: 33%;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+        }
+      }
+
+      .otp-next-btn-continue {
+        background-color: $c-violet;
+        border: none;
+        color: $c-white;
+        position: relative;
+        top: -112px;
+        left: 523px;
+        width: 33%;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+          position: static;
+          top: 0;
+          left: 0;
+        }
+      }
+
+      .tooltip-desc-arn {
+        display: inline-block;
+      }
+
+      .dob-access-reference-number-tooltip,
+      .dob-no-access-reference-number-tooltip {
+        display: inline-block;
+      }
+
+      .no-to-port-wrapper {
+        margin-left: 33px !important;
+
+        @media screen and (max-width: $mobile) {
+          margin-left: 0 !important;
+        }
+      }
+
+      .no-to-port-wrapper-error-check,
+      .no-to-port-wrapper-check {
+
+        @media screen and (max-width: $mobile) {
+          margin-bottom: -35px;
+        }
+      }
+
+      .no-to-port-wrapper-check:after {
+        content: "\2713";
+        color: $c-violet;
+        font-size: 30px;
+        position: relative;
+        top: 7px;
+        left: -35px;
+
+        @media screen and (max-width: $mobile) {
+          top: -42px;
+          left: calc(95% - 12px);
+        }
+      }
+
+      .no-to-port-wrapper-error-check:after {
+        content: "\2716";
+        color: #F9423A;
+        font-size: 30px;
+        position: relative;
+        top: 7px;
+        left: -45px;
+
+        @media screen and (max-width: $mobile) {
+          top: -43px;
+          left: calc(95% - 15px);
+        }
+      }
+
+      .access-port-progress-text {
+        .form-item-no-to-port {
+          label {
+            @media screen and (max-width: $mobile) {
+              margin-bottom: 5px;
+            }
+          }
+        }
+      }
+
+      .no-access-port-progress-text {
+        margin-top: 20px;
+
+        .btn {
+          top: -57px;
+          left: 296px;
+
+          @media screen and (max-width: $mobile) {
+            position: static;
+            top: 0;
+            left: 0;
+            background-color: #ff4638 !important;
+          }
+        }
+
+        p {
+          text-align: justify;
+        }
+      }
+
+      .failed-access-port-contact-cs {
+        text-align: justify;
+
+        @media screen and (max-width: $mobile) {
+          margin-top: 30px;
+        }
+      }
+
+      .failed-access-port-contact-cs .btn {
+        top: -58px;
+        left: 540px;
+
+        @media screen and (max-width: $mobile) {
+          position: static;
+          top: 0;
+          left: 0;
+          background-color: #ff4638 !important;
+        }
+      }
+
+      .form-item-no-access-contact-cs .form-text {
+        width: 71%;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+        }
+      }
+
+      .form-item-failed-access-contact-cs .form-text {
+        width: 68%;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+        }
+      }
+
+      .get-in-touch {
+        color: #F9423A;
+      }
+
+      .no-access-port-next-step-wrapper {
+        margin-left: 0 !important;
+      }
+
+      .btn-no-dob-contact-cs {
+        width: 31%;
+
+        @media screen and (max-width: $mobile) {
+          width: 100%;
+        }
+      }
+
+      .failed-access-port-contact_cs {
+        text-align: justify;
+      }
+    }
+
+    .pre-note-text,
+    .checkout-note-text {
+      font-size: 17px;
+      margin: 35px 0 38px !important;
+      color: $text-color-l;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+        margin: 15px 0;
+      }
+    }
+
+    .form-radios {
+      max-width: 460px;
+      margin: 35px auto 30px;
+      border: 1px solid $border-color;
+      font-size: 21px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+        margin: 15px auto 20px;
+      }
+
+      .form-item {
+        margin: 0;
+      }
+
+      [type="radio"] {
+        display: none;
+
+        &:checked~.option {
+          background-color: $primary-color;
+          color: $c-white;
+        }
+      }
+
+      .option {
+        display: block;
+        padding: 3px 10px;
+        cursor: pointer;
+        background-color: $c-white;
+        color: $text-color-l;
+        transition: .2s;
+
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+        }
+      }
+    }
+
+    .existing-numbers-info {
+      background-color: $text-color-2l;
+      padding: 0 30px;
+      padding-bottom: 40px;
+
+      @media screen and (max-width: $mobile) {
+        width: calc(100% + 60px);
+        margin: 0 -30px;
+        margin-top: 30px;
+        padding-bottom: 20px;
+      }
+
+      .form-item {
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        margin: 5px auto;
+
+        @media screen and (max-width: $mobile) {
+          display: block;
+          margin-bottom: 15px;
+        }
+
+        label {
+          width: 100%;
+          max-width: 270px;
+          padding-right: 10px;
+          font-size: 16px;
+          margin-right: 45px;
+        }
+
+        input {
+          margin: 5px 0;
+        }
+      }
+
+      .field-error {
+        max-width: 620px;
+        margin: 0 auto;
+      }
+    }
+
+    .notice-wrapper {
+      padding: 25px 42px 20px;
+      background-color: rgba($primary-color, 0.1);
+      color: $text-color;
+      text-align: left;
+      margin-top: 30px !important;
+
+      @media screen and (max-width: $mobile) {
+        padding: 25px 30px 20px;
+        font-size: 16px;
+      }
+    }
+
+    .required-fields-wrapper {
+      padding: 8px 0;
+      text-align: right;
+      font-size: 14px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 12px;
+      }
+    }
+
+    .arn {
+      max-width: 620px;
+      margin: auto;
+      font-size: 16px;
+      text-align: left;
+
+      @media screen and (max-width: $mobile) {
+        margin-bottom: 20px;
+      }
+
+      .wrapper-tooltip {
+        top: 7px;
+        display: block;
+      }
+
+      .form-item {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 0;
+        margin: 5px auto;
+        padding-bottom: 8px;
+
+        @media screen and (max-width: $mobile) {
+          display: block;
+          padding-bottom: 0;
+        }
+
+        label {
+          max-width: 270px;
+          padding-right: 19px;
+          font-size: 16px;
+          margin-right: 0;
+        }
+
+        input {
+          margin: 5px 0;
+          width: 44%;
+
+          @media screen and (max-width: $mobile) {
+            width: 100%;
+          }
+
+        }
+      }
+
+      .arn-description-wrapper {
+        margin-top: 20px;
+
+        @media screen and (max-width: $mobile) {
+          text-align: center;
+          font-size: 14px;
+        }
+      }
+
+      .wrapper-tooltip {
+        position: relative;
+
+        @media screen and (max-width: $tablet) {
+          align-items: flex-end;
+        }
+
+        .tooltip-icon {
+
+          margin-left: 521px;
+          display: block;
+          margin-top: -24px;
+
+          @media screen and (max-width: $mobile) {
+            display: inline-block;
+            margin-left: 7px;
+            margin-top: 0;
+            top: 1px;
+          }
+        }
+
+        input {
+          margin-left: -62px;
+
+          @media screen and (max-width: $mobile) {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .success-text {
+    padding: 15px 20px;
+    margin: 40px 0 50px;
+    font-size: 18px;
+    font-weight: 400;
+    color: $text-color;
+    text-align: center;
+    background-color: rgba(212, 211, 212, 0.2);
+
+    @media screen and (max-width: $mobile) {
+      font-size: 14px;
+      margin: 20px 0 30px;
+    }
+  }
+
+  .btn {
+    padding: 14px 10px;
+    font-family: $main-font;
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+
+    &.btn-not-active {
+      background-color: $c-disabled;
+    }
+
+    &.btn-active {
+      background-color: $primary-color;
+      box-shadow: 0 2px 4px 0 rgba(155, 155, 155, 0.3);
+    }
+  }
+
+  .btn-purple {
+    background-color: $c-violet !important;
+
+    &.is-disabled,
+    &:disabled {
+      background-color: hsla(0, 0%, 61%, .3) !important;
+      opacity: 1;
+    }
+  }
+
+  .ajax-progress {
+    position: absolute;
+  }
+
+  .ajax-progress .message {
+    display: none;
+  }
+
+  .ajax-progress .throbber {
+    position: absolute;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #6038CD;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.5s linear infinite;
+    margin-left: 5px;
+    background: none;
+    padding: 10px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .notice-wrapper-refer-message {
+    background: rgba(255, 70, 56, 0.15);
+    padding: 41px 112px;
+
+    @media screen and (max-width: $mobile) {
+      padding: 20px;
+    }
+  }
+
+  .notice-wrapper-refer-message p {
+    @media screen and (min-width: $tablet) {
+      margin: 0 auto;
+      max-width: 940px;
+      padding: 0px 78px;
+    }
+  }
+}

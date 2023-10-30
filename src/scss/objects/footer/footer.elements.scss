@@ -1,0 +1,30 @@
+body:not(.path-frontpage) {
+  .paragraph--type--container.buttons-container-type {
+    .container-item a {
+      background-color: rgba(0, 0, 0, .9);
+      color: $c-white !important;
+      -webkit-border-radius: 8px;
+      -moz-border-radius: 8px;
+      border-radius: 8px;
+
+      &:hover {
+        background-color: #2D2D2D;
+      }
+    }
+  }
+}
+
+.path-activate-sim .footer-sections .field--name-field-text-element .readMore {
+  color: rgba(0, 0, 0, .9);
+  text-decoration: none;
+
+  &.active {
+    &::before {
+      content: "-";
+    }
+  }
+
+  &::before {
+    content: "+";
+  }
+}

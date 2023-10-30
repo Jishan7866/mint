@@ -1,0 +1,99 @@
+.checkout-step-subscription-payment,
+.checkout-step-subscription-complete {
+  .cart-payment-summary {
+    font-weight: normal;
+
+    b,
+    a {
+      color: $c-black;
+      text-decoration: none;
+    }
+
+    .total-items {
+      position: relative;
+      padding: 0.6rem 0;
+      font-size: 21px;
+
+      &:after {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+        content: '';
+      }
+    }
+
+    .cart-pay-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      li {
+        padding: 1rem 0;
+        font-size: 12px;
+        position: relative;
+
+        &:after {
+          display: block;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 1px;
+          background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+          content: '';
+        }
+
+        .label {
+          font-weight: bold;
+          color: $c-black;
+        }
+
+        .min-cost {
+          margin-bottom: 0.6rem;
+        }
+
+        .monthly-price {
+          font-weight: bold;
+          color: $c-black;
+          font-size: 18px;
+        }
+
+        &.item {
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+
+          .item-image {
+            width: 35%;
+
+            img {
+              width: 100%;
+              height: auto;
+            }
+          }
+
+          .item-details {
+            width: 65%;
+            line-height: 1.2rem;
+
+            .tooltip-icon {
+              margin-left: 0;
+              background: none;
+              width: auto;
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &.item-type {
+          font-size: 16px;
+          padding: 0.5rem 0;
+        }
+      }
+    }
+  }
+}

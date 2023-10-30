@@ -1,0 +1,146 @@
+.footer-entities-bundle,
+.footer-entities-leasing {
+  display: none;
+
+  &.show {
+    display: block;
+  }
+}
+
+.paragraph--type--container.buttons-container-type {
+
+  .paragraph-content {
+    padding-bottom: 30px;
+
+    @media screen and (max-width: $tablet) {
+      padding-bottom: 25px;
+    }
+  }
+
+  // small-items
+
+  &.small-items {
+    .field--name-field-container-item {
+
+      >.field__item {
+        width: 100%;
+        margin-right: 20px;
+        margin-bottom: 20px;
+        flex-grow: 1;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        @media screen and (max-width: $tablet) {
+          margin-right: 0;
+          margin-bottom: 10px;
+        }
+      }
+    }
+  }
+
+  // normal-items
+
+  &.normal-items {
+
+    .field--name-field-container-item {
+      margin-right: -20px;
+
+      @media screen and (max-width: $tablet) {
+        margin-right: -5px;
+      }
+
+      >.field__item {
+        width: calc(100% / 3);
+        padding-right: 20px;
+        padding-bottom: 20px;
+        flex-grow: 1;
+
+        @media screen and (max-width: $tablet) {
+          width: calc(100% / 2);
+          padding-right: 5px;
+          padding-bottom: 5px;
+        }
+      }
+    }
+
+    .container-item a {
+      @media screen and (max-width: $tablet) {
+        font-size: 14px;
+        padding: 18px;
+      }
+    }
+  }
+
+  .field--name-field-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 12px;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+  }
+
+  .field--name-field-text {
+    font-size: 16px;
+    font-weight: 500;
+    max-width: 780px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+  }
+
+  .container-item {
+    display: flex;
+    height: 100%;
+
+    a {
+      font-size: 18px;
+      font-weight: 500;
+      color: $primary-color;
+      display: block;
+      width: 100%;
+      padding: 26px;
+      background-color: rgba(212, 211, 212, 0.2);
+      text-decoration: none;
+
+      @media screen and (max-width: $tablet) {
+        font-size: 17px;
+      }
+    }
+  }
+
+  .field--name-field-image {
+    margin-bottom: 10px;
+
+    img {
+      height: 70px;
+      width: auto;
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .footer-entities.field--name-field-additional-sections {
+    .container-item {
+      a {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+
+        .field--name-field-image {
+          margin: 0 2rem 0 0;
+        }
+      }
+    }
+  }
+}

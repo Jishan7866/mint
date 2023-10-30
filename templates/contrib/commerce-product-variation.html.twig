@@ -1,0 +1,171 @@
+{#
+/**
+ * @file
+ *
+ * Custom template for product variations.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product_variation: The rendered product variation fields.
+ *   Use 'product_variation' to print them all, or print a subset such as
+ *   'product_variation.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product_variation|without('title') }}
+ *   @endcode
+ * - product_variation_entity: The product variation entity.
+ * - url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set site_url = url("<current>")|render|render|split('/')|last %}
+
+<div{{attributes}}>
+	{% if variation_type == 'iphone' %}
+		<div class="purchase__content">
+			<div class="purchase__info">
+				<div class="purchase__product-title">
+					{{ product_variation.attribute_iphone_model }}
+					{{ product_variation.attribute_iphone_capacity }}
+					{{ product_variation.attribute_iphone_color }}
+					{{ phone_condition|striptags }}
+				</div>
+				<div class="purchase__product-title purchase__product-title--mobile">
+					{{ product_variation.attribute_iphone_model }}
+					{{ product_variation.attribute_iphone_capacity }}
+					{% if phone_condition|striptags %}
+					  {{ phone_condition|striptags }}, 
+					{% endif %}
+					<span class="purchase__product-title-price">
+						${{ product_variation.price[0]['#markup'] }}/mth
+					</span>
+				</div>
+				{% if total_price is defined %}
+					<div class="purchase__product-total-price">
+						Total cost ${{- total_price -}}
+					</div>
+				{% endif %}
+				<div class="purchase__product-total-cost-summary">{{ checkout_total_cost_summary }}</div>
+				<div class="change-cart-link change-phone"></div>
+			</div>
+			<div class="purchase__product-monthly-price">
+				<div class="price">
+					<div class="price__dollar">$</div>
+					<div class="price__total">{{- product_variation.price -}}</div>
+					<div class="price__text">/mth</div>
+				</div>
+				<div class="period">Over 24 months</div>
+			</div>
+		</div>
+		{{- product_variation|without('title', 'field_telephone_gallery', 'field_tooltip_text', 'field_price_tooltip_text',
+    'attribute_iphone_model', 'attribute_iphone_capacity', 'attribute_iphone_color', 'price', 'field_esim', 'field_product_type') -}}
+	{% elseif variation_type == 'samsung' %}
+		<div class="purchase__content">
+			<div class="purchase__info">
+				<div class="purchase__product-title">
+					{{- product_variation.attribute_samsung_model -}}
+					{{- product_variation.attribute_samsung_capacity -}}
+					{{- product_variation.attribute_samsung_color -}}
+					{{ phone_condition|striptags }}
+				</div>
+				<div class="purchase__product-title purchase__product-title--mobile">
+					{{ product_variation.attribute_samsung_model }}
+					{{ product_variation.attribute_samsung_capacity }}
+					{% if phone_condition|striptags %}
+					  {{ phone_condition|striptags }}, 
+					{% endif %}
+					<span class="purchase__product-title-price">
+						${{ product_variation.price[0]['#markup'] }}/mth
+					</span>
+				</div>
+				{% if total_price is defined %}
+					<div class="purchase__product-total-price">
+						Total cost ${{- total_price -}}
+					</div>
+				{% endif %}
+				<div class="purchase__product-total-cost-summary">{{ checkout_total_cost_summary }}</div>
+				<div class="change-cart-link change-phone"></div>
+			</div>
+			<div class="purchase__product-monthly-price">
+				<div class="price">
+					<div class="price__dollar">$</div>
+					<div class="price__total">{{- product_variation.price -}}</div>
+					<div class="price__text">/mth</div>
+				</div>
+				<div class="period">Over 24 months</div>
+			</div>
+		</div>
+		{{- product_variation|without('title', 'field_telephone_gallery', 'field_tooltip_text', 'field_price_tooltip_text',
+      'attribute_samsung_model', 'attribute_samsung_capacity', 'attribute_samsung_color', 'price', 'field_esim', 'field_product_type') -}}
+	{% elseif variation_type == 'plan' %}
+		<div class="purchase__content">
+			<div class="purchase__info">
+				<div class="purchase__product-title">
+					{% if variation_monthly_data %}
+						{{ variation_monthly_data }}
+						Plan
+					{% else %}
+						{{ base_plan_title }}
+						Plan
+					{% endif %}
+					{% if esimCompatibility %}<span class="esim-type-title"></span>{% endif %}
+				</div>
+				<div class="purchase__product-title purchase__product-title--mobile">
+					{% if variation_monthly_data %}
+						{{ variation_monthly_data }}
+						Plan, ${{ base_plan_price }}/mth
+					{% else %}
+						{{ base_plan_title }}
+						Plan, ${{ base_plan_price }}/mth
+					{% endif %}
+					{% if esimCompatibility %}<span class="esim-type-title"></span>{% endif %}
+				</div>
+				<div class="description">
+					You can change your plan every month
+				</div>
+				<div class="change-cart-link change-plan"></div>
+				{% if esimCompatibility %}
+				  <div class="change-cart-link change-sim-type" style="display:none;"><span>or</span><a href="#" class="clear-button">change SIM type</a></div>
+				{% endif %}
+			</div>
+			<div class="purchase__product-monthly-price">
+				<div class="price">
+					<div class="price__dollar">$</div>
+					<div class="price__total">{{- base_plan_price -}}</div>
+					<div class="price__text">/mth</div>
+				</div>
+				<div class="period">Month-to-month</div>
+			</div>
+		</div>
+		{% if addons_price != 0 %}
+			<div class="purchase__content">
+				<div class="purchase__info">
+					<div class="purchase__product-title">
+						Add-ons
+					</div>
+					<div class="purchase__product-title purchase__product-title--mobile">
+						Add-ons, ${{ addons_price }}/mth
+					</div>
+					{% for addon_name in  addons_name %}
+						<div class="description">
+							{{ addon_name|striptags|escape }}
+						</div>
+					{% endfor %}
+					<div class="change-cart-link change-addons"></div>
+				</div>
+				<div class="purchase__product-monthly-price">
+					<div class="price">
+						<div class="price__dollar">$</div>
+						<div class="price__total">{{- addons_price -}}</div>
+						<div class="price__text">/mth</div>
+					</div>
+					<div class="period">Month-to-month</div>
+				</div>
+			</div>
+		{% endif %}
+	{% else %}
+		{{- product_variation|without('title', 'field_tooltip_text', 'field_price_tooltip_text') -}}
+	{% endif %}
+</div>

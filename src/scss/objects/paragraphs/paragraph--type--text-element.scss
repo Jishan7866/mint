@@ -1,0 +1,130 @@
+.paragraph--type--text-element {
+  padding: 0 42px;
+  text-align: center;
+  //   color: $text-color-l;
+
+  h1 {
+    line-height: 1em;
+    font-size: 45px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 32px;
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .paragraph-content {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 0;
+
+    @media screen and (max-width: $mobile) {
+      padding: 3rem 0;
+    }
+  }
+
+  .field--name-field-title,
+  h2 {
+    font-weight: 700;
+    color: $text-color;
+    margin-bottom: 20px;
+
+    line-height: 1.2;
+  }
+
+  .field--name-field-title {
+    font-size: 28px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 24px;
+    }
+  }
+
+  h2 {
+    font-size: 21px;
+    margin-bottom: 11px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+    }
+  }
+
+  .field--name-field-text {
+    font-size: 20px;
+    font-weight: 400;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+    }
+  }
+
+  .ckeditor-col-container {
+    display: flex;
+    flex-flow: wrap;
+    margin-right: -20px;
+    text-align: left;
+    font-weight: 400;
+  }
+
+  .grid-xs-6 {
+    width: 50%;
+    padding-right: 20px;
+  }
+
+  .grid-6 {
+    width: 50%;
+    padding-right: 20px;
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+      margin-bottom: 12px;
+
+      .last-col {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobile) {
+    .non-responsive {
+      .grid-6 {
+        width: 50%;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  ul.tick-icon,
+  ul.tick-black-icon {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    text-align: left;
+
+    li {
+      background-image: url("../img/paragraph-tick.png");
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 30px;
+      padding: 5px 0 5px 40px;
+      margin-bottom: 10px;
+    }
+  }
+
+  ul.tick-black-icon {
+    li {
+      background-image: url("../img/paragraph-tick-black.svg");
+    }
+  }
+
+  .team-phone-images {
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 225px;
+    }
+  }
+}

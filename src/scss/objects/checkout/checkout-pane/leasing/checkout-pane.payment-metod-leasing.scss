@@ -1,0 +1,74 @@
+.dialog-off-canvas-main-canvas .checkout-step-subscription-payment .btn-finalize-payment {
+  max-width: none;
+
+  @media screen and (min-width: $tablet) {
+    width: 270px !important;
+    margin-top: 2rem !important;
+  }
+
+  .btn {
+    padding: 14px 10px;
+  }
+}
+
+.checkout-pane-mint-commerce-leasing-payment-method-checkout-pane {
+
+  .form-radios {
+    margin-bottom: 10px;
+  }
+
+  .terms-and-conditions {
+    margin-bottom: 20px !important;
+
+    .form-type-checkbox {
+      position: relative;
+
+      label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        margin: 0;
+      }
+
+      .slabel {
+        padding-left: 25px;
+      }
+    }
+
+    label,
+    .slabel {
+      display: block;
+      font-size: 16px;
+      font-weight: normal;
+
+      a {
+        color: $primary-color;
+      }
+
+      ul {
+        padding: 0;
+        margin: 0 0 0 1rem;
+
+        li {
+          padding: 0.5rem;
+        }
+      }
+    }
+
+    .form-item {
+      max-width: none;
+      margin-bottom: 20px;
+    }
+
+    .terms-and-conditions-label {
+      padding-left: 0px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .form-item-mint-commerce-leasing-payment-method-checkout-pane-payment-check-id-type-radio-credit-card {
+    @include credit-cards;
+  }
+
+}

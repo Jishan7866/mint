@@ -1,0 +1,270 @@
+.page--banner {
+    height: 434px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    h2 {
+        font-size: 60px;
+        font-family: Paul Grotesk;
+        line-height: 72px;
+        .cursive {
+            color: #25CE79;
+            font-size: 70px;
+            display: block;
+            line-height: 145px;
+            font-family: Hey-Brothers;
+            font-weight: 400;
+        }
+    }
+    .container {
+        position: relative;
+    }
+}
+
+.clr-white {
+    color: #fff;
+}
+
+.page--banner.banner-card-header {
+    height: 210px;
+    h2 {
+        font-size: 30px;
+        line-height: 1.5;
+        margin-bottom: 0;
+        color: #fff;
+        text-align: center;
+    }
+}
+
+
+/*.page--banner h2 {
+    font-family: 'Hey Brothers';
+}
+*/
+
+.page--banner.banner-card-image-header {
+    h2.text-center {
+        margin-bottom: 0;
+    }
+    >.container>.row>.col-12 {
+        margin-top: -70px;
+    }
+}
+
+.cards.bottom.descp-black {
+    a.btn-green {
+        margin-top: 30px !important;
+    }
+}
+
+span.cross {
+    position: relative;
+    &:before {
+        background-image: url('/themes/mint/dist/assets/zigzag.svg');
+        width: 206px;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        height: 100%;
+    }
+}
+
+.last-bottom,
+.sub-bottom {
+    .card {
+        .field--name-field-description {
+            p.clr_white {
+                color: #fff;
+                font-size: 16px;
+                line-height: 20px;
+                max-width: 835px;
+                margin: auto;
+                margin-bottom: 28px;
+            }
+        }
+        a.btn-green {
+            color: #fff;
+        }
+        .field--name-field-footer-text {
+            p {
+                font-size: 12px;
+                color: #fff;
+                line-height: 13px;
+                margin-top: 28px;
+            }
+        }
+    }
+}
+
+span.cursive-text.green {
+    font-family: Hey-Brothers;
+    font-weight: 400;
+    position: relative;
+    &:after {
+        content: "";
+        width: 100%;
+        height: 2px;
+        background: #25CE79;
+        position: absolute;
+        left: 0;
+        top: auto;
+        bottom: 18px;
+    }
+}
+
+#block-section-2 {
+    .footer {
+        p {
+            font-size: 12px;
+            line-height: 13px;
+            margin-top: 27px;
+        }
+        a.btn-green {
+            min-width: 292px;
+            line-height: 16px;
+        }
+    }
+    .head {
+        h2 {
+            font-size: 32px;
+            line-height: 35px;
+        }
+    }
+}
+
+.phone-features {
+    .head {
+        .field--name-field-main-heading {
+            font-size: 20px;
+            line-height: 22px;
+            margin-bottom: 22px;
+            font-weight: bold;
+        }
+    }
+    .footer {
+        @media(min-width: 768px) {
+            padding: 45px 35px 0 35px;
+        }
+        p {
+            font-size: 12px;
+            line-height: 13px;
+        }
+    }
+}
+
+.masnory-block.descp-black .head {
+    font-size: 32px;
+    line-height: 35px;
+}
+
+.live-on-wrapper {
+    margin-top: 19px;
+    >p {
+        display: none;
+    }
+    .field--name-field-footer-text {
+        display: inline-block;
+        p{ 
+            small {
+                font-size: 12px;
+                line-height: 13px;
+            }
+        }
+    }
+}
+
+.cards.last-bottom.descp-black {
+    .card {
+        .footer {
+            .field--name-field-footer-text {
+                max-width: 811px;
+                margin: auto;
+            }
+        }
+    }
+}
+
+@media(max-width: 575px) {
+    .page--banner.banner-card-image-header {
+        height: 360px;
+        h2.clr-white.text-center {
+            font-size: 40px;
+            line-height: 43px;
+        }
+        h2.text-center {
+            span {
+                font-size: 40px;
+                line-height: 104px;
+            }
+            span.cursive {
+                padding-right: 30px;
+                margin-bottom: -28px;
+                font-size: 50px;
+            }
+        }
+    }
+    span.cross:before {
+        top: 3px;
+        width: 149px;
+    }
+    #block-section-2 {
+        .head {
+            h2 {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+        }
+        .footer {
+            p {
+                margin-top: 33px;
+            }
+        }
+    }
+    .phone-features {
+        .footer {
+            padding: 0px 35px 0 35px;
+            p {
+                margin-top: 20px;
+            }
+        }
+        .head {
+            h2 {
+                font-size: 32px;
+                line-height: 35px;
+                padding: 0 15px;
+            }
+        }
+    }
+    .masnory-block.descp-black {
+        .head {
+            padding-left: 20px;
+            padding-right: 20px
+        }
+    }
+    .live-on-wrapper {
+        margin-bottom: 41px;
+        margin-top: 0;
+    }
+}
+
+@media(max-width: 408px) {
+    .page--banner.banner-card-image-header {
+        h2.text-center {
+            span.cursive {
+                text-align: right;
+                padding-right: 50px;
+            }
+        }
+    }
+}

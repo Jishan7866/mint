@@ -1,0 +1,66 @@
+.countdown-timer {
+  color: $c-white;
+  font-size: 0.9rem;
+  margin: 1rem 0;
+  display: flex;
+
+  &.ct-center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.ct-left {
+    justify-content: flex-start;
+    text-align: left;
+
+    @media screen and (max-width: $tablet) {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  &.ct-right {
+    justify-content: flex-end;
+    text-align: right;
+
+    @media screen and (max-width: $tablet) {
+      justify-content: center;
+      text-align: center;
+    }
+  }
+
+  .counter-item {
+    margin: 0 0.5rem;
+    display: inline-block;
+    text-align: center;
+
+    .box {
+      position: relative;
+      display: block;
+      padding: 0.4rem 0.2rem 0.2rem 0.2rem;
+      font-size: 2rem;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+      background-color: $c-white;
+      color: $c-black;
+      min-width: 68px;
+      border-radius: 5px;
+      overflow: hidden;
+
+      span {
+        position: relative;
+        transition: all 0.3s ease;
+      }
+    }
+
+    label {
+      display: block;
+      margin-top: 0.3rem;
+    }
+  }
+}
+
+body.cke_editable {
+  .countdown-timer {
+    color: $c-black;
+  }
+}

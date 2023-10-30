@@ -1,0 +1,202 @@
+{% if paragraph.field_card_type.value == 'mask' %}
+ <section class="cards small {{ paragraph.field_card_type.value }}">
+        {% if content.field_img is not empty %}
+        <div class="desktop-img">
+         {{ content.field_img }}
+         </div>
+        {% endif %}
+        {% if content.field_mobile_images is not empty %}
+        <div class="mobile-img">
+         {{ content.field_mobile_images }}
+         </div>
+        {% endif %}
+        <img src="" class="mobile-img">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            <div class="head">
+                                <h2><text>{{content.field_main_heading}}</text></h2>
+                                {{ content.field_description }}
+                            </div>
+                            <div class="footer"><a class="btn btn-green tpt use-ajax" data-dialog-type="modal" href="{{ content.field_link.0['#url'] }}">
+                            {{ content.field_link.0['#title'] }}</a>
+                                {{content.field_footer_text}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section> 
+ {% endif %} 
+
+{% if paragraph.field_card_type.value == 'phone-features' %}
+ <section class="cards text-center bg-grey p-tb-45 descp-black {{ paragraph.field_card_type.value }}">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            <div class="head">
+                                {{ content.field_description }}
+                                {{ content.field_main_heading }}
+                            </div> 
+                             {% if content.field_img is not empty %}
+                            <div class="inner-desktop-img">
+                            {{ content.field_img }}
+                            </div>
+                            {% endif %}
+                            {% if content.field_mobile_images is not empty %}
+                            <div class="inner-mobile-img">
+                            {{ content.field_mobile_images }}
+                            </div>
+                            {% endif %}
+                            {% if paragraph.field_multiple_links.value is not empty %}
+                            <div class="footer mt-15"><p>Sources:
+                            {% for item in paragraph.field_multiple_links %}
+                            <sup>{{ loop.index }}</sup><a href="{{ item.url }}">{{ item.title }}</a> 
+                            {% endfor %}</p>
+                            </div>
+                            {% endif %}
+                            <div class="footer">{{content.field_footer_text}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+ </section>
+ {% endif %}  
+
+{% if paragraph.field_card_type.value == 'masnory-block' %}
+ <section class="cards {{ paragraph.field_card_type.value }} descp-black">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            <div class="head">
+                                <h2><text class="block-element">{{ content.field_main_heading }}</text></h2>
+                                  {{ content.field_description }}
+                            </div>
+                            <div class="masnory-grid"> 
+                             {% for item in paragraph.field_img %}
+                             <div class="masnory-media-{{ loop.index }}"><img src="{{ file_url(item.entity.uri.value) }}" /></div>
+                            {% endfor %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</section>
+ {% endif %} 
+
+{% if paragraph.field_card_type.value == 'bottom' %}
+ <section class="cards small {{ paragraph.field_card_type.value }} descp-black"> 
+        {% if content.field_img is not empty %}
+        <div class="desktop-img">
+         {{ content.field_img }}
+         </div>
+        {% endif %}
+        {% if content.field_mobile_images is not empty %}
+        <div class="mobile-img">
+         {{ content.field_mobile_images }}
+         </div>
+        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            
+                            <div class="footer">
+                                <div class="body">
+                                    {{ content.field_main_heading }}
+                                     {{ content.field_description }}
+                                </div>
+                                <a class="btn btn-green tpt use-ajax" data-dialog-type="modal" href="{{ content.field_link.0['#url'] }}">
+                                {{ content.field_link.0['#title'] }}</a>
+                                <div class="live-on-wrapper">
+                                <p><small>{{content.field_footer_text}}
+                                  {% if paragraph.field_multiple_links.value is not empty %}
+                                    Sources: {% for item in paragraph.field_multiple_links %}
+                                    <sup>{{ loop.index }}</sup><a href="{{ item.url }}">{{ item.title }}</a> 
+                                    {% endfor %}</small></p></div>
+                                 {% endif %}    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ {% endif %}         
+
+ {% if paragraph.field_card_type.value == 'sub-bottom' %}
+ <section class="cards small {{ paragraph.field_card_type.value }} descp-black"> 
+        {% if content.field_img is not empty %}
+        <div class="desktop-img">
+         {{ content.field_img }}
+         </div>
+        {% endif %}
+        {% if content.field_mobile_images is not empty %}
+        <div class="mobile-img">
+         {{ content.field_mobile_images }}
+         </div>
+        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            
+                            <div class="footer">
+                                <div class="body">
+                                    {{ content.field_main_heading }}
+                                     {{ content.field_description }}
+                                </div>
+                                <a class="btn btn-green tpt use-ajax" data-dialog-type="modal" href="{{ content.field_link.0['#url'] }}">
+                                {{ content.field_link.0['#title'] }}</a>
+                                <p>{{content.field_footer_text}}
+                                 {% if paragraph.field_multiple_links.value is not empty %}
+                                    Sources: {% for item in paragraph.field_multiple_links %}
+                                    <sup>{{ loop.index }}</sup><a href="{{ item.url }}">{{ item.title }}</a> 
+                                    {% endfor %}</p>
+                                {% endif %} 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ {% endif %}     
+
+ {% if paragraph.field_card_type.value == 'last-bottom' %}
+ <section class="cards small {{ paragraph.field_card_type.value }} descp-black"> 
+        {% if content.field_img is not empty %}
+        <div class="desktop-img">
+         {{ content.field_img }}
+         </div>
+        {% endif %}
+        {% if content.field_mobile_images is not empty %}
+        <div class="mobile-img">
+         {{ content.field_mobile_images }}
+         </div>
+        {% endif %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card ">
+                            <div class="footer">
+                                <div class="body">
+                                    {{ content.field_main_heading }}
+                                     {{ content.field_description }}
+                                </div>
+                                <a class="btn btn-green tpt use-ajax" data-dialog-type="modal" href="{{ content.field_link.0['#url'] }}">
+                                {{ content.field_link.0['#title'] }}</a>
+                                <p>{{content.field_footer_text}}
+                                {% if paragraph.field_multiple_links.value is not empty %}
+                                    Sources: {% for item in paragraph.field_multiple_links %}
+                                    <sup>{{ loop.index }}</sup><a href="{{ item.url }}">{{ item.title }}</a> 
+                                    {% endfor %}</p>
+                                {% endif %}    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+ {% endif %}     

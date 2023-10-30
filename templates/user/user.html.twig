@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Default theme implementation to present all user data.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ *   print a subset such as 'content.field_example'. Fields attached to a user
+ *   such as 'user_picture' are available as 'content.user_picture'.
+ * - attributes: HTML attributes for the container element.
+ * - user: A Drupal User entity.
+ *
+ * @see template_preprocess_user()
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{attributes}}>
+	{% if content %}
+		{{- content|without('field_additional_sections') -}}
+	{% endif %}
+
+	<div class="user-accout-page">
+	  <div class="wrapper-loader">
+	    <div class="placeholder dark width-50"></div>
+	      <div class="placeholder dark width-100"></div>
+	      <div class="placeholder dark width-70"></div>
+	    </div>
+
+	  <div class="user-account-header">
+        <div class="container">
+          <div class="user-name">
+		{% set userObject =  mintMyAccountGetUserid(user.id) %}
+		{{attach_drupal_settings(userObject.content.DeviceLease)}}
+            <h2><span class="bhighlight-violet bhighlight">Welcome {{userObject.content.userName}}<b></b></span></h2>
+            {% if (userObject.content.showBundle) %}
+              <p>Please select which product you would like to look at:</p>
+            {% else %}
+              {% if userObject.content.DeviceLease %}
+                <p>Here’s a quick summary of your account:</p>
+              {% endif %}
+            {% endif %}
+          </div>
+          {% if (userObject.content.showBundle) %}
+            <div class="bundle-options">
+              <ul class="my-user-account-page">
+               {% if userObject.content.DeviceLease %}
+                  <li class="your-subscriptions bundle" data-bundle-name="subscription"><i class="icon"></i>Phone Subscriptions</li>
+                 {% endif %}
+                {% if userObject.content.PhoneBundles %}
+                  <li class="phone-plan bundle" data-bundle-name="phoneBundles"><i class="icon"></i>Phone + <span>SIM plans</span></li>
+                {% endif %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {# Don't delete user-account-subheader div, it is used to load ajax content #}
+          <div class="user-account-subheader"></div>
+        </div>
+	  </div>
+
+      {% if (userObject.content.activeOrders) %}
+        {# Don't delete user-account-body div, it is used to load ajax content #}
+        <div class="user-account-body"></div>
+      {% else %}
+        <div class="text-center">{{ userObject.content.noOrderMsg|raw }}</div>
+      {% endif %}
+	</div>
+
+
+	{% if accordions %}
+		<div class="field--name-field-accordions">
+			{% for accordion in accordions %}
+				<div class="layout--onecol paragraph">
+					<div class="layout__region--content">
+						<div id="{{ accordion.id }}" class="my-account-box accordion-title js-btn-toggle">
+							<div class="field--name-field-image">
+								<div class="field__item">
+									{% if accordion.image_url %}
+										<img src="{{ accordion.image_url }}" class="image-style-thumbnail">
+									{% endif %}
+								</div>
+							</div>
+							{% if accordions_titles_color %}
+								<div class="field field--name-field-title field__item" style="color: {{ accordions_titles_color }}">
+									{{ accordion.title }}
+								</div>
+							{% else %}
+								<div class="field field--name-field-title field__item">{{ accordion.title }}</div>
+							{% endif %}
+						</div>
+						<div class="accordion-content">
+							<div class="field--name-field-accordion-content">
+								{% if accordion.content %}
+									{{ accordion.content }}
+								{% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	{% if footer_entities %}
+      <div class="field footer-entities footer-entities-bundle field--name-field-additional-sections">
+        {{ footer_entities }}
+      </div>
+	{% endif %}
+
+    {% if footer_entities_leasing %}
+      <div class="field footer-entities footer-entities-leasing field--name-field-additional-sections">
+        {{ footer_entities_leasing }}
+      </div>
+	{% endif %}
+</article>

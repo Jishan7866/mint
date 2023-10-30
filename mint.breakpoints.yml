@@ -1,0 +1,30 @@
+mint.mobile:
+  label: mobile
+  mediaQuery: ""
+  weight: 0
+  multipliers:
+    - 1x
+mint.tablet:
+  label: tablet
+  mediaQuery: "all and (min-width: 481px) and (max-width: 768px)"
+  weight: 1
+  multipliers:
+    - 1x
+mint.desktop:
+  label: desktop
+  mediaQuery: "all and (min-width: 769px) and (max-width: 1920px)"
+  weight: 2
+  multipliers:
+    - 1x
+mint.extra_wide_1:
+  label: extra wide 1
+  mediaQuery: "all and (min-width: 1921px) and (max-width: 2560px)"
+  weight: 3
+  multipliers:
+    - 1x
+mint.extra_wide_2:
+  label: extra wide 2
+  mediaQuery: "all and (min-width: 2560px)"
+  weight: 4
+  multipliers:
+    - 1x

@@ -1,0 +1,376 @@
+.paragraph--type--banner {
+  position: relative;
+  color: $c-white;
+  padding: 0 42px;
+  font-size: 16px;
+  margin: 0 auto;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  [type="text"],
+  [type="tel"],
+  [type="email"],
+  [type="password"] {
+    font-size: 17px;
+    padding: 13px 15px;
+    border: none;
+    border-radius: 0;
+  }
+
+  .banner-content-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto;
+    padding: 85px 0;
+    z-index: 1;
+
+    .sorry-page &,
+    .confirmation-page &,
+    .not-found & {
+      max-width: 586px;
+      padding-bottom: 68px;
+
+      @media screen and (max-width: $mobile) {
+        padding-bottom: 37px;
+
+        .field--name-field-text * {
+          display: inline;
+        }
+      }
+
+      .field--name-field-title {
+        max-width: 300px;
+        font-size: 28px;
+        color: $accent-color;
+      }
+
+      a {
+        font-weight: 500;
+        white-space: nowrap;
+      }
+    }
+
+    @media screen and (max-width: $mobile) {
+      padding: 70px 0 50px;
+    }
+  }
+
+  .user-login-form {
+    @media screen and (max-width: $mobile) {
+      display: flex;
+      flex-direction: column;
+    }
+    .ajax-progress {
+      left: 100%;
+    }
+  }
+
+  h2,
+  .field--name-field-title {
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+    line-height: normal;
+    max-width: 260px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 18px;
+    }
+  }
+
+  .field--name-field-text {
+    font-size: 21px;
+    font-weight: 400;
+    text-align: center;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+    }
+  }
+
+  .item-list {
+
+    ul,
+    li {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  a {
+    color: $c-white;
+    font-weight: 600;
+  }
+
+  .field--name-field-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    img {
+      display: block;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    * {
+      height: 100%;
+    }
+  }
+
+  .form-type-password {
+    position: relative;
+
+    @media screen and (max-width: $mobile) {
+      margin: 0;
+    }
+
+    [type="password"] {
+      padding-right: 50px;
+    }
+
+    .shwpd {
+      position: absolute;
+      top: 50%;
+      right: 15px;
+      transform: translateY(-50%);
+      background-image: url('../img/eye.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 1;
+      transition: .2s;
+
+      &.eye-open {
+        opacity: 0.5;
+      }
+    }
+  }
+
+  .form-type-checkbox {
+    margin-bottom: 23px;
+    padding-right: 20px;
+    width: 50%;
+
+    @media screen and (max-width: $mobile) {
+      margin-top: 10px;
+      width: 100%;
+    }
+  }
+
+  .request-password-link {
+    text-align: right;
+    order: 1;
+    float: right;
+
+    @include clearfix;
+
+    @media screen and (max-width: $mobile) {
+      text-align: center;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  .form-actions {
+    @media screen and (max-width: $mobile) {
+      margin-bottom: 25px;
+    }
+  }
+
+  .form-submit {
+    position: relative;
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+    min-width: 260px;
+    border: none;
+    border-radius: 0;
+    padding: 14px 30px;
+    margin: 0 auto;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    transition: .2s ease-out;
+    color: $c-white;
+    background-color: $accent-color;
+
+    &:hover {
+      background-color: lighten($accent-color, 8);
+    }
+
+    @media screen and (max-width: $mobile) {
+      min-width: 100%;
+    }
+  }
+}
+
+.block-simple-blockcheckout-banner {
+  .banner-div {
+    height: 67px;
+  }
+}
+
+.paragraph--type--banner.paragraph--view-mode--coming-soon-banner {
+  height: calc(100vh - 95px);
+
+  @media screen and (max-width: $tablet) {
+    height: calc(100vh - 50px);
+  }
+
+  .paragraph-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100%;
+
+    .field--name-field-title {
+      position: relative;
+      max-width: 400px;
+
+      &:after {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        content: "";
+        z-index: -1;
+
+        bottom: 0.1em;
+        height: 0.6em;
+
+        background-color: $c-violet;
+      }
+    }
+
+    u {
+      text-decoration-color: $accent-color;
+    }
+  }
+}
+
+.toolbar-horizontal,
+.toolbar-vertical {
+  .paragraph--type--banner.paragraph--view-mode--coming-soon-banner {
+    height: calc(100vh - 95px - 39px);
+
+    @media screen and (max-width: $tablet) {
+      height: calc(100vh - 50px - 39px);
+    }
+  }
+}
+
+.toolbar-horizontal.toolbar-tray-open .paragraph--type--banner.paragraph--view-mode--coming-soon-banner {
+  height: calc(100vh - 95px - 79px);
+
+  @media screen and (max-width: $tablet) {
+    height: calc(100vh - 50px - 79px);
+  }
+}
+
+.path-coming-soon .banner-content-wrapper,
+.path-maintenance .banner-content-wrapper,
+.maintenance-page .banner-content-wrapper {
+  max-width: 970px;
+
+  .field--name-field-title {
+    max-width: 100%;
+    font-size: 46px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 40px;
+    }
+  }
+
+  .field--name-field-text {
+    font-size: 34px;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 24px;
+    }
+  }
+}
+
+
+.paragraph--view-mode--corona-banner {
+  padding: 0;
+
+  .paragraph-content {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+
+    @media(max-width: 1024px) {
+      flex-direction: column;
+    }
+
+    .field {
+      &.field--name-field-image {
+        position: relative;
+        display: block;
+        height: 486px;
+        width: 860px;
+
+        @media(max-width: 1024px) {
+          width: 85%;
+          margin: 0 auto;
+        }
+
+        @media(max-width: 767px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .banner-content-wrapper {
+      position: absolute;
+      left: 10%;
+      background: #fff;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 50px 50px;
+      width: 506px;
+      border-left: solid 10px #613fcd;
+
+      .field {
+        text-align: left;
+        max-width: 100%;
+
+        &.field--name-field-title {
+          font-size: 34px;
+          font-weight: bold;
+        }
+
+        &.text-formatted {
+          p {
+            font-size: 18px;
+          }
+        }
+      }
+
+      @media(max-width:1024px) {
+        position: relative;
+        transform: unset;
+        top: -80px;
+        margin: 0;
+        left: 7.5%;
+      }
+
+      @media(max-width:767px) {
+        left: 0;
+      }
+    }
+  }
+}

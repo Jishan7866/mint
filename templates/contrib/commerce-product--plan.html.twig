@@ -1,0 +1,90 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+  'product-plan',
+  field_popular_value ? field_popular_value|clean_class,
+  product.field_header|render ? 'product-plan--bonus' : '',
+]
+%}
+<article{{attributes}}>
+	{% if product.field_tooltip_title %}
+		<div class="wrapper-tooltip">
+			{{- product.field_tooltip_title -}}
+			<div class="certified tooltip-icon"></div>
+		</div>
+		<div class="certified tooltip-text">
+			{{- product.field_tooltip_text -}}
+		</div>
+	{% endif %}
+	<div {{ attributes.addClass(classes) }}>
+		{% if product.field_header|render %}
+			<div class="product-plan__label">
+				{{ product.field_header }}
+			</div>
+		{% endif %}
+		<div class="product-plan__section product-plan__section--main product-plan__title product-plan__option">
+			<div class="product-plan__section-content">
+				<div class="product-plan__row">
+					<div class="product-plan__big-text">
+						{{ product.field_traffic_promote }}
+					</div>
+					<div class="product-plan__small-text">
+						{{ product.field_data_word }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="product-plan__section product-plan__section--main product-plan__promo">
+		      <div class="product-plan__section-content">
+		        <div class="product-plan__row">
+		          <div class="product-plan__big-text product-plan__promo-text">
+		            {#{field_extra_promo_value}#}{#{field_extra_promo_suffix_pre}#}
+		          </div>
+		          <div class="product-plan__small-text product-plan__promo-suffix">
+		            {#{ field_extra_promo_suffix }#}
+		          </div>
+		        </div>
+		      </div>
+		    </div>-->
+		<div class="product-plan__section product-plan__section--main product-plan__price">
+			<div class="product-plan__section-content">
+				<div class="product-plan__row">
+					<div class="product-plan__big-text">
+						<span class="dollar">$</span>
+						{{ product.field_base_price }}
+					</div>
+					{{ product.field_price_text }}
+				</div>
+				<div class="product-plan__small-text">
+					{{ product.field_price_promote }}
+				</div>
+			</div>
+		</div>
+		<div class="product-plan__variations">
+			{{ product.variations }}
+		</div>
+		<div class="product-plan__information">
+			{{ product.field_information }}
+		</div>
+	</div>
+</article>

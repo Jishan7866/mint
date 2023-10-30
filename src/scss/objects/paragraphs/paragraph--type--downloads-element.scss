@@ -1,0 +1,56 @@
+.paragraph--type--downloads-element {
+  font-size: 18px;
+  padding: 0 42px;
+  margin-bottom: 48px;
+  color: $text-color;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 14px;
+    padding: 0 30px;
+    margin-bottom: 30px;
+  }
+
+  .paragraph-content {
+    max-width: 940px;
+    margin: 0 auto;
+    background-color: $text-color-2l;
+    border: 3px solid $text-color-2l;
+    border-radius: 6px;
+  }
+
+  .field--name-field-title {
+    font-size: 21px;
+    font-weight: 700;
+    padding: 15px 34px;
+    color: $primary-color;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 18px;
+      padding: 12px 26px;
+    }
+  }
+
+  .field--name-field-file {
+    font-weight: 600;
+    padding: 40px 34px;
+    background-color: $c-white;
+    text-transform: uppercase;
+
+    .field__item:not(:last-child) {
+      margin-bottom: 34px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      padding: 20px 26px;
+
+      .field__item:not(:last-child) {
+        margin-bottom: 14px;
+      }
+    }
+  }
+
+  a {
+    color: $accent-color;
+    text-transform: none;
+  }
+}

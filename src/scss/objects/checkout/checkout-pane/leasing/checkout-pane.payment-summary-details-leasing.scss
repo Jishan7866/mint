@@ -1,0 +1,108 @@
+.checkout-pane-mint-commerce-leasing-payment-method-checkout-pane {
+  .fieldset-wrapper>.form-wrapper {
+    &:nth-child(1) {
+      padding-bottom: 25px;
+
+      @include gradient-line;
+    }
+
+    #edit-mint-commerce-payment-method-checkout-pane-your-details-mint-commerce-identification-checkout-pane {
+      padding-right: 250px;
+
+      @media screen and (max-width: $tablet) {
+        padding-right: 0;
+      }
+    }
+
+    &>label.your-details-label,
+    &>label.payment-label,
+    &>label.terms-and-conditions-label {
+      font-family: $main-font;
+      font-size: 23px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: $main-line-height;
+      letter-spacing: normal;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 20px !important;
+      }
+    }
+
+    .your-details-text,
+    .payment-text {
+      font-family: $main-font;
+      font-size: 17px;
+      font-weight: 500;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: $main-line-height;
+      letter-spacing: normal;
+      color: $text-color-l;
+      margin-bottom: 20px;
+
+      @media screen and (max-width: $mobile) {
+        font-size: 16px;
+      }
+    }
+
+    .summary-wrapper {
+      .summary-row {
+        display: flex;
+        margin-bottom: 8px;
+
+        @media screen and (max-width: $mobile) {
+          display: block;
+          margin-bottom: 14px;
+        }
+
+        .summary-label {
+          max-width: 280px;
+
+          @media screen and (max-width: $tablet) {
+            max-width: 100%;
+          }
+        }
+
+        .summary-label,
+        .summary-data {
+          width: 100%;
+          padding-right: 30px;
+          font-family: $main-font;
+          font-size: 16px;
+          font-weight: 500;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: $text-color-l;
+
+          @media screen and (max-width: $mobile) {
+            font-size: 14px;
+          }
+        }
+
+        .summary-data {
+          font-weight: 400;
+        }
+      }
+    }
+
+    .edit-details-link {
+      display: block;
+      width: 216px;
+      margin-left: auto;
+      margin-top: -56px !important;
+
+      @media screen and (max-width: $tablet) {
+        margin-top: 20px !important;
+      }
+
+      @media screen and (max-width: $mobile) {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+}

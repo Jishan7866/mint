@@ -1,0 +1,33 @@
+<section class="excillent-logos">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="inner">
+          <h4>
+        <div class="trustpilot-widget" data-locale="en-US" data-template-id="5419b732fbfb950b10de65e5" data-businessunit-id="5eccb54883a5c20001a3623f" data-style-height="24px" data-style-width="100%" data-theme="light">
+        <a href="https://www.trustpilot.com/review/numobile.com.au" target="_blank" rel="noopener">Trustpilot</a>
+        </div>
+          </h4>
+          <ul>
+          {% for item in content.field_partner %}
+            {% if item['#paragraph'].field_partner_image.entity.uri.value %}
+            {% if item['#paragraph'].field_partner_link.0.url %}
+            <li>
+              <a href="{{ item['#paragraph'].field_partner_link.0.url }}">
+                <img src="{{ file_url(item['#paragraph'].field_partner_image.entity.uri.value) }}">
+              </a>
+            </li>
+            {% else %}
+            <li>
+                <img src="{{ file_url(item['#paragraph'].field_partner_image.entity.uri.value) }}">
+            </li>
+            {% endif %}
+            
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

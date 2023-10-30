@@ -1,0 +1,124 @@
+.plan-and-addons.need_info {
+  .column--left {
+    max-width: 100%;
+
+    padding-right: 0;
+  }
+
+  .addons-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 0;
+    margin-top: 1rem;
+
+    @media screen and (max-width: $tablet) {
+      justify-content: center;
+    }
+  }
+
+  .addon-wrapper {
+    position: relative;
+    border-radius: 10px;
+
+    width: calc(100% / 3 - 30px);
+
+    margin: 0 15px;
+    margin-bottom: 15px;
+
+    border: 1px solid rgba(109, 110, 112, 0.3);
+
+    box-shadow: 0 2px 4px 0 rgba(155, 155, 155, .5);
+
+    background-color: $c-white;
+    color: $text-color;
+
+    @media screen and (max-width: 900px) {
+      width: calc(100% / 3 - 30px);
+    }
+
+    @media screen and (max-width: 650px) {
+      width: calc(100% / 2 - 30px);
+    }
+
+    @media screen and (max-width: 500px) {
+      width: calc(100% - 30px);
+    }
+
+    .header {
+      color: #fff;
+      background-color: #000;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      padding: 12px 30px;      
+      font-size: 18px;
+      text-align: left;
+    }
+
+    @media screen and (max-width: $tablet) {
+      max-width: 250px;
+    }
+  }
+
+  .product-add-on {
+    padding: 25px 25px 35px 25px;
+
+    .product-plan__section {
+      padding: 0;
+      height: auto;
+    }
+
+    .product-plan__variations {
+      font-size: 14px;
+      line-height: 17px;
+
+      a {
+        color: inherit;
+      }
+    }
+
+    .product-plan__section--main {
+      font-size: 25px;
+    }
+
+    .product-plan__big-text {
+      font-size: inherit;
+    }
+  }
+
+  .product-add-on__title {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .product-plan__price {
+    color: $primary-color;
+    background: none;
+    margin: 1rem 0;
+
+    span.old-price {
+      font-size: 29px;
+      text-decoration: line-through;
+    }
+  }
+
+  .product-plan__section {
+    display: block;
+  }
+
+  .add-on--button {
+    padding: 0 25px 35px;
+
+    .btn {
+      display: block;
+      min-width: 100%;
+      background-color: $primary-color;
+
+      &.disabled {
+        pointer-events: none;
+        background-color: $c-disabled;
+      }
+    }
+  }
+}

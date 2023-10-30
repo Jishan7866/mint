@@ -1,0 +1,41 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+	<div{{attributes.addClass(classes)}}>
+		{% block content %}
+			{% if content.field_link[0]['#url'] is not empty %}
+				<a href="{{ content.field_link[0]['#url'] }}">
+				{% endif %}
+
+				{% if content.field_mobile_image[0] is not empty %}
+					<div class="mobile-img">{{ content.field_mobile_image }}</div>
+					{% set showmoibleimg = ' show-mobile-img' %}
+				{% endif %}
+				{% if content.field_image[0] is not empty %}
+					<div class="desktop-img{{ showmoibleimg }}">{{ content.field_image }}</div>
+				{% endif %}
+
+				{% if content.field_link[0]['#url'] is not empty %}
+				</a>
+			{% endif %}
+			
+			{% if content.field_description[0] is not empty %}
+				<div class="description">{{ content.field_description }}</div>
+			{% endif %}
+
+			{% if content.field_button[0] is not empty %}
+				<div class="button-link">
+					<a href="{{ content.field_button[0]['#url'] }}" class="btn btn-white-purple-arrow">
+						{{ content.field_button[0]['#title'] }}
+					</a>
+				</div>
+			{% endif %}
+		{% endblock %}
+	</div>
+{% endblock paragraph %}

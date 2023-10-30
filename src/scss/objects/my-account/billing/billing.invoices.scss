@@ -1,0 +1,134 @@
+.billing-details.invoices {
+  .billing-details-scroller {
+    max-height: 430px;
+  }
+
+  .billing-details-container {
+    padding: 5px;
+  }
+
+  .invoice-title {
+    text-align: center;
+  }
+
+  .box {
+    position: relative;
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 8px;
+    background-color: $c-white;
+    box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.17);
+    margin: 0 0 1rem 0;
+    line-height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .item {
+      padding: 0 0.5rem;
+
+      &.number {
+        font-size: 12px;
+        white-space: nowrap;
+        font-weight: bold;
+
+        .issue-date {
+          display: block;
+          font-weight: normal;
+        }
+      }
+
+      &.pay-link,
+      &.status {
+        width: 110px;
+        font-size: 12px;
+
+        .btn {
+          min-width: 60px;
+          max-width: 80px;
+          font-weight: 600;
+          font-size: 12px;
+          white-space: nowrap;
+          padding: 0.7rem 0.5rem;
+          width: 100%;
+        }
+      }
+
+      &.price {
+        width: 90px;
+        border-left: 2px solid $c-grey-3l;
+        border-right: 2px solid $c-grey-3l;
+        font-weight: bold;
+        font-size: 17px;
+
+        .paid-label {
+          display: block;
+          color: $c-violet;
+          font-size: 14px;
+        }
+      }
+
+      &.pdf-file {
+        width: 46px;
+
+        .pdf-icon {
+          width: 30px;
+          height: 36px;
+          display: block;
+          background-image: url("../img/pdf-icon-blue.svg");
+          background-repeat: no-repeat;
+          background-size: contain;
+        }
+      }
+    }
+
+    &.overdue {
+      .item {
+        &.pay-link {
+
+          .btn {
+            background-color: $c-red;
+          }
+        }
+
+        &.price {
+          .paid-label {
+            color: $c-red;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    .billing-details-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .box-col {
+        width: 49%;
+      }
+    }
+
+    .box {
+
+      .item {
+        padding: 0 1rem;
+
+        &.number {
+          font-size: 14px;
+        }
+
+        &.pdf-file {
+          width: 66px;
+
+          .pdf-icon {
+            width: 34px;
+            height: 38px;
+          }
+        }
+      }
+    }
+  }
+}

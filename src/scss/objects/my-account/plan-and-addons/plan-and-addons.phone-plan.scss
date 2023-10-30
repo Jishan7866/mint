@@ -1,0 +1,26 @@
+.plan-and-addons.phone-plan {
+  margin-bottom: 0;
+
+  .paragraph--type--gallery {
+    padding: 0;
+
+    .paragraph-content {
+      max-width: 480px;
+      padding: 0;
+    }
+  }
+
+  .your-data-row {
+    &.select-mobile-number-wrapper {
+      padding-bottom: 0;
+
+      .selectize-control.select-mobile-number.single {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &:after {
+    display: none;
+  }
+}

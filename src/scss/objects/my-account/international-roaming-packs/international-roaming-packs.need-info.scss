@@ -1,0 +1,275 @@
+.element.international-roaming-packs.loaded.open {
+  padding: 1px 2rem;
+  margin-top: 51px;
+  background: #000;
+
+  &>.container>.title {
+    margin-top: -35px;
+  }
+
+  @media screen and (max-width: $tablet) {
+    padding: 1px 0;
+  }
+
+}
+
+.plan-and-addons.need_info {
+  .international-roaming {
+    a {
+      color: #ffffff;
+    }
+
+    .addons-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 5px;
+      padding-top: 20px;
+      justify-content: center;
+    }
+
+    .addon-wrapper {
+      width: calc(100% / 3 - 40px);
+      border-radius: 10px;
+      box-shadow: 0 2px 4px 0 rgba(155, 155, 155, .3);
+      border: none;
+
+      @media screen and (max-width: 900px) {
+        width: calc(100% / 3 - 30px);
+      }
+
+      @media screen and (max-width: 768px) {
+        width: calc(100% / 2 - 30px);
+      }
+
+      @media screen and (max-width: 500px) {
+        width: calc(100% - 50px);
+      }
+
+    }
+
+    .international-roaming-intro p {
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .international-roaming-intro p strong {
+      font-size: 30px;
+      color: #ffffff;
+      line-height: 2.7;
+      display: inline-block;
+      margin-top: 2rem;
+
+      @media screen and (max-width: $mobile) {
+        line-height: 1;
+      }
+    }
+
+    .paragraph.layout--onecol {
+      padding-left: 0;
+    }
+
+    .field--name-field-accordions .accordion-title {
+      margin-left: 0;
+      background: none;
+      padding: 0px 0px 15px;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    .field--name-field-accordion-content {
+      position: static;
+      padding: 0;
+      font-size: 16px;
+    }
+
+    .international-roaming-intro p {
+      color: #ffffff;
+    }
+
+    .add-on--button {
+      @media screen and (max-width: $mobile) {
+        padding: 15px 15px 22px 15px;
+      }
+    }
+
+    .add-on--button .btn {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .roaming-expiry-label {
+      font-weight: normal;
+      text-transform: none;
+      font-size: 15px;
+    }
+
+    .roaming-expiry-date {
+      display: block;
+      text-transform: none;
+      font-size: 15px;
+    }
+
+    .roaming-pack-faq {
+      font-size: 20px;
+      color: #ffffff;
+
+      .roaming-pack-faq-intro p strong {
+        color: $c-red;
+        font-size: 30px;
+        line-height: 2.7;
+      }
+
+      .field {
+        font-size: 20px;
+        line-height: 26px;
+      }
+
+      .accordion-content p {
+        font-size: 17px;
+        color: #ffffff;
+      }
+
+      .paragraph.layout--onecol {
+        padding: 0;
+      }
+
+      .field--name-field-accordions .accordion-title {
+        width: 100%;
+        padding: 1.5rem 0 1.5rem 0;
+      }
+
+      .field--name-field-accordions .accordion-title::after {
+        border-color: #fff;
+      }
+
+      @media screen and (max-width: 480px) {
+        .field {
+          width: 87%;
+        }
+      }
+
+      .paragraph::after {
+        display: block;
+        width: 100%;
+        height: 1px;
+        background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+        content: '';
+      }
+    }
+
+    .add-on--button-disabled {
+      background-color: #ffffff;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .add-on--button-disabled .btn.disabled {
+      background: none;
+      color: $c-white;
+    }
+
+    .roaming-footer {
+      font-size: 20px;
+      line-height: 26px;
+    }
+
+    .roam-pack-title {
+      background-color: $c-violet;
+      padding: 12px 20px;
+      border-radius: 10px 10px 0 0;
+      font-size: 18px;
+      color: $c-white;
+
+      @media screen and (max-width: $mobile) {
+        padding-left: 10px;
+      }
+
+    }
+
+    .roam-pack-validity {
+      margin-left: 20px;
+      color: $c-violet;
+      line-height: 1.6;
+
+      @media screen and (max-width: $mobile) {
+        padding-left: 10px;
+      }
+
+    }
+
+    .roam-pack-validity-label {
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 25px;
+      margin-left: 20px;
+      position: relative;
+      bottom: -10px;
+    }
+
+    .roam-pack-price {
+      font-weight: bold;
+      font-size: 55px;
+    }
+
+    .roam-pack-price-text {
+      font-size: 20px;
+      position: relative;
+      left: -13px;
+    }
+
+    .roam-pack-body {
+      margin: 20px;
+      line-height: 2;
+      margin: 0px 0 10px 20px;
+      font-size: 14px;
+
+      @media screen and (max-width: $mobile) {
+        padding-left: 10px;
+      }
+
+    }
+
+    .roam-pack-price::before {
+      content: "\0024";
+      font-weight: normal;
+      font-size: 25px;
+      position: relative;
+      top: -22px;
+    }
+
+    .addon-wrapper-disabled {
+      overflow: hidden;
+
+      &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background-color: $c-white;
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+      }
+
+      .roam-pack-title,
+      .add-on--button {
+        position: relative;
+        z-index: 2;
+        background-color: $c-grey-l;
+      }
+    }
+
+    .roaming-footer p {
+      color: #fff;
+    }
+
+    .roaming-footer a {
+      color: $c-red;
+    }
+
+    .btn-blue {
+      color: $c-white;
+    }
+  }
+
+}

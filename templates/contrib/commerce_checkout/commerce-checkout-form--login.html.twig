@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Two column template for the checkout form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+{% set site_url = url("<current>")|render|render|split('/')|last %}
+
+<div class="layout-checkout-form clearfix">
+	<div class="layout-region layout-region-checkout-secondary">
+      <span class="close"></span>
+      <h3>{% trans %}
+          Your purchase summary:
+        {% endtrans %}</h3>
+    <div class="order-summary-content">
+      {{ form.sidebar }}
+    </div>
+	</div>
+  <div class="have-promo-code-wrapper">
+    {% if site_url == 'login' or site_url == 'order_information' or site_url == 'payment' %}
+      <div class="have-promo-code">
+        <span class="open-promo-code-btn">Got a promo code?</span>
+      </div>
+    {% endif %}
+  </div>
+	<div class="layout-region layout-region-promo-code-form">
+		{{ mint_promo_code_form }}
+	</div>
+	<div class="layout-region layout-region-esim-type">
+		{{ mint_esim_form }}
+	</div>
+	<div class="layout-region layout-region-checkout-login-message">
+		{{mint_checkout_login_message}}
+	</div>
+	<div class="checkout-progress-steps">{{ mint_checkout_progress }}</div>
+	<div class="checkout-method-message">{{ mint_checkout_message }}</div>
+	<div class="block-page-title-block checkout-step-title-mobile">
+		<h2 class="page-title">{% trans %}
+			Secure checkout
+			{% endtrans %}</h2>
+	</div>
+	<div class="layout-region layout-region-checkout-main">
+		{{ form|without('sidebar') }}
+		<div class="need-help">{{ need_help|raw }}</div>
+	</div>
+	<div class="layout-region layout-region-checkout-footer"></div>
+</div>

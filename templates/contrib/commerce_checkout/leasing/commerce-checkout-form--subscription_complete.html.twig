@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Two column template for the checkout form.
+ *
+ * Available variables:
+ * - form: The form.
+ *
+ * @ingroup themeable
+ */
+#}
+
+<div class="layout-checkout-form-leasing leasing-complete clearfix">
+	<div class="checkout-progress-steps-leasing">{{ mint_checkout_progress }}</div>
+	<div class="layout-region layout-region-checkout-main-leasing">
+		{{ form|without('sidebar') }}
+	</div>
+	<div class="layout-region layout-region-checkout-footer"></div>
+</div>

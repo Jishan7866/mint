@@ -1,0 +1,264 @@
+.mint-refer-content {
+  position: relative;
+  margin: 3rem auto;
+  padding-bottom: 3rem;
+  text-align: center;
+
+  &:after {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(90deg, #f2f2f2, #a0a0a0 50%, #f2f2f2);
+    content: "";
+  }
+
+  .mint-refer-content-inner {
+    border-radius: 8px;
+    background-color: #f6f6f6;
+    padding: 3rem;
+    h2 {
+      font-size: 34px;
+      line-height: 37px;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 24px;
+      color :#000;
+    }
+
+    @media screen and (max-width: $tablet) {
+      padding: 1.5rem;
+    }
+  }
+
+  .no-active-sim-message {
+    display: none;
+  }
+
+  &.no-active-sim {
+
+    .refer-promo-code,
+    .invite-button {
+      display: none;
+    }
+
+    .no-active-sim-message {
+      display: block;
+      text-align: center;
+      color: #acadae;
+      line-height: 45px;
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    width: 88%;
+  }
+
+  @media screen and (max-width: $mobile) {
+    width: 84%;
+    margin-left: 30px;
+    margin-right: 30px;
+
+    .plan-addons-data {
+      margin: 0 10px;
+    }
+  }
+
+  .refer-promo-code-wrapper {
+    width: 600px;
+    box-sizing: border-box;
+    margin: 30px auto 0 auto;
+
+    font-size: 17px;
+    text-align: center;
+
+    .select-mobile-number-wrapper {
+      margin: 2rem auto;
+      text-align: left;
+
+      .selectize-input>input {
+        line-height: 1 !important;
+      }
+    }
+
+    .flex {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      @media screen and (max-width: $mobile) {
+        flex-direction: column;
+      }
+    }
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+    }
+
+    .refer-promo-code {
+      line-height: 45px;
+      font-weight: bold;
+      border: 1px solid #ACADAE;
+      /* width: 49%; */
+      width: 100%;
+      background: #FFFFFF;
+      position: relative;
+
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+
+      &.inactive {
+        border: none;
+        background: none;
+      }
+    }
+
+    .invite-button {
+      border: 1px solid #6038CD;
+      margin-left: 1%;
+      background: #6038CD;
+      cursor: pointer;
+      color: #FFF;
+      line-height: 45px;
+      text-align: center;
+      font-size: 17px;
+      text-transform: uppercase;
+      width: 49%;
+
+      @media screen and (max-width: $mobile) {
+        width: 100%;
+        margin: 0;
+      }
+
+      /* Hide this button temporarily */
+      display: none !important;
+    }
+  }
+
+  .mint-refer-code-form {
+    padding-top: 30px;
+  }
+
+  .refer-promo-intro h1,
+  h2 {
+    color: $c-violet;
+  }
+
+  .refer-promo {
+    text-align: center;
+
+    @media screen and (max-width: $mobile) {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+  }
+
+  .refer-promo-intro h2 {
+    @media screen and (max-width: $mobile) {
+      line-height: 1.2;
+    }
+  }
+
+  .refer-promo-intro p a {
+    color: $c-black;
+  }
+
+  #plan-refer-code-data-wrapper {
+    text-align: center;
+    padding-top: 15px;
+  }
+
+}
+
+
+.mint-refer-content-outer {
+  background: #191919;
+  margin-top: -2rem;
+  padding-bottom: 1px;
+  margin-bottom: 50px;
+
+  .mint-refer-content {
+    padding-bottom: 1rem;
+    .refer-promo-code-wrapper {
+      display: flex;
+      justify-content: center;
+
+      .refer-promo-code {
+        line-height: 36px;
+      }
+    }
+
+    .select-mobile-number-wrapper {
+      width: calc(100% - 5px);
+      margin: 0 5px 0px 0;
+      position: relative;
+      &:after {
+        content: "";
+        height: 12px;
+        width: 12px;
+        position: absolute;
+        right: 14px;
+        top: 10px;
+        border-left: 2px solid #bbb;
+        border-bottom: 2px solid #bbb;
+        transform: rotate(-45deg);
+        pointer-events: none;
+      }
+
+      select {
+        padding: 8px 30px 8px 11px;
+        background: linear-gradient(180deg, #F2F2F2 0%, #D4D4D4 100%);
+        box-shadow: inset 0 2px 0 0 #FFFFFF, 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(155, 155, 155, 0.3);
+      }
+    }
+
+    .flex {
+      width: calc(100% - 5px);
+      margin-left: 5px;
+
+    }
+    &:after {
+      display: none;
+    }
+  }
+}
+
+
+@media (max-width: 991px) { 
+  .mint-refer-content-outer {
+    .mint-refer-content {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}
+@media (max-width: 767px) { 
+  .mint-refer-content-outer {
+    .mint-refer-content {
+      padding-left: 0px;
+      padding-right: 0px;
+      .refer-promo-code-wrapper {
+        flex-wrap: wrap;
+        .select-mobile-number-wrapper {
+          width: 100%;
+          margin: 0 0 10px 0;
+        }
+        .flex {
+          width: 100%;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  
+}

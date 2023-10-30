@@ -1,0 +1,50 @@
+.secondary-footer {
+  font-size: 10px;
+  background-color: $primary-color;
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 8px;
+    padding: 0 30px;
+  }
+}
+
+.region-secondary-footer {
+  max-width: 940px;
+  margin: 0 auto;
+  padding: 17px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+
+  ul.menu {
+    display: flex;
+    align-items: center;
+
+    li {
+      position: relative;
+
+      &::before {
+        display: inline;
+        margin-left: 8px;
+        margin-right: 5px;
+        content: '|';
+
+        @media screen and (max-width: $mobile) {
+          margin-left: 5px;
+          margin-right: 2px;
+        }
+      }
+    }
+
+    a,
+    a.is-active {
+      color: $c-white;
+      text-decoration: none;
+    }
+  }
+
+  .copyright {
+    font-weight: 600;
+  }
+}

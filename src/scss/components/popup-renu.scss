@@ -1,0 +1,75 @@
+.better-for-our-planet {
+    .ui-dialog {
+        top: 0 !important;
+        right: 0px !important;
+        left: auto !important;
+        transition: transform .5s ease;
+        animation: nuloginslide 0.5s forwards;
+        animation-delay: .5s;
+        background-color: #fff;
+        box-shadow: 0 2px 8px 3px rgba(0, 0, 0, 50%) !important;
+        height: 100% !important;
+        width: 385px !important;
+        left: auto !important;
+        border-radius: 0;
+        padding-top: 145px;
+        .ui-dialog-titlebar {
+            position: unset;
+            .ui-dialog-title {
+                color: #25CE79;
+                padding: 0;
+                text-align: left;
+                font-size: 22px;
+                line-height: 24px;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
+            .ui-dialog-titlebar-close {
+                position: absolute;
+                top: 26px;
+                &::before {
+                    width: 32.4px;
+                    height: 1px;
+                }
+                &::after {
+                    width: 32.4px;
+                    height: 1px;
+                }
+            }
+        }
+        p {
+            text-align: left;
+        }
+
+
+    }
+    .renu-commitment-wrapper {
+        p {
+            text-align: left;
+            padding-top: 15px;
+        }
+    }
+    .renu-commit-wrapper {
+        margin-top: 32px;
+        span {
+            height: 45px;
+            background: #000000 !important;
+            margin: 0;
+            width: 100%;
+            font-weight: 600;
+            display: block;
+            color: #fff;
+            line-height: 47px;
+            cursor: pointer;
+        }
+    }
+}
+p.popup-sources {
+    margin-bottom: 5px;
+    font-size: 12px;
+    line-height: 13px;    
+}
+p.small-sources {
+    font-size: 12px;
+    line-height: 12px;
+}

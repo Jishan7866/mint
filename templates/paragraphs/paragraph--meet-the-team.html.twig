@@ -1,0 +1,17 @@
+{% set bgcolor = content.field_background_color.0|raw %}
+
+{% block paragraph %}
+	<div class="meet-the-team" style="background-color: #{{ bgcolor }};">
+		{% block content %}
+			<div class="container">
+				{% if content.field_title[0] is not empty %}
+					<h2 class="text-center">{{ content.field_title }}</h2>
+				{% endif %}
+				<div class="team-row">
+					<div class="team-image">{{ content.field_team_image }}</div>
+					<div class="team-description">{{ content|without('field_title', 'field_team_image', 'field_background_color') }}</div>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock paragraph %}

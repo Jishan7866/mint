@@ -1,0 +1,94 @@
+/* Colors */
+$c-white: #fff;
+$c-black: rgba(0, 0, 0, 0.9);
+$c-violet: #6038CD;
+$c-violet-l: rgba($c-violet, 0.07);
+$c-grey-l: #6d6e70;
+$c-grey-2l: #d3d3d3;
+$c-grey-3l: #f6f6f6;
+$c-grey-4l: #2F2E2E;
+$c-grey-5l: #D4D3D4;
+$c-grey-6l: #e7edee;
+$c-grey-7l: #ccc;
+$c-grey-8l: #9b9b9b;
+$c-blood-orange: #F9423A;
+$c-disabled: rgba(155, 155, 155, 0.3);
+$c-red: #FF4638;
+$c-green: #25ce79;
+
+/* Fonts */
+$f-sans-serif: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+/* Base variables */
+$main-font: 'Paul Grotesk', $f-sans-serif;
+$main-font-size: 16px;
+$main-line-height: 1.5;
+$heading-font: $main-font;
+$heading-line-height: 1.1;
+$main-bg: $c-white;
+$main-text-color: $c-black;
+$secondary-text-color: $c-white;
+$link-color: $main-text-color;
+$default-transition-time: 0.3s;
+$default-transition: all $default-transition-time ease;
+
+$primary-color: $c-violet;
+$accent-color: $c-blood-orange;
+$text-color: $c-black;
+$text-color-l: $c-grey-l;
+$text-color-2l: $c-grey-3l;
+$border-color: $c-grey-2l;
+$placeholder-color: $c-grey-2l;
+$close-color: $c-black;
+
+/* Media variables */
+$tablet-wide: 1024px;
+$tablet: 768px;
+$mobile-main: 767px;
+$mobile: 480px;
+$banner-max-width: 2400px;
+$banner-border-width: 10px;
+
+$m-3xl: screen and (min-width: 1921px);
+$m-to-xxl: screen and (max-width: 1920px);
+$m-from-xxl: screen and (min-width: 1280px);
+$m-xxl: screen and (min-width: 1280px) and (max-width: 1920px);
+$m-to-xl: screen and (max-width: 1279px);
+$m-from-xl: screen and (min-width: 1024px);
+$m-xl: screen and (min-width: 1024px) and (max-width: 1279px);
+$m-to-2l: screen and (max-width: 1023px);
+$m-from-2l: screen and (min-width: 860px);
+$m-2l: screen and (min-width: 860px) and (max-width: 1023px);
+$m-to-l: screen and (max-width: 859px);
+$m-from-l: screen and (min-width: 768px);
+$m-l: screen and (min-width: 768px) and (max-width: 859px);
+$m-to-m: screen and (max-width: 767px);
+$m-from-lm: screen and (min-width: 600px);
+$m-lm: screen and (min-width: 600px) and (max-width: 767px);
+$m-to-sm: screen and (max-width: 600px);
+$m-sm: screen and (min-width: 480px) and (max-width: 600px);
+$m-from-m: screen and (min-width: 480px);
+$m-m: screen and (min-width: 480px) and (max-width: 768px);
+$m-to-s: screen and (max-width: 479px);
+$m-from-s: screen and (min-width: 321px);
+$m-s: screen and (min-width: 321px) and (max-width: 479px);
+$m-xs: screen and (max-width: 320px);
+
+$m-retina2x: screen and (min-resolution: 120dpi), screen and (min-resolution: 1.25dppx);
+
+$highlight-color: #6038CD;
+
+$spacer: 1rem;
+$spacers: ();
+$spacers: map-merge(
+  (
+    0: 0,
+    1: ($spacer * .25),
+    2: ($spacer * .5),
+    3: $spacer,
+    4: ($spacer * 1.5),
+    5: ($spacer * 3)
+  ),
+  $spacers
+);
+$sides: (all, top, bottom, left, right);

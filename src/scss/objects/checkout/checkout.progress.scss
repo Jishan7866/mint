@@ -1,0 +1,102 @@
+.checkout-progress-steps {
+  background-color: $text-color-2l;
+  border-top: 10px solid $c-black;
+  width: calc(100% + 84px);
+  margin: 0 -42px;
+  margin-bottom: 0;
+  padding: 0 42px;
+  box-shadow: 0 -2px 9px 0 rgba(0, 0, 0, 0.15);
+
+  @media screen and (max-width: $tablet) {
+    margin-bottom: 0;
+  }
+
+  @media screen and (max-width: $mobile) {
+    width: calc(100% + 60px);
+    margin: 0 -30px;
+    margin-bottom: 0;
+    padding: 0;
+    border-top: 8px solid $c-black;
+  }
+
+  ol,
+  li {
+    padding: 0;
+    margin: 0;
+  }
+
+  .checkout-progress {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    text-align: center;
+
+    @media screen and (max-width: $tablet) {
+      padding: 10px 0;
+    }
+
+    &--step {
+      font-size: 18px;
+      font-weight: 700;
+      color: $text-color;
+      position: relative;
+      width: calc(100% / 3);
+      padding: 0 7px;
+
+      @media screen and (max-width: $tablet) {
+        font-size: 0;
+        color: transparent;
+      }
+
+      &::before {
+        display: block;
+        width: 80px;
+        font-size: 36px;
+        font-weight: 500;
+        line-height: 80px;
+        border-radius: 50%;
+        margin: 0 auto;
+        margin-bottom: 23px;
+        color: $c-white;
+        background-color: $c-black;
+        content: "0"counter(checkout-progress);
+
+        @media screen and (max-width: $tablet) {
+          width: 40px;
+          line-height: 40px;
+          font-size: 21px;
+          margin-bottom: 0;
+        }
+      }
+
+      &__current~*::before {
+        color: $text-color;
+        background-color: $c-white;
+        box-shadow: 0 2px 4px 0 rgba($c-black, 0.6);
+      }
+
+      &:not(:last-child)::after {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        width: 45%;
+        height: 20px;
+        transform: translateX(50%);
+        background-image: url('../img/oval-small.svg'),
+          url('../img/oval-big.svg'),
+          url('../img/oval-small.svg');
+        background-position: left, center, right;
+        background-repeat: no-repeat;
+        content: '';
+
+        @media screen and (max-width: $tablet) {
+          top: 16px;
+          height: 8px;
+          background-size: 6px, 8px, 6px;
+          width: 40%;
+        }
+      }
+    }
+  }
+}

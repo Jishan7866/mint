@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Custom order total summary template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - totals: An array of order totals values with the following keys:
+ *   - subtotal: The order subtotal price.
+ *   - adjustments: The adjustments:
+ *     - type: The adjustment type.
+ *     - label: The adjustment label.
+ *     - amount: The adjustment amount.
+ *     - percentage: The decimal adjustment percentage, when available. For example, "0.2" for a 20% adjustment.
+ *   - total: The order total price.
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('commerce_order/total_summary') }}
+<div class="summary-item">
+	<div{{attributes}}>
+		<div class="order-total-line order-total-line__total">
+			<div class="order-total-line-label">
+				<div class="label">{{ total_cost_label }}</div>
+				{% if total_cost_label_description %}
+					<div class="description desktop-only">{{ total_cost_label_description }}</div>
+				{% endif %}
+			</div>
+			<div class="order-total-line-value">
+				<div class="price">
+					<div class="price__dollar">$</div>
+					<div class="price__total">{{ totals.number_total_price }}</div>
+					<div class="price__text">/mth</div>
+				</div>
+				{% if total_cost_description %}
+					<div class="description">{{ total_cost_description }}</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</div>
+{% if total_cost_label_description_mobile %}
+	<div class="summary-item mobile-only odd">
+		<div class="description">{{ total_cost_label_description_mobile }}</div>
+	</div>
+{% endif %}

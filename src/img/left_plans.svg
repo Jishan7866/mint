@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="19px" height="39px" viewBox="0 0 19 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+  <title>Path 2 Copy 6</title>
+  <desc>Created with Sketch.</desc>
+  <g id="Webpages" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Phones-&amp;-plans-FAQ-LEGAL" transform="translate(-47.000000, -2098.000000)">
+      <g id="Group-17" transform="translate(-448.000000, 1668.000000)">
+        <g id="Plans" transform="translate(255.000000, 0.000000)">
+          <g id="Group-3" transform="translate(0.000000, 179.000000)">
+            <g id="Group-10-Copy-5" opacity="0.2" transform="translate(0.000000, 63.000000)">
+              <path d="M8,0 L258,0 C262.418278,-8.11624501e-16 266,3.581722 266,8 L266,407 C266,411.418278 262.418278,415 258,415 L8,415 C3.581722,415 1.14227921e-13,411.418278 1.13686838e-13,407 L1.13686838e-13,8 C1.13145755e-13,3.581722 3.581722,8.11624501e-16 8,0 Z" id="Rectangle-3-Copy-7" fill="none"></path>
+              <text id="Unlimited-talk-&amp;-tex-Copy-4" font-family="PaulGrotesk-Regular, Paul Grotesk" font-size="14" font-weight="normal" fill="#D4D3D4" text-decoration="line-through">
+                <tspan x="25" y="201">Unlimited talk &amp; text to 15 countries</tspan>
+              </text>
+            </g>
+            <polyline id="Path-2-Copy-6" stroke="#F9423A" stroke-width="4.5" transform="translate(250.000000, 270.500000) rotate(-270.000000) translate(-250.000000, -270.500000) " points="232 264 250 277 268 264"></polyline>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

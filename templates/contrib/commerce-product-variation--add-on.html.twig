@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ *
+ * Custom template for paln product variations on my account page.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product_variation: The rendered product variation fields.
+ *   Use 'product_variation' to print them all, or print a subset such as
+ *   'product_variation.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product_variation|without('title') }}
+ *   @endcode
+ * - product_variation_entity: The product variation entity.
+ * - url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% set hundredmincallsb = '<span class="hundredmincallsbtips tooltip-icon">?</span><div class="hundredmincallsbtips tooltip-text">Your add-ons will expire at the same time your plan renews each month. You will receive a text when you have used up 50%, 85% and 100% of your add-on. Only add more when you run out or new add-on will replace the current one you have active.</div>' %}
+
+<div class="product-add-on" data-variation-id="{{ variation_id }}">
+	<div class="product-plan__section product-plan__section--main product-add-on__title">
+		<div class="product-plan__section-content">
+			<div class="product-plan__row">
+				<div class="product-plan__big-text">
+					{{ base_plan_title }}
+				</div>
+				{{- field_data_word -}}
+			</div>
+		</div>
+	</div>
+	<div class="product-plan__section product-plan__section--main product-plan__price">
+		<div class="product-plan__section-content">
+			<div class="product-plan__row">
+				<div class="product-price-formatted">
+					<div class="price">
+						<span class="currency">$</span>
+						<span class="value">{{- base_plan_price -}}</span>
+					</div>
+					<div class="price-suffix">/one-off</div>
+					{% if base_plan_old_price %}
+						<span class="old-price">${{- base_plan_old_price -}}</span>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="product-plan__variations">
+		{% if base_plan_title == '100 minutes call' %}
+			{{hundredmincallsb|raw}}<div class='hundred-min-call'>{{ body }}</div>
+		{% else %}
+			{{ body }}
+		{% endif %}
+	</div>
+</div>

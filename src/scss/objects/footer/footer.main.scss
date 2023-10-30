@@ -1,0 +1,231 @@
+.main-footer {
+  font-size: 14px;
+  background-color: $text-color;
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 12px;
+    padding: 0 30px;
+  }
+}
+
+.region-main-footer {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 25px 0;
+  display: flex;
+  flex-wrap: wrap;
+
+  //menu
+
+  .menu--footer {
+    width: 50%;
+
+    @media screen and (max-width: $mobile) {
+      width: 100%;
+      order: 2;
+    }
+  }
+
+  ul.menu {
+    display: flex;
+    flex-flow: row wrap;
+
+    li {
+      width: 50%;
+      margin-bottom: 5px;
+
+      &:nth-child(2n - 1) {
+        padding-right: 30px;
+        max-width: 200px;
+      }
+    }
+
+    a,
+    a.is-active {
+      color: $c-white;
+      font-weight: normal;
+      transition: .2s;
+
+      &:hover {
+        color: $accent-color;
+      }
+    }
+  }
+
+  //social links
+  .block-simple-blocksocial-buttons-block {
+    display: flex;
+    width: 15%;
+    padding-left: 30px;
+
+    @media screen and (max-width: $mobile) {
+      order: 1;
+      font-size: 14px;
+      width: 100%;
+      padding-left: 0;
+      margin-bottom: 1rem;
+    }
+
+    .social_buttons {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+
+      @media screen and (max-width: $mobile) {
+        flex-flow: row;
+        align-items: flex-start;
+      }
+    }
+
+    .facebook-link,
+    .instagram-link,
+    .youtube-link,
+    .trustpilot-link {
+      flex-shrink: 0;
+      display: block;
+      text-indent: -9999px;
+      width: 30px;
+      height: 30px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      @media screen and (max-width: $mobile) {
+        margin-right: 30px;
+      }
+    }
+
+    .facebook-link {
+      background-image: url('../img/facebook-icon.svg');
+    }
+
+    .instagram-link {
+      background-image: url('../img/instagram-icon.svg');
+    }
+
+    .youtube-link {
+      background-image: url('../img/youtube-icon.svg');
+    }
+
+    .trustpilot-link {
+      background-image: url("../img/trustpilot-icon.png");
+    }
+  }
+
+  // newsletter block
+  .block-mint-mautic-promo-block {
+    display: flex;
+    width: 35%;
+    color: $c-white;
+
+    p {
+      margin-bottom: 0.6rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media screen and (max-width: $mobile) {
+      order: 3;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .mautic_promo_input_wrapper {
+      padding: 0;
+      margin: 0;
+      border: none;
+    }
+
+    .fieldset-wrapper {
+      position: relative;
+      padding-right: 90px;
+      margin-bottom: 0.5rem;
+
+      .form-text {
+        border-radius: 0;
+      }
+
+      .form-submit {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 0;
+        padding: 8px;
+        background-color: transparent;
+        height: 39px;
+        width: 85px;
+        border: 2px solid #9B9B9B;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+        @media screen and (max-width: $mobile) {
+          background-color: transparent;
+          border: 2px solid;
+        }
+      }
+
+      .promo-email-wrapper {
+        height: 39px;
+
+        &::placeholder {
+          color: #9B9B9B !important;
+        }
+      }
+    }
+  }
+
+  //Payment menthod block
+  .block-simple-blockpayment-methods {
+    margin: 1rem 0 0.5rem 0;
+
+    a {
+      color: $c-white;
+    }
+
+    @media screen and (max-width: $mobile) {
+      order: 4;
+    }
+  }
+
+  .payment_methods {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      width: 50px;
+      height: 30px;
+      text-indent: -999px;
+      overflow: hidden;
+      display: inline-block;
+      margin-right: 10px;
+      margin-bottom: 5px;
+      background-repeat: no-repeat;
+      background-position: center bottom;
+      background-size: 50px;
+
+      &.visa {
+        background-image: url('../img/visa-icon.svg');
+      }
+
+      &.mastercard {
+        background-image: url('../img/mastercard-icon.svg');
+      }
+
+      &.paypal {
+        background-image: url('../img/paypal-icon.svg');
+      }
+
+      &.laybuy {
+        background-image: url('../img/laybuy-icon.png');
+      }
+    }
+  }
+}

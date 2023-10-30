@@ -1,0 +1,57 @@
+.meet-the-team {
+  padding: 40px 0;
+
+  @media screen and (min-width: $tablet) {
+    padding: 60px 42px;
+  }
+
+  .slick {
+    .slick-slide {
+      .media--loading {
+        img {
+          height: 200px;
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-size: 35px;
+  }
+
+  .team-description {
+    padding: 2rem 2rem 0 2rem;
+    text-align: center;
+    font-size: 15px;
+  }
+
+  .container {
+    max-width: 940px;
+    margin-left: auto;
+    margin-right: auto;
+
+    @media screen and (min-width: $tablet) {
+      h2 {
+        font-size: 40px;
+      }
+
+      .team-row {
+        display: flex;
+        flex-flow: wrap;
+        align-items: center !important;
+      }
+
+      .team-image,
+      .team-description {
+        width: 50%;
+        padding: 0;
+      }
+
+      .team-description {
+        padding-left: 2.5rem;
+        text-align: left;
+        font-size: 16px;
+      }
+    }
+  }
+}

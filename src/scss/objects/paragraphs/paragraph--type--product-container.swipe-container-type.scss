@@ -1,0 +1,51 @@
+.paragraph--type--product-container.swipe-container-type {
+  .wrapper-step {
+    margin-bottom: 0;
+  }
+
+  .paragraph-content {
+    @media screen and (max-width: $mobile) {
+      padding-bottom: 15px;
+    }
+
+    .field--name-field-text {
+
+      p,
+      a {
+        font-family: $main-font;
+        font-size: 15px;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.6;
+        letter-spacing: normal;
+        color: $c-grey-l;
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .swiper {
+    position: relative;
+
+    @media screen and (max-width: 515px) {
+      padding: 0 10px;
+    }
+
+    @media screen and (max-width: $mobile) {
+      margin: 0 auto;
+    }
+  }
+
+  .swiper-container {
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+
+  .swiper-slide-visible .product-plan {
+    opacity: 1;
+  }
+}

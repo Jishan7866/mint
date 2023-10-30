@@ -1,0 +1,249 @@
+.popular-products {
+  padding: 3rem 0;
+  text-align: center;
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .phone {
+    padding: 11px;
+    position: relative;
+
+    .phone-inner {
+      padding: 5rem 1.5rem;
+      position: relative;
+      font-size: 14px;
+      background-color: $c-white;
+      box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+
+      .outright-save {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          background: #EFEBFA;
+          padding: 1rem 1.5rem;
+          line-height: 1rem;
+
+          .tooltip-icon {
+            background: none;
+            width: auto;
+            text-decoration: underline;
+            position: relative;
+            z-index: 10;
+
+            .tooltip-text {
+              font-weight: normal;
+            }
+          }
+
+          .save-upto .tooltip-icon {
+            font-weight: bold;
+            color: #6038CD;
+          }
+        }
+
+      h3, h4 {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      .phone-label {
+        a, a:link, a:visited, a:focus {
+          color: inherit;
+          text-decoration: none;
+        }
+        a:after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
+        }
+      }
+
+      .certified {
+        color: $c-violet;
+        font-size: 14px;
+        font-weight: bold;
+
+        &.brand-new {
+          color: $c-red;
+        }
+      }
+
+      .phone-image {
+        margin: 1rem 0;
+        min-height: 210px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        position: relative;
+
+        .phone-term {
+          position: absolute;
+          top: 37%;
+          right: -1.5rem;
+          width: 60%;
+          color: $c-white;
+          background-color: $c-black;
+          font-weight: bold;
+          font-size: 14px;
+          text-align: center;
+          padding: 0.4rem;
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+        }
+        .phone-plan {
+          position: absolute;
+          top: 56%;
+          right: -1.5rem;
+          width: 60%;
+          color: $c-white;
+          background-color: $c-violet;
+          font-weight: bold;
+          font-size: 14px;
+          text-align: center;
+          padding: 0.4rem;
+          box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5);
+        }
+        .phone-plan-icon {
+          position: absolute;
+          bottom: 0;
+          left: 1.3rem;
+          display: block;
+          background-image: url("../img/plan-icon.svg");
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain;
+          width: 35%;
+          height: 60%;
+        }
+      }
+
+      .price {
+        color: $c-violet;
+      }
+
+      .min-cost {
+        font-size: 12px;
+      }
+
+      .desc {
+        background-color: #E9FAF1;
+        padding: 1rem 1.5rem;
+        line-height: 1rem;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .desc-inner {
+          background-image: url("../img/leaf-icon.svg");
+          background-repeat: no-repeat;
+          background-position: 0;
+          padding-left: 22px;
+          text-align: center;
+          display: inline-block;
+        }
+
+        a {
+          color: $c-green;
+        }
+
+        .more-info {
+          position: relative;
+          z-index: 10;
+        }
+      }
+    }
+  }
+
+  .slick-arrow {
+    position: absolute;
+    bottom: 7px;
+    padding: 0;
+    margin: 0;
+    border: none;
+
+    &.slick-prev {
+      left: 15px;
+    }
+    &.slick-next {
+      right: 15px;
+    }
+  }
+
+  .slick-dots {
+    margin: 1rem 0 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center !important;
+
+    li {
+      margin: 3px;
+      width: 12px;
+      height: 12px;
+      background-color: $c-grey-2l;
+      list-style: none;
+      border-radius: 100%;
+      overflow: hidden;
+
+      &:only-child {
+        display: none;
+      }
+
+      button {
+        border: none;
+        width: 12px;
+        height: 12px;
+        display: block;
+        border-radius: 100%;
+        overflow: hidden;
+        background-color: $c-grey-2l;
+        text-indent: -100px;
+        font-size: 0;
+      }
+
+      &.slick-active {
+        background-color: $c-violet;
+        button{
+          background-color: $c-violet;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $tablet) {
+    .title {
+      font-size: 2.8rem;
+    }
+  }
+
+  @media screen and (max-width: 960px) {
+    .container {
+      max-width: 680px;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    .container {
+      max-width: 350px;
+    }
+  }
+}
+.block-mint-most-popular-product .sales-banner-right-wrapper { position: absolute;
+    top: 30%;
+    right: 11px; }
+.block-mint-most-popular-product .sales-banner-right { color: #fff !important;
+    text-align: center;
+    padding: 8px 16px 7px 16px;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: bold;
+    margin-bottom: 8px; }
+

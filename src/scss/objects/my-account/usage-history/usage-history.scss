@@ -1,0 +1,184 @@
+.mint-usage-history-form .phone-number-dropdown {
+  display: none;
+}
+
+.usage-history-description {
+  margin: 1.5rem auto 3rem auto;
+  text-align: center;
+  font-size: 1.2rem;
+  p {
+    font-size: 20px;
+  }
+
+  a {
+    color: #000;
+  }
+}
+
+.usage-history {
+  display: flex;
+  margin-top: 2rem;
+  .your-data-row {
+    .show-tablet-up {
+      margin-bottom: 15px;
+      margin-top: -20px;
+    }
+  }
+
+  @media screen and (max-width: $tablet) {
+    flex-flow: column-reverse;
+  }
+
+  .mobile-phone-number {
+    text-align: left;
+    width: 100% !important;
+  }
+
+  .column {
+    width: 100%;
+    display: flex;
+
+    &--left {
+      width: 49%;
+      margin-right: 1%;
+
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+        margin: 0;
+      }
+    }
+
+    &--right {
+      width: 49%;
+      margin-left: 1%;
+
+      @media screen and (max-width: $tablet) {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  .your-data-rows {
+    width: 100%;
+  }
+
+  .your-data-row {
+    font-size: 1.2rem;
+    padding: 1.2rem 0;
+    position: relative;
+
+    .your-data-title {
+      font-weight: bold;
+    }
+
+    .plan-renewal-date.tooltip-icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+    }
+  }
+
+  .your-data-row:after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background-image: linear-gradient(90deg, #f2f2f2 0, #a0a0a0 50%, #f2f2f2);
+  }
+
+  &:last-of-type .column--left {
+    margin-bottom: 0;
+  }
+
+  .total-data {
+    margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: bold;
+    color: $accent-color;
+  }
+
+  .your-data-left.circle {
+    display: none;
+  }
+
+  .your-data-left {
+    text-align: center;
+    font-size: 1.1em;
+    margin: 0 auto;
+    height: 100%;
+    background: #F6F6F6;
+    padding: 2rem;
+    align-items: center;
+    border-radius: 5px;
+
+    @media screen and (max-width: $tablet) {
+      max-width: 100%;
+      font-size: 16px;
+      text-align: left;
+    }
+  }
+
+  .your-data-left-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #6038CD;
+    margin-bottom: 0.8em;
+
+    @media screen and (max-width: $tablet) {
+      font-size: 24px;
+    }
+  }
+
+  .days-left {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 1em;
+  }
+}
+
+.mint-usage-history-form>.phone-number-dropdown {
+  display: none;
+}
+
+.show-tablet {
+  display: none;
+}
+
+@media screen and (max-width: $tablet) {
+  .show-tablet {
+    display: block;
+  }
+
+  .show-tablet-up {
+    display: none;
+  }
+}
+
+
+@media(max-width: 767px) {
+  .usage-history-description {
+    p {
+      font-size: 16px;
+    } 
+  }
+  .usage-history {
+    
+    .your-data-left {
+      padding: 20px 17px;
+      border-radius: 8px;
+    }
+  }
+  .usage-history-description {
+    margin-top: 0;
+    h2 {
+      margin-bottom: 20px;
+    }
+    .usage-history-description {
+      font-size: 16px;
+    }
+  }
+}

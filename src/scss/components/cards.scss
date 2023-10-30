@@ -1,0 +1,734 @@
+.cards {
+    &.small {
+        text-align: center;
+        position: relative;
+        .head {
+            z-index: 99;
+            position: relative;
+            h2 {
+                color: #fff;
+            }
+        }
+        .container {
+            height: 480px;
+            padding: 45px 15px;
+        }
+        .footer {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0px);
+            bottom: 45px;
+            width: 100%;
+            p {
+                color: #fff;
+                margin-top: 10px;
+            }
+        }
+    }
+    &.descp-black {
+        .footer {
+            p,
+            a {
+                color: #000;
+            }
+        }
+        .field--name-field-description {
+            p {
+                @media(min-width: 992px) {
+                    width: 781px;
+                }
+                margin: auto;
+            }
+        }
+        .footer {
+            .body {
+                h2 {
+                    max-width: 825px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+    &.last-bottom.descp-black {
+        .card {
+            .footer {
+                .body {
+                    p {
+                        line-height: 17px;
+                    }
+                }
+            }
+        }
+    }
+    &.bottom.descp-black {
+        .mobile-img {
+            @media(min-width: 768px) {
+                display: none;
+            }
+        }
+    }
+    .mobile-img,
+    .desktop-img {
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            -o-object-position: center;
+            object-position: center;
+        }
+    }
+    .btn-green {
+        min-width: 292px;
+    }
+}
+
+.block-element {
+    display: block;
+}
+
+.mask {
+    &::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background: rgba(0, 0, 0, 0.25);
+    }
+}
+
+.tpt,
+.tpt:hover {
+    background: transparent;
+}
+
+.better-for-our-planet .btn-green {
+    border: 2px solid #25CE79;
+}
+
+.highlight-green.highlight.highlight-violet {
+    background-image: linear-gradient(to bottom, #25CE79, #25CE79);
+}
+
+.masnory-block {
+    padding: 45px 0px;
+    text-align: center;
+    .card {
+        max-width: 635px;
+        margin: 0 auto;
+    }
+}
+
+.green {
+    color: #25CE79;
+}
+
+.clr-black {
+    color: #000;
+}
+
+.bg-grey {
+    background: #F1F2F4;
+}
+
+.bg-black {
+    background: #000;
+}
+
+.border-bottom {
+    text-decoration: none;
+    border-bottom: 2px solid #25CE79;
+}
+
+.masnory-grid {
+    position: relative;
+    text-align: left;
+    padding: 65px 0px;
+    img {
+        object-fit: cover;
+        border-radius: 8px;
+    }
+}
+
+.masnory-media-1 {
+    img {
+        width: 294px;
+        height: 210px;
+        object-fit: cover;
+    }
+}
+
+.masnory-media-3 {
+    position: absolute;
+}
+
+.masnory-media-3 {
+    img {
+        width: 294px;
+        height: 170px;
+    }
+}
+
+.masnory-media-2 {
+    img {
+        width: 294px;
+        height: 244px;
+    }
+}
+
+.masnory-media-2 {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    z-index: 1;
+}
+
+.masnory-media-3 {
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translate(-50%, 0px);
+}
+
+.cta {
+    height: 210px;
+    display: flex;
+    align-items: center;
+    &.bg-black {
+        h2 {
+            margin: 0;
+            text-align: center;
+            color: #fff;
+        }
+    }
+}
+
+.v-bottom {
+    p {
+        margin-bottom: 15px;
+        a {
+            color: #000;
+        }
+    }
+}
+
+.highlight-white.highlight.highlight-violet {
+    background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+    color: #25CE79;
+}
+
+.p-tb-45 {
+    padding: 45px 0px;
+}
+
+.btn-green.tpt {
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.page--banner {
+    .mobile-img,
+    .desktop-img {
+        img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            -o-object-position: center;
+            object-position: center;
+        }
+    }
+}
+
+.clr-white {
+    color: #fff;
+}
+
+.masnory-block.descp-black {
+    .head {
+        >h2 {
+            margin-bottom: 0;
+        }
+        h2 {
+            font-size: 32px;
+            line-height: 35px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 17px;
+        }
+        a.border-bottom.clr-black {
+            text-decoration: underline;
+            text-decoration-color: #25ce79;
+            text-decoration-thickness: 2px;
+            border: 0;
+        }
+        .field--name-field-description {
+            h2 {
+                margin-bottom: 18px;
+            }
+        }
+    }
+}
+
+.cards.small.mask {
+    .footer {
+        z-index: 9;
+    }
+}
+
+.btn-green {
+    &:hover {
+        background: #25CE79;
+    }
+}
+
+.cards.small.mask {
+    .head {
+        >h2 {
+            margin-bottom: 0;
+            @media(max-width: 575px) {
+                line-height: 35px;
+            }
+        }
+    }
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        .footer {
+            position: relative;
+            bottom: 0;
+            a.btn-green {
+                border-color: #fff;
+                padding: 18px 17px 17px 17px;
+                &:hover {
+                    border-color: #25CE79;
+                }
+            }
+        }
+    }
+}
+
+#block-section-10 {
+    a.btn-green {
+        min-width: 305px;
+    }
+}
+
+.masnory-grid.layout-two {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    .masnory-block-1 {
+        width: 294px;
+        height: 100%;
+        img {
+            height: 210px;
+        }
+        .masonary-description {
+            padding-right: 50px;
+            padding-left: 0;
+            padding-top: 157px;
+        }
+    }
+    .masnory-block-2 {
+        margin-left: -40px;
+        margin-top: 69px;
+        width: 363px;
+        height: 100%;
+        img {
+            height: 241px;
+        }
+        .masonary-description {
+            padding-top: 57px;
+        }
+    }
+    .masnory-block-3 {
+        margin-left: -70px;
+        width: 337px;
+        height: 100%;
+        img {
+            height: 244px;
+        }
+        .masonary-description {
+            padding-right: 0;
+            padding-left: 60px;
+            padding-top: 123px;
+        }
+    }
+}
+
+.cards.masnory-block.descp-black {
+    .field--name-field-description {
+        p {
+            width: auto;
+        }
+    }
+}
+
+.better-planet-new {
+    .card {
+        max-width: 948px;
+        .masnory-grid.layout-two {
+            padding-bottom: 0;
+            .iconbox {
+                .icon-img {
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                }
+                .icon-description-link {
+                    .icon-title {
+                        font-size: 20px;
+                        line-height: 22px;
+                        color: #000;
+                        font-weight: 700;
+                        margin-bottom: 10px;
+                    }
+                    .icon-description {
+                        p {
+                            font-size: 16px;
+                            line-height: 17px;
+                            font-weight: 400;
+                            margin-bottom: 0;
+                            padding: 0;
+                            color: #000;
+                        }
+                    }
+                    .icon-link {
+                        a {
+                            font-size: 16px;
+                            line-height: 17px;
+                            color: #25ce79;
+                            text-decoration: none;
+                            font-weight: 500;
+                            text-decoration: underline;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+            .masnory-block-1 {
+                .iconbox {
+                    .icon-description-link {
+                        padding-right: 16px;
+                        padding-left: 0;
+                        padding-top: 157px;
+                    }
+                }
+            }
+            .masnory-block-2 {
+                .iconbox {
+                    .icon-description-link {
+                        padding-top: 57px;
+                        .icon-description {
+                            padding-left: 30px;
+                            padding-right: 30px;
+                        }
+                    }
+                }
+            }
+            .masnory-block-3 {
+                .iconbox {
+                    .icon-description-link {
+                        padding-right: 0;
+                        padding-left: 60px;
+                        padding-top: 123px;
+                    }
+                }
+            }
+        }
+    }
+    .icon-description {
+        p {
+            display: inline;
+            margin-right: 5px;
+        }
+    }
+    .head {
+        h2 {
+            text-align: center;
+            margin-bottom: 9px;
+            line-height: 35px;
+            font-size: 32px;
+            font-weight: 700;
+            color: #25ce79;
+        }
+        .field--name-field-description {
+            p {
+                text-align: center;
+                font-size: 20px;
+                font-weight: 700;
+                line-height: 22px;
+                color: #000;
+            }
+        }
+    }
+    .desc-content {
+        padding-top: 27px;
+        padding-bottom: 48px;
+        p {
+            text-align: center;
+            font-size: 12px;
+            line-height: 13px;
+            padding: 0 85px;
+            color: #000;
+            font-weight: 400;
+        }
+    }
+}
+
+a.planet-fine-more {
+    display: inline-block;
+    color: #25CE79;
+    font-weight: 500;
+}
+
+@media(max-width: 991px) {
+    .better-planet-new {
+        padding-left: 30px;
+        padding-right: 30px;
+        .card {
+            .masnory-grid.layout-two {
+                .masnory-block-1 {
+                    .iconbox {
+                        width: 270px;
+                        img {
+                            height: 194px;
+                        }
+                        .icon-description-link {
+                            padding-top: 134px;
+                        }
+                    }
+                }
+                .masnory-block-2 {
+                    .iconbox {
+                        width: 300px;
+                        img {
+                            height: 200px;
+                        }
+                    }
+                }
+                .masnory-block-3 {
+                    .iconbox {
+                        width: 290px;
+                        img {
+                            height: 200px;
+                        }
+                        .icon-description-link {
+                            padding-top: 126px;
+                        }
+                    }
+                }
+                .iconbox {
+                    .icon-description-link {
+                        .icon-title {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(min-width:768px) {
+    .inner-mobile-img {
+        display: none;
+    }
+    .page--banner.banner-card-image-header {
+        .mobile-img {
+            display: none;
+        }
+    }
+    .phone-features .footer.mt-15 {
+        margin-top: 45px;
+    }
+}
+
+@media(max-width:767px) {
+    .inner-desktop-img {
+        display: none;
+    }
+    .cards.small.bottom.descp-black {
+        .mobile-img {
+            img {
+                object-position: top;
+            }
+        }
+    }
+    .phone-features {
+        .inner-mobile-img {
+            img {
+                width: 100%;
+            }
+        }
+    }
+    .better-planet-new {
+        .card {
+            .masnory-grid.layout-two {
+                display: block;
+                padding-top: 28px;
+                .iconbox {
+                    margin: auto !important;
+                    .icon-img {
+                        width: 100%;
+                    }
+                    img {
+                        width: 100% !important;
+                    }
+                    .icon-description-link {
+                        padding-top: 28px !important;
+                        width: 100%;
+                        padding-right: 0 !important;
+                        padding-left: 0 !important;
+                        text-align: center;
+                    }
+                }
+                .masnory-block-3 {
+                    margin-bottom: 0;
+                }
+            }
+            .masnory-block-3 {
+                margin: auto;
+                margin-bottom: 43px;
+                width: 100%;
+            }
+            .masnory-block-2 {
+                margin: auto;
+                margin-bottom: 43px;
+                width: 100%;
+            }
+            .masnory-block-1 {
+                margin: auto;
+                margin-bottom: 43px;
+                width: 100%;
+            }
+        }
+        .desc-content {
+            p {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+@media(max-width: 575px) {
+    .cards.small {
+        .head {
+            h2 {
+                line-height: 35px;
+            }
+        }
+        .container {
+            height: 569px;
+        }
+        .footer {
+            p {
+                margin-top: 26px;
+                line-height: 17px;
+                font-size: 16px;
+            }
+        }
+    }
+    .masnory-block.descp-black {
+        .head {
+            h2 {
+                line-height: 35px;
+            }
+            p {
+                margin-top: 17px;
+            }
+        }
+    }
+    .masnory-media-2 img {
+        width: 168px;
+        height: 155px;
+    }
+    .masnory-media-1 img {
+        width: 170px;
+        height: 134px;
+    }
+    .masnory-media-3 img {
+        width: 187px;
+        height: 108px;
+    }
+    .page--banner.banner-card-header {
+        h2 {
+            line-height: 35px !important;
+        }
+    }
+    .cards.small {
+        .footer {
+            bottom: 57px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+    .cards.small.bottom.descp-black {
+        .field--name-field-footer-text {
+            p {
+                line-height: 13px;
+                small {
+                    font-size: 12px;
+                }
+            }
+        }
+        .footer {
+            bottom: 0;
+        }
+    }
+    .cards.small.sub-bottom.descp-black {
+        .footer {
+            padding-left: 30px;
+            padding-right: 30px;
+            bottom: 42px;
+        }
+    }
+    .cards.small.last-bottom.descp-black {
+        .footer {
+            bottom: 39px;
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+    }
+    div#block-section-10 {
+        h2.text-center.clr-white {
+            line-height: 50px;
+            font-size: 40px;
+        }
+    }
+    .better-planet-new {
+        .card {
+            .masnory-grid.layout-two {
+                .iconbox {
+                    width: 100% !important;
+                    height: 100%;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

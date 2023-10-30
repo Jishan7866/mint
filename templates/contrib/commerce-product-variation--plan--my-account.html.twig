@@ -1,0 +1,67 @@
+{#
+/**
+ * @file
+ *
+ * Custom template for paln product variations on my account page.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product_variation: The rendered product variation fields.
+ *   Use 'product_variation' to print them all, or print a subset such as
+ *   'product_variation.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product_variation|without('title') }}
+ *   @endcode
+ * - product_variation_entity: The product variation entity.
+ * - url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+
+{% if (product_id != current_plan_sku) %}
+	{% set most_popular = field_popular_value ? 'product-plan--popular checked' %}
+{% endif %}
+
+<div class="product-plan new-product-plan-design {{ most_popular }}" data-variation-id="{{ variation_id }}" data-product-id="{{ product_id }}">
+	{% if most_popular %}
+		<div class="product-plan__label">Most popular plan</div>
+	{% endif %}
+  {% if base_gb_image %}
+	  <div class="gb-img-variation-sim-image"><img src="{{ base_gb_image }}"/></div>
+    {% endif %}
+	<div class="product-plan__price">
+		<div class="product-price-formatted">
+			<div class="price">
+				<span class="currency">$</span>
+				<span class="value">{{- base_plan_price -}}</span>
+			</div>
+			<div class="price-suffix">/mth</div>
+		</div>
+	</div>
+	<div class="product-plan__variations">
+	<div class="filed__items">
+	<span class="data-bank-value"><u>Data bank</u> unused data (up to {{ data_bank  }}GB)</span>
+	</div>
+		{{- product_variation|without('title', 'price', 'product_id', 'attribute_monthly_data', 'popup_link') -}}
+	</div>
+	<div class="summery">
+		<a target="_blank" href="{{ field_cis_link|striptags|trim }}">Critical Information Summary</a>
+	</div>
+	 {% if fiveg_plan_label %}
+	  <div class="text plans-5g-plan-label">{{ fiveg_plan_label }}</div>
+    {% endif %}
+  {% if (product_variation.not_blocked['#value']) %}
+    {% if (product_variation.popup_link) %}
+      {% if (product_variation.pending_orders['#value'] != 'pending_orders') %}
+        <div id="popup-variations" class="change-plan--button">{{ product_variation.popup_link }}</div>
+      {% endif %}
+    {% elseif (product_id == current_plan_sku) %}
+      <a href="#" class="button">Current Plan</a>
+    {% else %}
+      <a href="#" class="button">Select Plan</a>
+      <a href="#" class="button selected">Selected</a>
+    {% endif %}
+	{% endif %}
+</div>

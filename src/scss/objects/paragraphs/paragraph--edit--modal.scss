@@ -1,0 +1,9 @@
+.paragraph-content {
+  >.contextual {
+    top: 40px;
+
+    .trigger {
+      position: relative !important;
+    }
+  }
+}

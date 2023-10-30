@@ -1,0 +1,361 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $heading-font;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 36px;
+
+  &.page-title {
+    margin: 0;
+  }
+}
+
+h2 {
+  font-size: 30px;
+
+  &.page-title {
+    margin: 0;
+  }
+}
+
+h3 {
+  font-size: 21px;
+}
+
+h4 {
+  font-size: 21px;
+}
+
+p {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.btn:disabled,
+.button:disabled,
+.form-submit:disabled {
+  opacity: .65;
+}
+
+.form-item--error-message,
+.field-error>div {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: calc(100% - 8.5px);
+  margin: 10px 0;
+  margin-left: 8.5px;
+  padding: 0 10px;
+  font-size: 12px !important;
+  color: #d0021b;
+
+  &::before {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    margin-left: -18.5px;
+    margin-right: 7px;
+    background: url('../img/error-icon.svg') no-repeat;
+    content: '';
+  }
+}
+
+.form-success>div,
+.payment-success-message {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+  font-size: 12px !important;
+  color: #98ae16;
+  background-color: rgba(191, 215, 48, 0.1);
+
+  &::before {
+    flex-shrink: 0;
+    width: 17px;
+    height: 17px;
+    margin-right: 7px;
+    background-image: url('../img/success-icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    content: '';
+  }
+}
+
+.responsive-enabled {
+  display: none;
+}
+
+span.underlined {
+  display: inline;
+  background-position: 0 1.1em;
+  background-repeat: no-repeat;
+
+  &.bold-underlined {
+    background-position: 0 .8em;
+  }
+
+  &.medium-underlined {
+    background-position: 0 1em;
+  }
+
+ &.thin-underlined {
+   background-position: 0 1.1em;
+ }
+
+  &.red-underlined {
+    background-image: linear-gradient(to bottom, $c-blood-orange, $c-blood-orange);
+  }
+
+  &.green-underlined {
+    background-image: linear-gradient(to bottom, #bfd730, #bfd730);
+  }
+
+  &.white-underlined {
+    background-image: linear-gradient(to bottom, white, white);
+  }
+
+  &.purple-underlined {
+    background-image: linear-gradient(to bottom, $c-violet, $c-violet);
+  }
+
+  &.gray-underlined {
+    background-image: linear-gradient(to bottom, $c-grey-l, $c-grey-l);
+  }
+}
+
+span.highlight {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  padding: 0 5px;
+  display: inline;
+  line-height: 0.8em;
+  background-repeat: no-repeat;
+  background-position: left 75%;
+  background-size: 100% 45%;
+
+  &.highlight-red {
+    background-image: linear-gradient(to bottom, $c-blood-orange, $c-blood-orange);
+  }
+
+  &.highlight-violet,
+  &.highlight-violet-50,
+  &.highlight-violet-80,
+  &.highlight-violet-100 {
+    color: #fff;
+    background-image: linear-gradient(to bottom, $c-violet, $c-violet);
+  }
+
+  &.highlight-violet-50 {
+    background-size: 100% 35%;
+  }
+
+  &.highlight-violet-80 {
+    background-size: 100% 65%;
+  }
+
+  &.highlight-violet-100 {
+    background-size: 100% 100%;
+  }
+
+  &.highlight-black {
+    background-image: linear-gradient(to bottom, $c-black, $c-black);
+  }
+
+  &.highlight-white {
+    background-image: linear-gradient(to bottom, $c-white, $c-white);
+  }
+
+  &.highlight-grey {
+    background-image: linear-gradient(to bottom, $c-grey-l, $c-grey-l);
+  }
+}
+
+.cke.cke_reset_all.cke_1.cke_panel.cke_combopanel.cke_ltr {
+  min-width: 220px;
+}
+
+a[title="Violet Highlight 50% height"],
+a[title="Violet Highlight 60% height"],
+a[title="Violet Highlight 80% height"],
+a[title="Violet Highlight 100% height"] {
+  background: #000 !important;
+}
+
+.bhighlight {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+  padding: 0 5px;
+  display: inline;
+  line-height: 0.8em;
+
+  &.bhighlight-violet {
+    background-color: $c-violet;
+    background: linear-gradient(to bottom, $c-violet, $c-violet);
+    background-repeat: no-repeat;
+    background-position: left 75%;
+    background-size: 100% 45%;
+  }
+}
+
+.text-color {
+  &-black {
+    color: $c-black;
+  }
+
+  &-grey {
+    color: $c-grey-l;
+  }
+
+  &-white {
+    color: $c-white;
+  }
+
+  &-violet {
+    color: $c-violet;
+  }
+
+  &-red {
+    color: $c-blood-orange;
+  }
+}
+
+.text-lg {
+  font-size: 36px;
+}
+
+@media screen and (min-width: $tablet) {
+  .text-lg {
+    font-size: 60px;
+    line-height: 72px;
+  }
+}
+
+.text-md {
+  font-size: 24px;
+  line-height: 30px;
+}
+
+@media screen and (min-width: $tablet) {
+  .text-md {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}
+
+/*-- margin and padding --*/
+@each $size,
+$length in $spacers {
+  @each $side in $sides {
+    @if $side=='all' {
+      .m-#{$size} {
+        margin: #{$length} !important;
+      }
+
+      .p-#{$size} {
+        padding: #{$length} !important;
+      }
+    }
+
+    @else {
+      .m#{str-slice($side, 0, 1)}-#{$size} {
+        margin-#{$side}: #{$length} !important;
+      }
+
+      .p#{str-slice($side, 0, 1)}-#{$size} {
+        padding-#{$side}: #{$length} !important;
+      }
+    }
+  }
+}
+
+/*-- text alignment --*/
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+@media screen and (max-width: $tablet) {
+  .text-align-center-mobile {
+    text-align: center;
+
+    .text-align-left,
+    .text-align-right {
+      text-align: center;
+    }
+
+    .horizontal-left_short,
+    .horizontal-right_short {
+
+      .field--name-field-slide-title,
+      .field--name-field-text {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .text-align-left-mobile {
+    text-align: left;
+
+    .text-align-center,
+    .text-align-right {
+      text-align: left;
+    }
+  }
+
+  .text-align-right-mobile {
+    text-align: right;
+
+    .text-align-center,
+    .text-align-left {
+      text-align: right;
+    }
+  }
+}
+
+/*-- line height --*/
+.line-height-xs {
+  line-height: 1;
+}
+
+.line-height-sm {
+  line-height: 1.2;
+}
+
+.line-height-md {
+  line-height: 1.5;
+}
+
+.line-height-lg {
+  line-height: 1.8;
+}
+
+.line-height-xl {
+  line-height: 2;
+}

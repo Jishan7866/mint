@@ -1,0 +1,39 @@
+.ticker-wrapper {
+  background-color: $c-black;
+  color: $c-white;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  line-height: 16px;
+  box-shadow: 0 3px 15px 2px #2f2e2e;
+  position: relative;
+  z-index: 1;
+  a {
+    color: #25ce79;
+    text-decoration: underline;
+  }
+  .ticker {
+    overflow: hidden;
+    width: 100%;
+    padding: 0.8rem 0;
+    text-transform: uppercase;
+  }
+  .eco-friendly-icon {
+    background-image: url(../img/eco-friendly-icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    margin: 0 0.2rem;
+    vertical-align: middle;
+  }
+  @media screen and (max-width: $tablet) {
+    font-size: 10.5px;
+    .eco-friendly-icon {
+      width: 25px;
+      height: 25px;
+    }
+  }
+}

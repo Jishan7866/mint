@@ -1,0 +1,9 @@
+<div class="container-item">
+	{% if container_item_link is defined and container_item_link is not empty %}
+		<a href="{{ container_item_link }}">
+			{{ content }}
+		</a>
+	{% else %}
+		{{ content }}
+	{% endif %}
+</div>

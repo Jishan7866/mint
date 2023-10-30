@@ -1,0 +1,46 @@
+.paragraph--type--block-reference {
+
+  .menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: $c-black;
+    padding-top: 15px;
+
+    .menu-item {
+      position: relative;
+      margin-right: 25px;
+
+      &::after {
+        position: absolute;
+        top: calc(50% - 1px);
+        left: calc(100% + 11px);
+        width: 2px;
+        height: 2px;
+        background-color: currentColor;
+        content: '';
+      }
+
+      &:last-child {
+        margin-right: 0;
+
+        &::after {
+          display: none;
+        }
+      }
+    }
+
+    .menu-item.menu-item--active-trail a {
+      padding: 5px 10px;
+      background: $c-grey-2l;
+    }
+
+    a {
+      color: currentColor;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-size: 16px;
+    }
+  }
+}

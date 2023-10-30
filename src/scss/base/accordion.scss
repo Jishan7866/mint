@@ -1,0 +1,17 @@
+.js-btn-toggle+* {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height .4s;
+}
+
+.path-user {
+  .js-btn-toggle+* {
+    opacity: 0;
+    transition: height .5s, opacity .4s .3s;
+  }
+
+  .js-btn-toggle.opened+* {
+    opacity: 1;
+  }
+}

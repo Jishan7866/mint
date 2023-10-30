@@ -1,0 +1,190 @@
+// common button style
+button {
+  margin: 10px 0;
+
+  &:first-of-type {
+    margin-top: 0 !important;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0 !important;
+  }
+}
+
+.btn {
+  position: relative;
+  display: inline-block;
+
+  min-width: 225px;
+
+  padding: 15px 20px;
+  margin: 10px 0;
+
+  border: none;
+  border-radius: 0;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: normal;
+
+  color: $c-white;
+  background-color: $accent-color;
+
+  transition: .2s ease-out;
+
+  &:first-of-type {
+    margin-top: 0 !important;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0 !important;
+  }
+
+  &.is-disabled,
+  &:disabled {
+    box-shadow: none !important;
+    background-color: $c-disabled !important;
+  }
+
+  &.is-disabled-strong {
+    box-shadow: none !important;
+    background-color: $c-disabled !important;
+    pointer-events: none;
+  }
+}
+
+// blue button
+.btn-blue {
+  color: $c-white;
+  background-color: $primary-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    background-color: lighten($primary-color, 8);
+  }
+}
+
+// blue-arrow button
+.btn-blue-arrow {
+  color: $c-white;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+  &.solid-with-blue {
+    color: $primary-color;
+    border: 2px solid  $primary-color;
+  }
+}
+
+// white-purple button
+.btn-white-purple {
+  color: $primary-color;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+// white-purple-arrow button
+.btn-white-purple-arrow {
+  color: $accent-color;
+  background-color: transparent;
+  border: 1px solid $accent-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+//green button
+.btn-green,
+.btn-green-arrow {
+  color: $c-white;
+  background-color: $accent-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    background-color: lighten($accent-color, 8);
+  }
+}
+
+// white button
+.btn-white {
+  color: $text-color;
+  background-color: transparent;
+  border: 1px solid $c-black;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+// white-arrow button
+.btn-white-arrow {
+  color: $c-white;
+  background-color: transparent;
+  border: 1px solid $accent-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+// long-green button
+.btn-long-green {
+  color: $c-white;
+  background-color: $c-black;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+// long-grey button
+.btn-long-grey {
+  color: $c-white;
+  background-color: $border-color;
+
+  &:hover,
+  &.paypal-button--hover {
+    opacity: 0.8;
+  }
+}
+
+// btn red border
+.btn-red-border {
+  color: $text-color;
+  background-color: transparent;
+  border: 2px solid $accent-color;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+// btn white border
+.btn-white-border {
+  background-color: transparent;
+  border: 2px solid $c-white;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

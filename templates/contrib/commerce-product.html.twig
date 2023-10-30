@@ -1,0 +1,74 @@
+{#
+/**
+ * @file
+ *
+ * Default product template.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - product: The rendered product fields.
+ *   Use 'product' to print them all, or print a subset such as
+ *   'product.title'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ product|without('title') }}
+ *   @endcode
+ * - product_entity: The product entity.
+ * - product_url: The product URL.
+ *
+ * @ingroup themeable
+ */
+#}
+<article{{attributes}}>
+	<div class="product">
+		{% if product.field_tooltip_title[0]['#context']['value'] %}
+			<div class="wrapper-tooltip">
+				{{- product.field_tooltip_title -}}
+				{% if product.field_tooltip_text[0]['#text'] %}
+					<div class="certified tooltip-icon"></div>
+				</div>
+				<div class="certified tooltip-text">
+					{{- product.field_tooltip_text -}}
+				</div>
+		{% else %}
+			</div>
+		{% endif %}
+	{% endif %}
+	{% if product_type is defined and product_type == 'iphone' or product_type == 'samsung' %}
+		<div class="product__wrapper">
+			<div class="product__options">
+				{{- product|without('variation_attributes', 'title', 'field_tooltip_title', 'field_tooltip_text', 'variation_price',
+            'variation_field_price_tooltip_text', 'field_features_link', 'variation_field_telephone_gallery', 'variation_field_tooltip_text', 'field_price_tooltip_text', 'field_delivery', 'field_price_markup_text', 'field_price_help_text', 'variation_total_price', 'field_tooltip_title', 'field_tooltip_text') -}}
+				<div class="product-price wrapper-tooltip">
+					{% set markup_price =  product.variation_price[0]['#markup']%}
+					{% set full_price = markup_price * 24 %}
+					<div class="product-price__text">
+						{{ product.field_price_markup_text[0]["#text"]|replace({'@variation_price': markup_price, '@full_price': full_price})|raw }}
+						{{ product.variation_price }}
+					</div>
+					{% if product.field_price_tooltip_text[0]['#text'] %}
+						<div class="price tooltip-text">
+							{{ product.field_price_tooltip_text }}
+						</div>
+					{% endif %}
+				</div>
+				<div class="product-price__help">
+					{{ product.field_price_help_text }}
+				</div>
+			</div>
+			<div class="product__gallery">
+				{{ product.variation_field_telephone_gallery }}
+			</div>
+		</div>
+		<div class="product__footer">
+			<div class="product__footer-item">
+				<div class="delivery-message timer">{{ product.field_delivery }}</div>
+			</div>
+			<div class="product__footer-item">
+				{{ product.field_features_link }}
+			</div>
+		</div>
+	{% else %}
+		{{- product|without('variation_attributes', 'title', 'field_tooltip_title', 'field_tooltip_text') -}}
+	{% endif %}
+</div></article>

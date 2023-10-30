@@ -1,0 +1,386 @@
+.block-page-title-block {
+  text-align: center;
+  padding: 0 42px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 30px;
+  }
+
+  .page-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: $text-color;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 21px;
+    }
+  }
+}
+
+.my-account-title {
+  padding: 2.5rem;
+  font-size: 2rem;
+  color: $text-color;
+  text-align: center;
+
+  @media screen and (max-width: $mobile) {
+    font-size: 2rem;
+  }
+}
+
+.my-account-box {
+  border-radius: 15px;
+}
+
+.mobile-phone-plans {
+  .block-page-title-block {
+    padding-top: 40px;
+  }
+
+  .block-views-exposed-filter-blocksearch-page-search {
+    display: none;
+
+    @media screen and (max-width: $tablet) {
+      display: block;
+    }
+  }
+
+  .paragraph--type--container.grid-container-type.normal-items .paragraph-content {
+    padding-top: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}
+
+.path-checkout {
+  .block-page-title-block {
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+    @media screen and (max-width: $tablet) {
+      display: none;
+    }
+  }
+
+  .checkout-step-title-mobile {
+    display: none;
+    padding: 0;
+    padding-bottom: 10px;
+
+    @media screen and (max-width: $tablet) {
+      display: block;
+      margin-top: 2rem;
+    }
+
+    .page-title {
+      font-size: 21px;
+    }
+  }
+
+  .block-simple-blockcheckout-banner {
+    @media screen and (max-width: $tablet) {
+      display: none;
+    }
+  }
+}
+
+.our-phones .paragraph--type--text-element .paragraph-content {
+  max-width: 940px;
+  padding: 0 0 47px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 0 0 25px;
+  }
+}
+
+.login .paragraph--type--text-element .paragraph-content {
+  padding: 50px 0 40px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 23px 0;
+  }
+}
+
+.confirmation-page .paragraph--type--text-element .paragraph-content,
+.sorry-page .paragraph--type--text-element .paragraph-content,
+.declined .paragraph--type--text-element .paragraph-content,
+.not-found .paragraph--type--text-element .paragraph-content,
+.path-activate-sim .paragraph--type--text-element .paragraph-content,
+.login .paragraph--type--text-element .paragraph-content {
+  padding: 32px 0 40px;
+
+  @media screen and (max-width: $mobile) {
+    padding: 24px 0 25px;
+  }
+
+  .field--name-field-title {
+    margin-bottom: 12px;
+    font-weight: 500;
+
+    @media screen and (max-width: $mobile) {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .field--name-field-text {
+    @media screen and (max-width: $mobile) {
+      font-size: 16px;
+    }
+  }
+
+  a {
+    color: $primary-color;
+    white-space: nowrap;
+  }
+}
+
+.path-user .product-plan {
+  transition: .5s;
+
+  &__title {
+    cursor: default;
+
+    &::after {
+      border-color: $c-black;
+    }
+  }
+
+  &__price {
+    .product-plan__big-text {
+      margin-right: 4px;
+    }
+  }
+
+  &__variations>.field__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: $text-color-2l;
+    padding-top: 5px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-left: 60px;
+    height: 80px;
+    border-bottom: 2px solid $c-white;
+    text-align: left;
+    transition: .2s;
+    overflow: hidden;
+
+    &::after {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 22px;
+      width: 13px;
+      height: 8px;
+      border: 3px solid $c-black;
+      border-top: none;
+      border-right: none;
+      transform: translateY(-60%) rotate(-45deg);
+      opacity: 1;
+      transition: .2s;
+      content: '';
+    }
+
+    >* {
+      width: 100%;
+    }
+  }
+
+  &__summary {
+    min-height: 33px;
+    font-size: 12px;
+    text-decoration: underline;
+    text-align: center;
+    padding: 12px 10px 14px;
+    margin-top: -2px;
+    border-top: 1px solid rgba(155, 155, 155, 0.1);
+  }
+}
+
+.path-user .ui-dialog.ui-widget {
+  border-radius: 10px;
+
+  .ui-dialog-titlebar {
+    padding-bottom: 10px;
+
+    .ui-dialog-title {
+      color: black;
+      font-size: 30px;
+      font-weight: bold;
+    }
+  }
+}
+
+.page-node-type-product {
+  .paragraph--type--text-element {
+    .paragraph-content {
+      padding: 20px 0 0;
+    }
+  }
+}
+
+.field--name-field-faq-accordion .field__label {
+  display: none;
+}
+
+.field--name-field-faq-accordion {
+  max-width: 1000px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.field--name-field-faq-accordion .field__items {
+  margin: 25px 0px;
+}
+
+.home-page {
+  .field--name-field-faq-accordion .field__items {
+    margin: 0;
+  }
+}
+
+.why-numobile {
+  .field--name-field-faq-accordion .field__items {
+    margin: 0;
+  }
+}
+
+.field--name-field-faq-accordion {
+
+  .ui-accordion-header,
+  .ui-accordion-content {
+    background: none;
+    border: 0;
+    color: $c-black;
+  }
+
+  .ui-state-focus {
+    outline: none;
+  }
+
+  .ui-accordion h3:nth-child(n+2)::before {
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right, #f2f2f2 0%, #a0a0a0 50%, #f2f2f2 100%);
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .ui-accordion-header {
+    font-weight: 500;
+    font-size: 22px;
+    padding: 1em 0;
+  }
+
+  .ui-accordion-header span {
+    width: 50px;
+    height: 40px;
+    float: right;
+  }
+
+  .ui-accordion-header span::after {
+    display: block;
+    position: absolute;
+    top: 5px;
+    right: 23px;
+    transform: rotate(-45deg);
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.9);
+    border-top: none;
+    border-right: none;
+    transition: 0.2s;
+    content: "";
+  }
+
+  .ui-state-active span::after {
+    top: 15px;
+    transform: rotate(135deg);
+  }
+
+  .ui-icon,
+  .ui-widget-content .ui-icon {
+    background: none;
+  }
+
+  .ui-accordion-content {
+    padding: 0 0 2em 0;
+    margin: 0;
+  }
+
+  .faqfield-answer p {
+    overflow: hidden;
+  }
+
+}
+
+
+.block-simple-blocktelstra-banner {
+  background-color: $c-violet;
+  padding: 1rem 2rem;
+  text-align: center;
+  color: $c-white;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 1.2rem;
+  }
+
+  a {
+    color: $c-white;
+  }
+}
+
+.ready-to-activate-your-number .paragraph--type--text-element .paragraph-content {
+  padding: 0 !important;
+}
+
+/*-- remove space activate sim page except first paragraph --*/
+.activate-sim-page {
+  .field__item:not(:first-child) {
+    .paragraph--type--text-element {
+      .paragraph-content {
+        padding: 0 !important;
+      }
+    }
+  }
+}
+
+
+.crowd-container {
+  line-height: 3rem;
+  display: flex;
+  flex-flow: wrap;
+  margin-left: -100px;
+  margin-right: -70px;
+
+  .first-col,
+  .last-col {
+    padding: 30px;
+    width: 50%;
+    align-self: center;
+  }
+
+  @media screen and (max-width: $tablet) {
+    display: block;
+    margin: 0;
+
+    .first-col,
+    .last-col {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}

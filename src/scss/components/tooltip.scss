@@ -1,0 +1,145 @@
+.wrapper-tooltip {
+  display: flex;
+  align-items: center;
+}
+
+.tooltip-icon {
+  position: relative;
+  width: 17px;
+  height: 17px;
+  margin-left: 5px;
+  background-image: url('../img/tooltip-icon.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  display: inline-block;
+  &.inline-block {
+    display: inline-block;
+  }
+}
+
+.tooltip-text {
+  font-size: 14px;
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 13px);
+  transform: translate(-50%, 5px) scale(.9);
+  padding: 15px;
+  padding-right: 30px;
+  width: 195px;
+  border: 1px solid $text-color-2l;
+  border-radius: 3px;
+  color: $text-color-l;
+  background-color: $c-white;
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  z-index: 111;
+  pointer-events: none;
+  transition: .2s;
+  text-align: left;
+
+  &.showed {
+    pointer-events: auto;
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+
+  &.showed--right-align {
+    transform: translate(-89%, 0) scale(1);
+
+    &::after {
+      left: 89%;
+    }
+  }
+
+  &.showed--left-align {
+    transform: translate(-11%, 0) scale(1);
+
+    &::after {
+      left: 10%;
+    }
+  }
+
+  &.showed--bottom-align {
+    top: calc(100% + 13px);
+    bottom: auto;
+
+    &::after {
+      top: auto;
+      bottom: calc(100% - 15px);
+      box-shadow: 2px -2px 6px 0 rgba(0, 0, 0, .1);
+    }
+
+    &::before {
+      top: 0;
+      bottom: auto;
+    }
+  }
+
+  &::before {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 15px;
+    background-color: $c-white;
+    z-index: 2;
+    content: '';
+  }
+
+  &::after {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 1px);
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 15px;
+    height: 15px;
+    border-left: 1px solid $text-color-2l;
+    border-bottom: 1px solid $text-color-2l;
+    border-bottom-left-radius: 3px;
+    background-color: $c-white;
+    box-shadow: -2px 2px 6px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    content: '';
+  }
+
+  a {
+    color: $text-color;
+    font-weight: 700;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.tooltip-close {
+  position: absolute;
+  z-index: 10;
+  top: 10px;
+  right: 10px;
+  width: 13px;
+  height: 13px;
+
+  &::before,
+  &::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 1px;
+    background-color: $text-color-l;
+    content: '';
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+}
